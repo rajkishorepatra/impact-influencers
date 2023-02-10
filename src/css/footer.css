@@ -1,0 +1,10 @@
+.footer{
+    background-color: #212121;
+    color: #949494;
+    height: auto;
+    margin-bottom: -2em;
+}
+
+.footer span{
+    color: #ffffff;
+}
