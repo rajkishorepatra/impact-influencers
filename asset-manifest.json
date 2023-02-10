@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.css": "/impact-influencers/static/css/main.e511f4e3.css",
+    "main.js": "/impact-influencers/static/js/main.a98846dd.js",
+    "static/media/influ.jpg": "/impact-influencers/static/media/influ.7d82b7954ea8ee365e2f.jpg",
+    "static/media/comp.jpg": "/impact-influencers/static/media/comp.d810b9ea7361ce694908.jpg",
+    "static/media/profile.png": "/impact-influencers/static/media/profile.76a001d0c402b5637a97.png",
+    "static/media/bg.jpeg": "/impact-influencers/static/media/bg.f2022520e7886fcb84b6.jpeg",
+    "index.html": "/impact-influencers/index.html",
+    "main.e511f4e3.css.map": "/impact-influencers/static/css/main.e511f4e3.css.map",
+    "main.a98846dd.js.map": "/impact-influencers/static/js/main.a98846dd.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e511f4e3.css",
+    "static/js/main.a98846dd.js"
+  ]
+}
