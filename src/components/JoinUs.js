@@ -1,27 +1,55 @@
-import React from 'react'
-import { Container } from 'react-bootstrap'
+import React, { useState } from 'react'
+import { Button, Container, Col, Row } from 'react-bootstrap'
+import InfluencerModal from './Modals/InfluencerModal';
+import OrgModal from './Modals/OrgModal';
+import CampModal from './Modals/CampModal';
 import influ from '../assets/influ.jpg'
-import org from '../assets/comp.jpg'
+// import org from '../assets/comp.jpg'
+import camp from '../assets/campaign.jpg'
+
+
 
 function JoinUs() {
+    const [showInflu, setShowInflu] = useState(false);
+    const [showOrg, setShowOrg] = useState(false);
+    const [showCamp, setShowCamp] = useState(false);
+
     return (
-        <Container className='joinUs'>
-            <h1>Join us to create an Impact!</h1>
-            <div className='joinImg py-5 mx-auto'>
-                <div className='imgCont py-2'>
-                    <img src={influ} alt="influencers" />
-                    <div className='textOnDiv'>
-                        <h3>As an<br />Influencer</h3>
-                    </div>
-                </div>
-                <div className='imgCont py-2'>
-                    <img src={org} alt="organization" />
-                    <div className='textOnDiv'>
-                        <h3>As an<br />Organization</h3>
-                    </div>
-                </div>
-            </div>
-        </Container>
+        <>
+            <Container className='joinUs'>
+                <h1 className='my-4'>Join us to create an Impact!</h1>
+                <Row className='m-auto mb-4'>
+                    <Col>
+                        <div className='p-2 d-flex justify-content-center'>
+                            <img src={influ} alt="influencers" className='rounded-3' />
+                        </div>
+                        <div className='d-flex justify-content-center pb-4'>
+                            <Button onClick={()=>setShowInflu(true)}>As an Influencer</Button>
+                        </div>
+                    </Col>
+                    <Col>
+                        <div className='p-2 d-flex justify-content-center'>
+                            <img src={camp} alt="organization" className='rounded-4' />
+                        </div>
+                        <div className='d-flex justify-content-center pb-4'>
+                            <Button onClick={()=>setShowOrg(true)}>As an Organization</Button>
+                        </div>
+                    </Col>
+                    <Col>
+                        <div className='p-2 d-flex justify-content-center'>
+                            <img src={camp} alt="influencers" className='rounded-4' />
+                        </div>
+                        <div className='d-flex justify-content-center pb-4'>
+                            <Button onClick={()=>setShowCamp(true)}>Start a Campaign</Button>
+                        </div>
+                    </Col>
+                </Row>
+            </Container>
+
+            <InfluencerModal show={showInflu} close={()=>setShowInflu(false)} />
+            <OrgModal show={showOrg} close={()=>setShowOrg(false)} />
+            <CampModal show={showCamp} close={()=>setShowCamp(false)} />
+        </>
     )
 }
 

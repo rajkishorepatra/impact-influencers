@@ -1,0 +1,16 @@
+.mainCarousel{
+    height: 95vh;
+}
+
+.mainCarousel img{
+    height: 95vh;
+}
+
+@media (max-width: 1000px) {
+    .mainCarousel{
+        height: 70vw;
+    }
+    .mainCarousel img{
+        height: 70vw;
+    }
+}

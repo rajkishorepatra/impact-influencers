@@ -1,6 +1,7 @@
 import React from 'react';
 import Carousel from 'react-bootstrap/Carousel';
 import bgimg from '../assets/bg.jpeg'
+import '../css/main.css'
 
 function Main() {
     return (
@@ -8,9 +9,10 @@ function Main() {
             <Carousel fade style={{zIndex:"1"}} className="mainCarousel" controls={false} interval={2000} indicators={false}>
                 <Carousel.Item>
                     <img
-                        className="d-block w-100"
+                        className="d-block w-100 h-200"
                         src={bgimg}
                         alt="First slide"
+                        height={1000}
                     />
                     <Carousel.Caption>
                         <h3>Debarchan Mishra</h3>
@@ -21,6 +23,7 @@ function Main() {
                     <img
                         className="d-block w-100"
                         src={bgimg}
+                        height={1000}
                         alt="Second slide"
                     />
 
@@ -33,6 +36,7 @@ function Main() {
                     <img
                         className="d-block w-100"
                         src={bgimg}
+                        height={1000}
                         alt="Third slide"
                     />
 
