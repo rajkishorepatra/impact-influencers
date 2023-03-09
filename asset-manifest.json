@@ -1,17 +1,19 @@
 {
   "files": {
-    "main.css": "/impact-influencers/static/css/main.e511f4e3.css",
-    "main.js": "/impact-influencers/static/js/main.a98846dd.js",
+    "main.css": "/impact-influencers/static/css/main.d2f28581.css",
+    "main.js": "/impact-influencers/static/js/main.57156c3b.js",
     "static/media/influ.jpg": "/impact-influencers/static/media/influ.7d82b7954ea8ee365e2f.jpg",
-    "static/media/comp.jpg": "/impact-influencers/static/media/comp.d810b9ea7361ce694908.jpg",
-    "static/media/profile.png": "/impact-influencers/static/media/profile.76a001d0c402b5637a97.png",
+    "static/media/campaign.jpg": "/impact-influencers/static/media/campaign.04b35efc0e8ea2fe1311.jpg",
     "static/media/bg.jpeg": "/impact-influencers/static/media/bg.f2022520e7886fcb84b6.jpeg",
+    "static/media/revicons.eot": "/impact-influencers/static/media/revicons.a77de540a38981833f9e.eot",
+    "static/media/revicons.ttf": "/impact-influencers/static/media/revicons.57fd05d4ae650374c8de.ttf",
+    "static/media/revicons.woff": "/impact-influencers/static/media/revicons.e8746a624ed098489406.woff",
     "index.html": "/impact-influencers/index.html",
-    "main.e511f4e3.css.map": "/impact-influencers/static/css/main.e511f4e3.css.map",
-    "main.a98846dd.js.map": "/impact-influencers/static/js/main.a98846dd.js.map"
+    "main.d2f28581.css.map": "/impact-influencers/static/css/main.d2f28581.css.map",
+    "main.57156c3b.js.map": "/impact-influencers/static/js/main.57156c3b.js.map"
   },
   "entrypoints": [
-    "static/css/main.e511f4e3.css",
-    "static/js/main.a98846dd.js"
+    "static/css/main.d2f28581.css",
+    "static/js/main.57156c3b.js"
   ]
 }
