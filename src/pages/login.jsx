@@ -8,8 +8,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGoogle } from "@fortawesome/free-brands-svg-icons";
 import { FiX } from "react-icons/fi";
 import { UserAuth } from "../context/AuthContext";
+
+
 const Login = () => {
-  const { SignIn, user } = UserAuth();
+  const { logIn, user } = UserAuth();
   const [formstate, setformstate] = useState({
     submitting: false,
     error: null,
@@ -18,13 +20,14 @@ const Login = () => {
   const handleFormSubmit = async (values) => {
     setformstate({ ...formstate, submitting: true });
     try {
-      await SignIn(values.email, values.password);
+      await logIn(values.email, values.password);
       setformstate({ ...formstate, submitting: false });
     } catch (error) {
       let errmsg = error.code.replaceAll("auth/", "").replaceAll("-", " ");
       setformstate({ ...formstate, submitting: false, error: errmsg });
     }
   };
+  
   if (user) {
     return <Navigate replace to="/" />;
   }
@@ -44,9 +47,9 @@ const Login = () => {
       {/* login form error component */}
       {formstate.error && (
         <div className="mb-2 rounded shadow px-3 py-2 form-width d-flex justify-content-between align-items-center border border-danger">
-          <span>{formstate.error}</span>
+          <span className="text-danger fs-6 fw-normal">{formstate.error}</span>
           <button
-            nClick={() => setformstate({ ...formstate, error: null })}
+            onClick={() => setformstate({ ...formstate, error: null })}
             className="bg-transparent border-0"
           >
             <FiX className="fs-5 text-danger"></FiX>
@@ -94,13 +97,8 @@ const Login = () => {
                 type="submit"
                 className="w-100 mt-2"
                 disabled={formstate.submitting}
-              >
-                {/* {formstate.submitting ? (
-              <HiOutlineRefresh className="text-lg w-full text-center animate-spin" />
-            ) : (
-              "Sign up"
-            )} */}
-                Sign up
+              >              
+                Sign In
               </Button>
             </div>
             <div className="w-100">

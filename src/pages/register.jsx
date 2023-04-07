@@ -7,7 +7,8 @@ import { Button } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGoogle } from "@fortawesome/free-brands-svg-icons";
 import { UserAuth } from "../context/AuthContext";
-import { FiRotateCw } from "react-icons/fi";
+
+
 const Register = () => {
   const { signUp, user } = UserAuth();
   const [formstate, setformstate] = useState({
@@ -81,8 +82,11 @@ const Register = () => {
               disabled={formstate.submitting}
             />
             <div className="">
-              <Button type="submit" className="w-100 mt-2" disabled={formstate.submitting}>
-                {formstate.submitting ? <FiRotateCw className="" /> : "Sign up"}
+              <Button
+                type="submit"
+                className="w-100 mt-2"
+                disabled={formstate.submitting}
+              >
                 Sign up
               </Button>
             </div>
