@@ -1,5 +1,5 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, Navigate } from "react-router-dom";
 import { Form, Formik } from "formik";
 import * as Yup from "yup";
 import { InputField } from "../components/form-inputs";
@@ -7,10 +7,28 @@ import { Button } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGoogle } from "@fortawesome/free-brands-svg-icons";
 import { FiX } from "react-icons/fi";
+import { UserAuth } from "../context/AuthContext";
 const Login = () => {
+  const { SignIn, user } = UserAuth();
+  const [formstate, setformstate] = useState({
+    submitting: false,
+    error: null,
+  });
+
   const handleFormSubmit = async (values) => {
-    console.log(values);
+    setformstate({ ...formstate, submitting: true });
+    try {
+      await SignIn(values.email, values.password);
+      setformstate({ ...formstate, submitting: false });
+    } catch (error) {
+      let errmsg = error.code.replaceAll("auth/", "").replaceAll("-", " ");
+      setformstate({ ...formstate, submitting: false, error: errmsg });
+    }
   };
+  if (user) {
+    return <Navigate replace to="/" />;
+  }
+
   return (
     <div className="form-page vh-100 bg-gradient">
       <div className="mt-4">
@@ -22,15 +40,21 @@ const Login = () => {
         </Link>
         <p className=" fs-4 fw-light text-center m-2">sign into your account</p>
       </div>
-      <div className="mb-2 rounded shadow px-3 py-2 form-width d-flex justify-content-between align-items-center border border-danger">
-        <span>error message</span>
-        <button
-          onClick={() => console.log("hfjdkfj")}
-          className="bg-transparent border-0"
-        >
-          <FiX className="fs-5 text-danger"></FiX>
-        </button>
-      </div>
+
+      {/* login form error component */}
+      {formstate.error && (
+        <div className="mb-2 rounded shadow px-3 py-2 form-width d-flex justify-content-between align-items-center border border-danger">
+          <span>{formstate.error}</span>
+          <button
+            nClick={() => setformstate({ ...formstate, error: null })}
+            className="bg-transparent border-0"
+          >
+            <FiX className="fs-5 text-danger"></FiX>
+          </button>
+        </div>
+      )}
+
+      {/* login form wrapper */}
       <div className="form-wrapper rounded p-3 bg-light shadow">
         <Formik
           initialValues={{
@@ -51,15 +75,26 @@ const Login = () => {
           }}
         >
           <Form>
-            <InputField label="Email" id="email" name="email" type="email" />
+            <InputField
+              label="Email"
+              id="email"
+              name="email"
+              type="email"
+              disabled={formstate.submitting}
+            />
             <InputField
               label="Password"
               id="password"
               name="password"
               type="password"
+              disabled={formstate.submitting}
             />
             <div className="">
-              <Button type="submit" className="w-100 mt-2">
+              <Button
+                type="submit"
+                className="w-100 mt-2"
+                disabled={formstate.submitting}
+              >
                 {/* {formstate.submitting ? (
               <HiOutlineRefresh className="text-lg w-full text-center animate-spin" />
             ) : (

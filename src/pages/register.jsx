@@ -1,17 +1,33 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, Navigate } from "react-router-dom";
 import { Form, Formik } from "formik";
 import * as Yup from "yup";
 import { InputField } from "../components/form-inputs";
 import { Button } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGoogle } from "@fortawesome/free-brands-svg-icons";
-
+import { UserAuth } from "../context/AuthContext";
+import { FiRotateCw } from "react-icons/fi";
 const Register = () => {
+  const { signUp, user } = UserAuth();
+  const [formstate, setformstate] = useState({
+    submitting: false,
+    error: null,
+  });
   const handleFormSubmit = async (values) => {
-    console.log(values);
+    setformstate({ ...formstate, submitting: true });
+    try {
+      await signUp(values.email, values.password);
+    } catch (error) {
+      let error_msg = error.code.replaceAll("auth/", "").replaceAll("-", " ");
+      setformstate({ ...formstate, submitting: false, error: error_msg });
+    }
   };
-  
+
+  if (user) {
+    return <Navigate replace to="/" />;
+  }
+
   return (
     <div className="form-page vh-100 bg-gradient">
       <div className="mt-4">
@@ -55,20 +71,18 @@ const Register = () => {
               id="password"
               name="password"
               type="password"
+              disabled={formstate.submitting}
             />
             <InputField
               label="Confirm Password"
               id="confirm_password"
               name="confirm_password"
               type="password"
+              disabled={formstate.submitting}
             />
             <div className="">
-              <Button type="submit" className="w-100 mt-2">
-                {/* {formstate.submitting ? (
-              <HiOutlineRefresh className="text-lg w-full text-center animate-spin" />
-            ) : (
-              "Sign up"
-            )} */}
+              <Button type="submit" className="w-100 mt-2" disabled={formstate.submitting}>
+                {formstate.submitting ? <FiRotateCw className="" /> : "Sign up"}
                 Sign up
               </Button>
             </div>
