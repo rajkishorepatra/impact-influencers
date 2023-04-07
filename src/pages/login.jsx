@@ -1,63 +1,96 @@
-import React, { useState } from 'react';
-import { Form, Button, Container } from 'react-bootstrap';
-import Card from 'react-bootstrap/Card';
-import { useFormik } from 'formik';
-import * as Yup from 'yup';
-
-
-
+import React from "react";
+import { Link } from "react-router-dom";
+import { Form, Formik } from "formik";
+import * as Yup from "yup";
+import { InputField } from "../components/form-inputs";
+import { Button } from "react-bootstrap";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faGoogle } from "@fortawesome/free-brands-svg-icons";
+import { FiX } from "react-icons/fi";
 const Login = () => {
-    const formik = useFormik({
-        initialValues: {
-            email: '',
-            password: '',
-        },
-        validationSchema: Yup.object({
-            // email('Invalid email address').required('Required')
-            email: Yup.string(),
-            password: Yup.string(),
-        }),
-        onSubmit: values => {
-            alert(JSON.stringify(values, null, 2));
-        },
-
-    });
-
-    return (
-        <Container fluid className='vh-100 bg-light' >
-            <div className="vstack mx-auto p-4" style={{ width: "20rem" }}>
-                <h1 className="display-6">Impace Influencers</h1>
-                <p className='fs-5 fw-semibold'>Sign in to your account</p>
-                <Card border='light' style={{ width: "20rem" }}>
-                    <Card.Body className='p-0'>
-                        <Form onSubmit={formik.handleSubmit} className='vstack gap-3'>
-                            <Form.Group className="" controlId="formBasicEmail">
-                                <Form.Label>Email address</Form.Label>
-                                <Form.Control type="email" id="email"
-                                    name="email"
-                                    onChange={formik.handleChange}
-                                    onBlur={formik.handleBlur}
-                                    value={formik.values.email} />
-                            </Form.Group>
-
-                            <Form.Group className="" controlId="formBasicPassword">
-                                <Form.Label>Password</Form.Label>
-                                <Form.Control type="password" id="password"
-                                    name="password"
-                                    onChange={formik.handleChange}
-                                    onBlur={formik.handleBlur}
-                                    value={formik.values.password} />
-                            </Form.Group>
-                            
-                            <Button variant="primary" type="submit">
-                                Sign In
-                            </Button>
-                        </Form>
-                    </Card.Body>
-                </Card>
+  const handleFormSubmit = async (values) => {
+    console.log(values);
+  };
+  return (
+    <div className="form-page vh-100 bg-gradient">
+      <div className="mt-4">
+        <Link
+          to={"/"}
+          className="text-decoration-none fw-bold fs-2 text-secodary"
+        >
+          Impact Influerncers
+        </Link>
+        <p className=" fs-4 fw-light text-center m-2">sign into your account</p>
+      </div>
+      <div className="mb-2 rounded shadow px-3 py-2 form-width d-flex justify-content-between align-items-center border border-danger">
+        <span>error message</span>
+        <button
+          onClick={() => console.log("hfjdkfj")}
+          className="bg-transparent border-0"
+        >
+          <FiX className="fs-5 text-danger"></FiX>
+        </button>
+      </div>
+      <div className="form-wrapper rounded p-3 bg-light shadow">
+        <Formik
+          initialValues={{
+            email: "",
+            password: "",
+          }}
+          validationSchema={Yup.object({
+            email: Yup.string()
+              .email("Invalid email address")
+              .required("required"),
+            password: Yup.string()
+              .min(6, "must be 6 characters or more")
+              .max(15, "must be 15 characters of less")
+              .required("required"),
+          })}
+          onSubmit={(values) => {
+            handleFormSubmit(values);
+          }}
+        >
+          <Form>
+            <InputField label="Email" id="email" name="email" type="email" />
+            <InputField
+              label="Password"
+              id="password"
+              name="password"
+              type="password"
+            />
+            <div className="">
+              <Button type="submit" className="w-100 mt-2">
+                {/* {formstate.submitting ? (
+              <HiOutlineRefresh className="text-lg w-full text-center animate-spin" />
+            ) : (
+              "Sign up"
+            )} */}
+                Sign up
+              </Button>
             </div>
-        </Container >
-    );
+            <div className="w-100">
+              <span className="d-block text-center divider my-1 text-muted">
+                or
+              </span>
+              <Button className="w-100 rounded bg-secondary border border-0 d-flex align-items-center justify-content-center">
+                Sign in with{" "}
+                <FontAwesomeIcon
+                  icon={faGoogle}
+                  className="text-warning mx-2 fs-5"
+                />
+              </Button>
+            </div>
+          </Form>
+        </Formik>
+      </div>
+      <div className="shadow rounded form-width py-3 text-center bg-light mt-2">
+        Don't have an account?
+        <Link to={"/register"} className="text-decoration-none px-1">
+          Sign up
+        </Link>
+      </div>
+    </div>
+  );
 };
 
 export default Login;
