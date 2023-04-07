@@ -1,4 +1,7 @@
 import React, { useState } from 'react'
+import { LinkContainer } from 'react-router-bootstrap'
+
+
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
@@ -6,11 +9,13 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 import InfluencerModal from './Modals/InfluencerModal';
 import OrgModal from './Modals/OrgModal';
 import CampModal from './Modals/CampModal';
+import Button from 'react-bootstrap/Button';
 
 function NavBar() {
     const [showInflu, setShowInflu] = useState(false);
     const [showOrg, setShowOrg] = useState(false);
     const [showCamp, setShowCamp] = useState(false);
+
     return (
         <>
             <Navbar collapseOnSelect fixed="top" expand="lg" bg="dark" variant="dark" style={{ width: '95%', borderRadius: '10px', top: '5px', zIndex: "100" }} className='m-auto'>
@@ -27,7 +32,12 @@ function NavBar() {
                                 <NavDropdown.Item href="#" onClick={() => setShowOrg(true)}>As Organization</NavDropdown.Item>
                                 <NavDropdown.Item href="#" onClick={() => setShowCamp(true)}>Start Campaign</NavDropdown.Item>
                             </NavDropdown>
-                            <Nav.Link href="#testimonials" className='mx-2'>Subscribe</Nav.Link>
+                            <LinkContainer to={'/login'}>
+                                <Nav.Link className='mx-2'>login</Nav.Link>
+                            </LinkContainer>
+                            <LinkContainer to={'/register'}>
+                                <Button className='mx-2'>Get Started</Button>
+                            </LinkContainer>
                         </Nav>
                     </Navbar.Collapse>
                 </Container>
