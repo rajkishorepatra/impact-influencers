@@ -7,8 +7,8 @@ import './App.css';
 import Home from './pages/Home'
 import Root from "./pages/root";
 import ErrorPage from "./pages/error-page";
-import Login from "./pages/login";
-import Register from "./pages/register";
+import Login from "./pages/user-management/login";
+import Register from "./pages/user-management/register";
 import { AuthContextProvider } from "./context/AuthContext";
 
 const router = createBrowserRouter(
@@ -19,17 +19,17 @@ const router = createBrowserRouter(
       errorElement: <ErrorPage />,
       children: [
         {
-          path: "",
+          path: "/",
           element: <Home />,
         },
       ]
     },
     {
-      path: 'login',
+      path: '/login',
       element: <Login />,
     },
     {
-      path: 'register',
+      path: '/register',
       element: <Register />
     }
   ]

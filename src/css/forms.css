@@ -1,17 +1,26 @@
+
+
 .form-page{
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 .form-wrapper{
-    min-width: 20rem;   
+    min-width: 22rem;   
 }
 .form-label{
     font-size: 1rem;
     margin-bottom: .1rem !Important;
+    font-weight: 600;
 }
-.form-width{
-    width: 20rem;
+.form-control{
+    font-size: 14px !Important;
+    font-weight: 600 ;
+    box-shadow: none !Important;
+}
+.invalid-feedback{
+    font-size: 12px !Important;
+    font-weight: 600;
 }
 .divider::after,.divider::before{
     content: "-----";

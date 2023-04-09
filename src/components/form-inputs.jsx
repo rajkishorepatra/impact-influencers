@@ -9,12 +9,12 @@ export const InputField = ({ label, ...props }) => {
   const [field, meta] = useField(props);
   return (
     <>
-      <Form.Group className="form-input-label mb-2">
+      <Form.Group className="mb-2">
         <Form.Label htmlFor={props.id || props.name}>{label}</Form.Label>
         <Form.Control
           {...field}
           {...props}
-          size="sm"
+          
           isInvalid={meta.touched && meta.error}
           isValid={meta.touched && !meta.error}
         />
