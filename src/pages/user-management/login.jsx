@@ -5,7 +5,7 @@ import { InputField } from "../../components/form-inputs";
 import { Form, Button } from "react-bootstrap";
 
 const Register = () => {
-  const { logIn, user } = UserAuth();
+  const { logIn, user, googleLogIn } = UserAuth();
   const navigate = useNavigate();
   const [formstate, setformstate] = useState({
     submitting: false,
@@ -44,11 +44,24 @@ const Register = () => {
         navigate("/");
       } catch (err) {
         let errmsg = err.code.replace("auth/", "").replaceAll("-", " ");
-        errmsg.includes('password')?  errors.password=errmsg:errors.email = errmsg;
+        errmsg.includes("password")
+          ? (errors.password = errmsg)
+          : (errors.email = errmsg);
         setformstate({ ...formstate, submitting: false, errors: errors });
       }
     } else {
       setformstate({ ...formstate, errors: errors });
+    }
+  };
+  const handleGoogleLogin = async () => {
+    setformstate({ ...formstate, submitting: true });
+    try {
+      await googleLogIn();
+      setformstate({ ...formstate, submitting: false });
+      navigate("/");
+    } catch (err) {
+      console.log(err);
+      setformstate({ ...formstate, submitting: false });
     }
   };
 
@@ -85,7 +98,9 @@ const Register = () => {
               isInvalid={formstate.errors.password}
               error={formstate.errors.password}
             />
-            <Link className="forgot-password" to={"#"} >forgot password</Link>
+            <Link className="forgot-password" to={"#"}>
+              forgot password
+            </Link>
             <Button
               type="submit"
               className="form-btn fw-bolder"
@@ -96,7 +111,11 @@ const Register = () => {
             <span className="d-block m-1 text-center fw-bolder fs-6 text-light">
               OR
             </span>
-            <Button className="form-btn fw-bolder ">
+            <Button
+              className="form-btn fw-bolder"
+              onClick={() => handleGoogleLogin()}
+              disabled={formstate.submitting}
+            >
               Continue with Google
             </Button>
           </Form>

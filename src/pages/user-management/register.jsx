@@ -5,7 +5,7 @@ import { InputField } from "../../components/form-inputs";
 import { UserAuth } from "../../context/AuthContext";
 
 const Register = () => {
-  const { signUp, user } = UserAuth();
+  const { signUp, user, googleLogIn } = UserAuth();
   const navigate = useNavigate();
   const [formstate, setformstate] = useState({
     submitting: false,
@@ -41,16 +41,28 @@ const Register = () => {
       setformstate({ ...formstate, submitting: true });
       try {
         console.log("signing up", name, email, password);
-        await signUp(email,password);
+        await signUp(email, password);
         // todo: code to add new user to database.
-        setformstate({...formstate,submitting:false});
+        setformstate({ ...formstate, submitting: false });
         navigate("/");
       } catch (err) {
-        errors.email = err.code.replace('auth/',"").replaceAll('-',' ');
-        setformstate({...formstate,submitting:false,errors:errors});
+        errors.email = err.code.replace("auth/", "").replaceAll("-", " ");
+        setformstate({ ...formstate, submitting: false, errors: errors });
       }
     } else {
-      setformstate({ ...formstate, errors:errors });
+      setformstate({ ...formstate, errors: errors });
+    }
+  };
+
+  const handleGoogleLogin = async () => {
+    setformstate({ ...formstate, submitting: true });
+    try {
+      await googleLogIn();
+      setformstate({ ...formstate, submitting: false });
+      navigate("/");
+    } catch (err) {
+      setformstate({ ...formstate, submitting: false });
+      console.log(err);
     }
   };
 
@@ -74,8 +86,8 @@ const Register = () => {
               type="text"
               value={name}
               onChange={(e) => setName(e.target.value)}
-              isInvalid={formstate.errors.name}    
-              error={formstate.errors.name}          
+              isInvalid={formstate.errors.name}
+              error={formstate.errors.name}
             />
             <InputField
               placeholder="Email"
@@ -108,7 +120,11 @@ const Register = () => {
             <span className="d-block m-1 text-center fw-bolder fs-6 text-light">
               OR
             </span>
-            <Button className="form-btn fw-bolder ">
+            <Button
+              className="form-btn fw-bolder "
+              onClick={() => handleGoogleLogin()}
+              disabled={formstate.submitting}
+            >
               Continue with Google
             </Button>
           </Form>
