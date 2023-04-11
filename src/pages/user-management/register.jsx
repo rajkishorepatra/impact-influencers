@@ -1,113 +1,127 @@
 import React, { useState } from "react";
-import { Link, Navigate } from "react-router-dom";
-import { Form, Formik } from "formik";
-import * as Yup from "yup";
+import { Button, Form } from "react-bootstrap";
+import { Link, useNavigate } from "react-router-dom";
 import { InputField } from "../../components/form-inputs";
-import { Button } from "react-bootstrap";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faGoogle } from "@fortawesome/free-brands-svg-icons";
 import { UserAuth } from "../../context/AuthContext";
 
 const Register = () => {
   const { signUp, user } = UserAuth();
+  const navigate = useNavigate();
   const [formstate, setformstate] = useState({
     submitting: false,
-    error: null,
+    errors: {},
   });
-  const handleFormSubmit = async (values) => {
-    setformstate({ ...formstate, submitting: true });
-    try {
-      await signUp(values.email, values.password);
-    } catch (error) {
-      let error_msg = error.code.replaceAll("auth/", "").replaceAll("-", " ");
-      setformstate({ ...formstate, submitting: false, error: error_msg });
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  const validateInputs = () => {
+    let errors = {};
+    if (!name.trim()) {
+      errors.name = "Name is required";
+    }
+    if (!email.trim()) {
+      errors.email = "Email is required";
+    } else if (!emailRegex.test(email)) {
+      errors.email = "Email is invalid";
+    }
+    if (!password.trim()) {
+      errors.password = "Password is required";
+    } else if (password.length < 6) {
+      errors.password = "Password must be at least 6 characters";
+    }
+    return errors;
+  };
+
+  const handleFormSubmit = async (e) => {
+    e.preventDefault();
+    const errors = validateInputs();
+    if (Object.keys(errors).length === 0) {
+      setformstate({ ...formstate, submitting: true });
+      try {
+        console.log("signing up", name, email, password);
+        await signUp(email,password);
+        // todo: code to add new user to database.
+        setformstate({...formstate,submitting:false});
+        navigate("/");
+      } catch (err) {
+        errors.email = err.code.replace('auth/',"").replaceAll('-',' ');
+        setformstate({...formstate,submitting:false,errors:errors});
+      }
+    } else {
+      setformstate({ ...formstate, errors:errors });
     }
   };
 
-  if (user) {
-    return <Navigate replace to="/" />;
+  if (user.authed) {
+    navigate("/");
   }
+
   return (
-    <div className="form-page vh-100 bg-gradient">
-      <div className="mt-4">
-        <Link
-          to={"/"}
-          className="text-decoration-none fw-bold fs-2 text-secodary"
-        >
-          Impact Influerncers
-        </Link>
-        <p className=" fs-4 fw-light text-center m-2">create an account</p>
-      </div>
-      <div className="form-wrapper rounded p-3 bg-light shadow">
-        <Formik
-          initialValues={{
-            email: "",
-            password: "",
-            confirm_password: "",
-          }}
-          validationSchema={Yup.object({
-            email: Yup.string()
-              .email("Invalid email address")
-              .required("required"),
-            password: Yup.string()
-              .min(6, "must be 6 characters or more")
-              .max(15, "must be 15 characters of less")
-              .required("required"),
-            confirm_password: Yup.string()
-              .min(6, "must be 6 characters or more")
-              .max(15, "must be 15 characters of less")
-              .oneOf([Yup.ref("password"), null], "must be equal to password")
-              .required("required"),
-          })}
-          onSubmit={(values) => {
-            handleFormSubmit(values);
-          }}
-        >
-          <Form>
-            <InputField label="Email" id="email" name="email" type="email" />
+    <div className="form-page vh-100">
+      <div className="form-section">
+        <div className="page-content">
+          <h1 className="fw-bold fs-1 text-light">Impact Influencers</h1>
+        </div>
+        <div className="form-wrapper">
+          <p className=" fs-4 text-light text-center">Let's get you started</p>
+          <Form onSubmit={(e) => handleFormSubmit(e)}>
             <InputField
-              label="Password"
+              placeholder="Name"
+              id="name"
+              name="name"
+              type="text"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              isInvalid={formstate.errors.name}    
+              error={formstate.errors.name}          
+            />
+            <InputField
+              placeholder="Email"
+              id="email"
+              name="email"
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              isInvalid={formstate.errors.email}
+              error={formstate.errors.email}
+            />
+            <InputField
+              placeholder="Password"
               id="password"
               name="password"
               type="password"
-              disabled={formstate.submitting}
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              isInvalid={formstate.errors.password}
+              error={formstate.errors.password}
             />
-            <InputField
-              label="Confirm Password"
-              id="confirm_password"
-              name="confirm_password"
-              type="password"
+
+            <Button
+              type="submit"
+              className="form-btn fw-bolder"
               disabled={formstate.submitting}
-            />
-            <div className="">
-              <Button
-                type="submit"
-                className="w-100 mt-2"
-                disabled={formstate.submitting}
-              >
-                Sign up
-              </Button>
-            </div>
-            <div className="w-100">
-              <span className="d-block text-center divider my-1 text-muted">
-                or
-              </span>
-              <Button className="w-100 d-flex align-items-center justify-content-center rounded bg-secondary border border-0">
-                Sign up with{" "}
-                <FontAwesomeIcon
-                  icon={faGoogle}
-                  className="text-warning mx-2 fs-5"
-                />
-              </Button>
-            </div>
-            <div className="w-100 text-center bg-light mt-3 fs-6">
-              Already have an account?
-              <Link to={"/login"} className="text-decoration-none px-1">
-                Sign In
-              </Link>
-            </div>
+            >
+              Sign up
+            </Button>
+            <span className="d-block m-1 text-center fw-bolder fs-6 text-light">
+              OR
+            </span>
+            <Button className="form-btn fw-bolder ">
+              Continue with Google
+            </Button>
           </Form>
-        </Formik>
+          <div className="w-100 text-center text-light mt-3 fs-6">
+            Already have an account?
+            <Link
+              to={"/login"}
+              className="text-decoration-none px-1 text-warning fw-bolder"
+            >
+              Sign In
+            </Link>
+          </div>
+        </div>
       </div>
     </div>
   );
