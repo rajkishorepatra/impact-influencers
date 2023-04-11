@@ -63,7 +63,7 @@ function NavBar() {
                   Start Campaign
                 </NavDropdown.Item>
               </NavDropdown>
-              {!user  && (
+              {!user.authed  && (
                 <>
                   <LinkContainer to={"/login"}>
                     <Nav.Link className="mx-2">login</Nav.Link>
@@ -73,7 +73,7 @@ function NavBar() {
                   </LinkContainer>
                 </>
               )}
-              {user && <Button onClick={()=>logOut()}>Sign out</Button>}
+              {user.authed && <Button onClick={()=>{logOut(); console.log(user.authed)}}>Sign out</Button>}
             </Nav>
           </Navbar.Collapse>
         </Container>
