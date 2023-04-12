@@ -3,7 +3,7 @@ import {
   createBrowserRouter,
   createRoutesFromElements,
   RouterProvider,
-  Route
+  Route,
 } from "react-router-dom";
 import "./App.css";
 import Home from "./pages/Home";
@@ -12,6 +12,7 @@ import ErrorPage from "./pages/error-page";
 import Login from "./pages/user-management/login";
 import Register from "./pages/user-management/register";
 import { AuthContextProvider } from "./context/AuthContext";
+import { DbContextProvider } from "./context/DbContext";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -28,9 +29,11 @@ const router = createBrowserRouter(
 function App() {
   return (
     <AuthContextProvider>
-      <div className="App">
-        <RouterProvider router={router} />
-      </div>
+      <DbContextProvider>
+        <div className="App">
+          <RouterProvider router={router} />
+        </div>
+      </DbContextProvider>
     </AuthContextProvider>
   );
 }
