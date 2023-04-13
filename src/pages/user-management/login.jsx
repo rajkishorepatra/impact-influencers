@@ -1,20 +1,31 @@
-import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import React, { useState,useEffect } from "react";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { UserAuth } from "../../context/AuthContext";
 import { InputField } from "../../components/form-inputs";
 import { Form, Button } from "react-bootstrap";
 
 const Register = () => {
-  const { logIn, user, googleLogIn } = UserAuth();
+  const { logIn, currentUser, googleLogIn } = UserAuth();
   const navigate = useNavigate();
+  const location = useLocation();
   const [formstate, setformstate] = useState({
     submitting: false,
     errors: {},
   });
-  // inputs - email and password
+
+  useEffect(() => {
+    if (currentUser) {
+      const { from } = location.state || { from: { pathname: "/" } };
+      navigate(from, { replace: true });
+    }
+  }, [currentUser, location, navigate]);
+
+  // form inputs - email and password - controlled components
+  // todo: use ref instead
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  // validate inputs
   const validateInputs = () => {
     let errors = {};
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -31,6 +42,7 @@ const Register = () => {
     return errors;
   };
 
+  // handle form submit
   const handleFormSubmit = async (e) => {
     e.preventDefault();
     const errors = validateInputs();
@@ -39,9 +51,10 @@ const Register = () => {
       try {
         console.log("signing in", email, password);
         await logIn(email, password);
-        // todo: code to add new user to database.
+        // todo: add new user to database.
         setformstate({ ...formstate, submitting: false });
-        navigate("/");
+        console.log(currentUser);
+        navigate("/influencer");
       } catch (err) {
         let errmsg = err.code.replace("auth/", "").replaceAll("-", " ");
         errmsg.includes("password")
@@ -53,21 +66,20 @@ const Register = () => {
       setformstate({ ...formstate, errors: errors });
     }
   };
+
+  // handle google login
   const handleGoogleLogin = async () => {
     setformstate({ ...formstate, submitting: true });
     try {
       await googleLogIn();
       setformstate({ ...formstate, submitting: false });
-      navigate("/");
+      console.log(currentUser);
+      navigate("/influencer");
     } catch (err) {
       console.log(err);
       setformstate({ ...formstate, submitting: false });
     }
   };
-
-  if (user.authed) {
-    navigate("/");
-  }
 
   return (
     <div className="form-page vh-100">

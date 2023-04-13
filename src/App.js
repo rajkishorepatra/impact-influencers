@@ -1,9 +1,10 @@
-// import logo from './logo.svg';
 import {
   createBrowserRouter,
   createRoutesFromElements,
   RouterProvider,
   Route,
+  Navigate,
+  useLocation,
 } from "react-router-dom";
 import "./App.css";
 import Home from "./pages/Home";
@@ -11,8 +12,9 @@ import Root from "./pages/root";
 import ErrorPage from "./pages/error-page";
 import Login from "./pages/user-management/login";
 import Register from "./pages/user-management/register";
-import { AuthContextProvider } from "./context/AuthContext";
-import { DbContextProvider } from "./context/DbContext";
+import { AuthContextProvider, UserAuth } from "./context/AuthContext";
+import InfluencerProfile from "./pages/user-management/influencer";
+import PrivateRoute from "./pages/user-management/protected";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -22,6 +24,9 @@ const router = createBrowserRouter(
       </Route>
       <Route path="login" element={<Login />} />
       <Route path="register" element={<Register />} />
+      <Route path="influencer" exact element={<PrivateRoute />}>
+        <Route index element={<InfluencerProfile />} />
+      </Route>
     </>
   )
 );
@@ -29,11 +34,9 @@ const router = createBrowserRouter(
 function App() {
   return (
     <AuthContextProvider>
-      <DbContextProvider>
-        <div className="App">
-          <RouterProvider router={router} />
-        </div>
-      </DbContextProvider>
+      <div className="App">
+        <RouterProvider router={router} />
+      </div>
     </AuthContextProvider>
   );
 }
