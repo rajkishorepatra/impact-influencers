@@ -10,7 +10,7 @@ import '../css/social.css'
 
 function Social() {
     return (
-        <div class="social-container">
+        <div className="social-container">
             <h2 className='p-2'>Follow us!</h2>
             <div className='midSocial'>
                 <a href="https://www.youtube.com"
