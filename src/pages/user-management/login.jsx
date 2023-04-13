@@ -13,12 +13,13 @@ const Register = () => {
     errors: {},
   });
 
-  useEffect(() => {
-    if (currentUser) {
-      const { from } = location.state || { from: { pathname: "/" } };
-      navigate(from, { replace: true });
-    }
-  }, [currentUser, location, navigate]);
+  // useEffect(() => {
+  //   if (currentUser) {
+  //     const { from } = location.state || { from: { pathname: "/" } };
+  //     navigate(from, { replace: true });
+  //   }
+  // }, [currentUser, location, navigate]);
+  
 
   // form inputs - email and password - controlled components
   // todo: use ref instead
