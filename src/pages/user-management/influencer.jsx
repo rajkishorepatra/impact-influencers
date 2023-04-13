@@ -4,7 +4,6 @@ import { UserAuth } from '../../context/AuthContext'
 
 export default function InfluencerProfile() {
     const { currentUser,logOut } = UserAuth();
-    console.log(currentUser)
     const navigate = useNavigate();
     async function handleLogOut(){
         await logOut();
