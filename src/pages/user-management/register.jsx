@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Button, Form } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import { InputField } from "../../components/form-inputs";
@@ -14,6 +14,15 @@ const Register = () => {
     submitting: false,
     errors: {},
   });
+
+  // manage redirects
+  let nextRoute = useRef("");
+  nextRoute.current = "/";
+  useEffect(() => {
+    if (!currentUser) {
+      navigate(-1, { replace: true });
+    }
+  }, []);
 
   const validateInputs = () => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -44,7 +53,7 @@ const Register = () => {
         await signUp(email, password);
         // todo: code to add new user to database.
         setformstate({ ...formstate, submitting: false });
-        navigate("/influencer");
+        navigate(nextRoute.current);
       } catch (err) {
         errors.email = err.code.replace("auth/", "").replaceAll("-", " ");
         setformstate({ ...formstate, submitting: false, errors: errors });
@@ -59,7 +68,7 @@ const Register = () => {
     try {
       await googleLogIn();
       setformstate({ ...formstate, submitting: false });
-      navigate("/influencer");
+      navigate(nextRoute.current);
     } catch (err) {
       setformstate({ ...formstate, submitting: false });
       console.log(err);

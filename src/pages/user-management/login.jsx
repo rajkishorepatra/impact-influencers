@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { UserAuth } from "../../context/AuthContext";
 import { InputField } from "../../components/form-inputs";
@@ -12,19 +12,18 @@ const Register = () => {
     submitting: false,
     errors: {},
   });
-
-  // useEffect(() => {
-  //   if (currentUser) {
-  //     const { from } = location.state || { from: { pathname: "/" } };
-  //     navigate(from, { replace: true });
-  //   }
-  // }, [currentUser, location, navigate]);
-  
-
-  // form inputs - email and password - controlled components
-  // todo: use ref instead
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  // manage redirects
+  let nextRoute = useRef('')
+  useEffect(() => {
+    if (!currentUser) {
+      nextRoute.current = location.state && location.state.from ? location.state.from.pathname : "/";
+    }else{
+      navigate(-1, { replace: true });
+    }
+  }, []);
+
 
   // validate inputs
   const validateInputs = () => {
@@ -54,8 +53,7 @@ const Register = () => {
         await logIn(email, password);
         // todo: add new user to database.
         setformstate({ ...formstate, submitting: false });
-        console.log(currentUser);
-        navigate("/influencer");
+        navigate(nextRoute.current);
       } catch (err) {
         let errmsg = err.code.replace("auth/", "").replaceAll("-", " ");
         errmsg.includes("password")
@@ -74,8 +72,7 @@ const Register = () => {
     try {
       await googleLogIn();
       setformstate({ ...formstate, submitting: false });
-      console.log(currentUser);
-      navigate("/influencer");
+      navigate(nextRoute.current);
     } catch (err) {
       console.log(err);
       setformstate({ ...formstate, submitting: false });
