@@ -15,8 +15,8 @@ function NavBar() {
   const [showInflu, setShowInflu] = useState(false);
   const [showOrg, setShowOrg] = useState(false);
   const [showCamp, setShowCamp] = useState(false);
-  const { logOut,user } = UserAuth();
-  console.log(user);
+  const { logOut, currentUser } = UserAuth();
+
   return (
     <>
       <Navbar
@@ -63,7 +63,7 @@ function NavBar() {
                   Start Campaign
                 </NavDropdown.Item>
               </NavDropdown>
-              {!user.authed  && (
+              {!currentUser && (
                 <>
                   <LinkContainer to={"/login"}>
                     <Nav.Link className="mx-2">login</Nav.Link>
@@ -73,7 +73,16 @@ function NavBar() {
                   </LinkContainer>
                 </>
               )}
-              {user.authed && <Button onClick={()=>{logOut(); console.log(user.authed)}}>Sign out</Button>}
+              {currentUser && (
+                <Button
+                  onClick={() => {
+                    logOut();
+                    console.log(currentUser);
+                  }}
+                >
+                  Sign out
+                </Button>
+              )}
             </Nav>
           </Navbar.Collapse>
         </Container>

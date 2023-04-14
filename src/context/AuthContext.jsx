@@ -11,10 +11,8 @@ import {
 const AuthContext = createContext();
 
 export function AuthContextProvider({ children }) {
-  const [user, setUser] = useState({
-    user: null,
-    authed: false,
-  });
+  const [currentUser,setCurrentUser] = useState(null);
+  const [loading,setloading] = useState(true);
 
   function signUp(email, password) {
     return createUserWithEmailAndPassword(auth, email, password);
@@ -28,27 +26,18 @@ export function AuthContextProvider({ children }) {
   function googleLogIn() {
     return signInWithPopup(auth, provider);
   }
+
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      if (currentUser !== null) {
-        setUser({
-          user: currentUser,
-          authed: true,
-        });
-      } else {
-        setUser({
-          ...user,
-          authed: false,
-        });
-      }
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      setCurrentUser(user);
+      setloading(false);
     });
-    return () => {
-      unsubscribe();
-    };
+    return unsubscribe;
   }, []);
+  
   return (
-    <AuthContext.Provider value={{ googleLogIn, signUp, logIn, logOut, user }}>
-      {children}
+    <AuthContext.Provider value={{ googleLogIn, signUp, logIn, logOut, currentUser }}>
+      {!loading && children}
     </AuthContext.Provider>
   );
 }
