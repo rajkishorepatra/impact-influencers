@@ -3,7 +3,8 @@ import { Link, useNavigate, useLocation } from "react-router-dom";
 import { UserAuth } from "../../context/AuthContext";
 import { InputField } from "../../components/form-inputs";
 import { Form, Button } from "react-bootstrap";
-
+import influence from "../../assets/influncer.svg";
+import { FiXCircle } from "react-icons/fi";
 const Register = () => {
   const { logIn, currentUser, googleLogIn } = UserAuth();
   const navigate = useNavigate();
@@ -15,15 +16,17 @@ const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   // manage redirects
-  let nextRoute = useRef('')
+  let nextRoute = useRef("");
   useEffect(() => {
     if (!currentUser) {
-      nextRoute.current = location.state && location.state.from ? location.state.from.pathname : "/";
-    }else{
+      nextRoute.current =
+        location.state && location.state.from
+          ? location.state.from.pathname
+          : "/";
+    } else {
       navigate(-1, { replace: true });
     }
   }, []);
-
 
   // validate inputs
   const validateInputs = () => {
@@ -80,13 +83,21 @@ const Register = () => {
   };
 
   return (
-    <div className="form-page vh-100">
-      <div className="form-section">
-        <div className="page-content">
-          <h1 className="fw-bold fs-1 text-light">Impact Influencers</h1>
-        </div>
+    <div className="form-section">
+      <div className="page-content">
+        <button className="close-btn" onClick={()=> navigate('/')}>{ <FiXCircle /> }</button>
+        <h1 className="fw-bold fs-1 text-center">Impact Influencers</h1>
+        <p className=" text-center h4">
+          connect influencers with organizations
+        </p>
+        <img src={influence} alt="influence" className=" form-img" />
+      </div>
+      <div className="form-container">
         <div className="form-wrapper">
-          <p className=" fs-4 text-light text-center">Log into you account</p>
+          <h1 className="fw-bold fs-1 text-center d-none form-heading">
+            Impact Influencers
+          </h1>
+          <p className=" fs-4 text-center">Log into you account</p>
           <Form onSubmit={(e) => handleFormSubmit(e)}>
             <InputField
               placeholder="Email"
@@ -108,9 +119,9 @@ const Register = () => {
               isInvalid={formstate.errors.password}
               error={formstate.errors.password}
             />
-            <Link className="forgot-password" to={"#"}>
-              forgot password
-            </Link>
+            <div className="forgot-password">
+              <Link to={"#"}>forgot password</Link>
+            </div>
             <Button
               type="submit"
               className="form-btn fw-bolder"
@@ -118,18 +129,16 @@ const Register = () => {
             >
               Sign in
             </Button>
-            <span className="d-block m-1 text-center fw-bolder fs-6 text-light">
-              OR
-            </span>
+            <span className="d-block m-1 text-center fw-bolder fs-6">OR</span>
             <Button
-              className="form-btn fw-bolder"
+              className="form-btn fw-bolder  bg-light text-dark border border-dark"
               onClick={() => handleGoogleLogin()}
               disabled={formstate.submitting}
             >
               Continue with Google
             </Button>
           </Form>
-          <div className="w-100 text-center text-light mt-3 fs-6">
+          <div className="w-100 text-center mt-3 fs-6">
             Don't have an account?
             <Link
               to={"/register"}
