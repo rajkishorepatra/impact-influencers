@@ -19,8 +19,8 @@ const Register = () => {
   let nextRoute = useRef("");
   nextRoute.current = "/";
   useEffect(() => {
-    if (!currentUser) {
-      navigate(-1, { replace: true });
+    if (currentUser) {
+      navigate(-1);
     }
   }, []);
 
