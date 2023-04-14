@@ -1,36 +1,47 @@
+/*
+* Prefixed by https://autoprefixer.github.io
+* PostCSS: v8.4.14,
+* Autoprefixer: v10.4.7
+* Browsers: >0.1%,last 6 versions,not dead
+*/
+
 :root {
   --form-width: 20rem;
-  --form-section-bg: rgb(88, 110, 159);
+  --form-section-bg: rgb(247, 229, 223);
   --form-bg: #843d3d60;
   --form-btn-bg: #ff6b6b;
 }
-.form-page {
-  display: flex;
-  align-items: flex-start;
-}
 .form-section {
+  height: 100vh;
   display: flex;
-  position: relative;
-  isolation: isolate;
-  background-color: var(--form-section-bg);
-  width: 100%;
-  padding: 2rem 0;
-  justify-content: space-evenly;
 }
-.form-section::after {
-  content: "";
-  display: block;
+.page-content {
+  background-color: var(--form-section-bg);
+  flex: 1 1 50%;
+  position: relative;
+  overflow: hidden;
+  padding-top: 6rem;
+}
+.page-content h1,
+.page-content p {
+  text-align: center;
+}
+.form-img {
   width: 100%;
   position: absolute;
-  bottom: -4rem;
-  transform: skewY(-5deg);
-  height: 10rem;
-  background-color: var(--form-section-bg);
-  z-index: -1;
+  -webkit-transform: scale(1.5);
+          transform: scale(1.5);
+  top: 20rem;
+  left: 0;
+}
+.form-container {
+  display: flex;
+  justify-content: center;
+  padding-top: 6rem;
+  flex: 1 1 50%;
 }
 .form-wrapper {
   width: var(--form-width);
-  background-color: var(--form-bg);
   border-radius: 1.5rem !important;
   padding: 1rem;
 }
@@ -44,7 +55,7 @@
   font-size: 14px !important;
   font-weight: 600 !important;
   box-shadow: none !important;
-  padding: 0.5rem 1rem !important;
+  padding: 0.75rem 1rem !important;
   border: 2px solid transparent !important;
   border-radius: 1.5rem !important;
 }
@@ -65,54 +76,49 @@
   box-shadow: none !important;
   border-radius: 1.5rem !important;
   border: none !important;
+  padding: 0.75rem 1rem !important;
   width: 100%;
-  padding: 10px 0 !important;
 }
 .form-btn:hover {
-  opacity: 0.8;
-  box-shadow: none !important;
-  border-radius: 1.5rem !important;
-  border: none !important;
-  width: 100%;
-  padding: 10px 0 !important;
-  transition: opacity 0.3s ease-in-out;
+  /* opacity: 0.8; */
+  background-color: #fe5656 !important;
+  transition: background-color 0.3s ease-in-out;
+}
+.forgot-password {
+  text-align: right !important;
+  font-size: 12px !important;
+  margin-bottom: 0.5rem !important;
+  padding: 0 1rem !important;
+}
+.forgot-password a {
+  color: #ff6b6b !important;
+  font-weight: 600 !important;
+  text-decoration: none !important;
+}
+.forgot-password a:hover {
+  text-decoration: underline !important;
+}
+.close-btn{
+  position: absolute;
+  font-size: 1.5rem;
+  background:none;
+  border: none;
+  padding: .25rem;
+  top: .5rem ;
+  left: 1rem;
+}
+.close-btn:hover{
+  transform: scale(1.2);
 }
 @media (max-width: 768px) {
   .form-section {
     flex-direction: column;
     align-items: center;
   }
-}
-@keyframes vibrate-1 {
-  0% {
-    transform: translate(0);
+  .page-content {
+    display: none;
   }
-  25% {
-    transform: translate(5px);
+  h1.form-heading {
+    display: block !important;
   }
-  50% {
-    transform: translate(-10px);
-  }
-  75% {
-    transform: translate(5px);
-  }
-  100% {
-    transform: translate(0);
-  }
-}
-.vibrate {
-  animation-name: vibrate-1;
-  animation-duration: 0.5s;
-  animation-timing-function: cubic-bezier(0.36, 0.07, 0.19, 0.97);
-  animation-iteration-count: 1;
-  animation-direction: both;
-  /* animation: vibrate-1 0.3s cubic-bezier(0.36, 0.07, 0.19, 0.97) both; */
-}
-.forgot-password {
-  display: block !important;
-  width: 100% Important;
-  text-align: right !important;
-  font-size: 12px !important;
-  color:var(--form-btn-bg) ;
-  margin: 0.5rem 1rem;
 }

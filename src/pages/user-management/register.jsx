@@ -3,6 +3,9 @@ import { Button, Form } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import { InputField } from "../../components/form-inputs";
 import { UserAuth } from "../../context/AuthContext";
+import influence from "../../assets/influncer.svg";
+import { FiXCircle } from "react-icons/fi";
+
 
 const Register = () => {
   const { signUp, currentUser, googleLogIn } = UserAuth();
@@ -76,16 +79,26 @@ const Register = () => {
   };
 
   return (
-    <div className="form-page vh-100">
-      <div className="form-section">
-        <div className="page-content">
-          <h1 className="fw-bold fs-1 text-light">Impact Influencers</h1>
-        </div>
+    <div className="form-section">
+      <div className="page-content">
+        <button className="close-btn" onClick={() => navigate("/")}>
+          {<FiXCircle />}
+        </button>
+        <h1 className="fw-bold fs-1 text-center">Impact Influencers</h1>
+        <p className=" text-center h4">
+          connect influencers with organizations
+        </p>
+        <img src={influence} alt="influence" className=" form-img" />
+      </div>
+      <div className="form-container">
         <div className="form-wrapper">
-          <p className=" fs-4 text-light text-center">Let's get you started</p>
+          <h1 className="fw-bold fs-1 text-center d-none form-heading">
+            Impact Influencers
+          </h1>
+          <p className=" fs-4  text-center">Let's get you started</p>
           <Form onSubmit={(e) => handleFormSubmit(e)}>
             <InputField
-              placeholder="Name"
+              placeholder="Full Name"
               id="name"
               name="name"
               type="text"
@@ -122,18 +135,16 @@ const Register = () => {
             >
               Sign up
             </Button>
-            <span className="d-block m-1 text-center fw-bolder fs-6 text-light">
-              OR
-            </span>
+            <span className="d-block m-1 text-center fw-bolder fs-6 ">OR</span>
             <Button
-              className="form-btn fw-bolder "
+              className="form-btn fw-bolder bg-light text-dark border border-dark hover:bg-secondary hover:text-light "
               onClick={() => handleGoogleLogin()}
               disabled={formstate.submitting}
             >
               Continue with Google
             </Button>
           </Form>
-          <div className="w-100 text-center text-light mt-3 fs-6">
+          <div className="w-100 text-center mt-3 fs-6">
             Already have an account?
             <Link
               to={"/login"}
