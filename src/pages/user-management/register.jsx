@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Button, Form } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
-import { InputField } from "../../components/form-inputs";
+import { InputField, Select, Telephone } from "../../components/form-inputs";
 import { UserAuth } from "../../context/AuthContext";
 import influence from "../../assets/influncer.svg";
 import { FiXCircle } from "react-icons/fi";
@@ -13,6 +13,9 @@ const Register = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [phone, setPhone] = useState("");
+  const [country, setCountry] = useState("");
+  const [role, setRole] = useState("");
   const [formstate, setformstate] = useState({
     submitting: false,
     errors: {},
@@ -29,6 +32,7 @@ const Register = () => {
 
   const validateInputs = () => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    // const phoneRegex = /^\d{10}$/;
     let errors = {};
     if (!name.trim()) {
       errors.name = "Name is required";
@@ -43,6 +47,13 @@ const Register = () => {
     } else if (password.length < 6) {
       errors.password = "Password must be at least 6 characters";
     }
+    console.log(phone);
+    if (!phone.trim()) {
+      errors.phone = "Phone number is required";
+    }
+    if (!role.trim() || role.trim() === "Choose your role") {
+      errors.role = "Role is required";
+    }
     return errors;
   };
 
@@ -52,7 +63,7 @@ const Register = () => {
     if (Object.keys(errors).length === 0) {
       setformstate({ ...formstate, submitting: true });
       try {
-        console.log("signing up", name, email, password);
+        console.log("signing up",phone, name, email, password);
         await signUp(email, password);
         // todo: code to add new user to database.
         setformstate({ ...formstate, submitting: false });
@@ -117,6 +128,26 @@ const Register = () => {
               isInvalid={formstate.errors.email}
               error={formstate.errors.email}
             />
+
+            <Telephone
+              placeholder="Phone"
+              id="phone"
+              name="phone"
+              countryCode="none"
+              onChange={(o) => {
+               if(o.validData && o.countryData){
+                setPhone(o.validData.phoneNumber);
+                setCountry(o.countryData.name);
+               }else{
+                setPhone('');
+                setCountry('');
+               }               
+                console.log(o);
+              }}
+              // isInvalid={formstate.errors.phone}
+              error={formstate.errors.phone}
+            />
+
             <InputField
               placeholder="Password"
               id="password"
@@ -127,6 +158,18 @@ const Register = () => {
               isInvalid={formstate.errors.password}
               error={formstate.errors.password}
             />
+
+            <Select
+              value={role}
+              onChange={(e) => setRole(e.target.value)}
+              isInvalid={formstate.errors.role}
+              error={formstate.errors.role}
+            >
+              <option>Choose your role</option>
+              <option value="influencer">Influencer</option>
+              <option value="organization">Organization</option>
+              <option value="volunteer">Volunteer</option>
+            </Select>
 
             <Button
               type="submit"
