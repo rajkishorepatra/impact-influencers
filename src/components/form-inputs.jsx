@@ -10,25 +10,14 @@ export const InputField = ({ label, error, ...props }) => {
           <Form.Label htmlFor={props.id || props.name}>{label}</Form.Label>
         )}
         <Form.Control {...props} />
+        {error && <div className="d-block invalid-feedback">{error}</div>}
         <Form.Control.Feedback type="invalid">{error}</Form.Control.Feedback>
       </Form.Group>
     </>
   );
 };
 
-export const TextArea = ({ label, error, ...props }) => {
-  return (
-    <>
-      <Form.Group className="mb-2">
-        {label && (
-          <Form.Label htmlFor={props.id || props.name}>{label}</Form.Label>
-        )}
-        <Form.Control as="textarea" rows={3} {...props} />
-        <Form.Control.Feedback type="invalid">{error}</Form.Control.Feedback>
-      </Form.Group>
-    </>
-  );
-};
+
 
 export const Select = ({ label, error, children, ...props }) => {
   return (
@@ -38,6 +27,7 @@ export const Select = ({ label, error, children, ...props }) => {
           <Form.Label htmlFor={props.id || props.name}>{label}</Form.Label>
         )}
         <Form.Select {...props}>{children}</Form.Select>
+        {error && <div className="d-block invalid-feedback">{error}</div>}
         <Form.Control.Feedback type="invalid">{error}</Form.Control.Feedback>
       </Form.Group>
     </>

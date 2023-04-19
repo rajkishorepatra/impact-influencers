@@ -117,7 +117,7 @@ const Register = () => {
               type="text"
               value={name}
               onChange={(e) => setName(e.target.value)}
-              isInvalid={formstate.errors.name}
+              // isInvalid={formstate.errors.name}
               error={formstate.errors.name}
             />
             <InputField
@@ -127,7 +127,7 @@ const Register = () => {
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              isInvalid={formstate.errors.email}
+              // isInvalid={formstate.errors.email}
               error={formstate.errors.email}
             />
 
@@ -149,14 +149,14 @@ const Register = () => {
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              isInvalid={formstate.errors.password}
+              // isInvalid={formstate.errors.password}
               error={formstate.errors.password}
             />
 
             <Select
               value={role}
               onChange={(e) => setRole(e.target.value)}
-              isInvalid={formstate.errors.role}
+              // isInvalid={formstate.errors.role}
               error={formstate.errors.role}
             >
               <option>Choose your role</option>

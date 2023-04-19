@@ -5,6 +5,8 @@ import { InputField } from "../../components/form-inputs";
 import { Form, Button } from "react-bootstrap";
 import influence from "../../assets/influncer.svg";
 import { FiXCircle } from "react-icons/fi";
+
+
 const Register = () => {
   const { logIn, currentUser, googleLogIn } = UserAuth();
   const navigate = useNavigate();
@@ -106,7 +108,7 @@ const Register = () => {
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              isInvalid={formstate.errors.email}
+              // isInvalid={formstate.errors.email}
               error={formstate.errors.email}
             />
             <InputField
@@ -116,7 +118,7 @@ const Register = () => {
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              isInvalid={formstate.errors.password}
+              // isInvalid={formstate.errors.password}
               error={formstate.errors.password}
             />
             <div className="forgot-password">
