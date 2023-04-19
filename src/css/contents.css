@@ -234,13 +234,14 @@
   aspect-ratio: 1/1;
   padding: 4rem;
   border-radius: 50%;
-  max-width: 50rem;
+  max-width: 56rem;
 }
 .circle p {
   letter-spacing: 0.05rem;
   font-weight: light;
   margin-right: 12rem;
   text-align: right;
+  font-size: 1.25rem;
 }
 .circle h2 {
   background: -webkit-linear-gradient(180deg, #f403d1, #64b5f6);
