@@ -26,7 +26,7 @@ const Register = () => {
   nextRoute.current = "/";
   useEffect(() => {
     if (currentUser) {
-      navigate(-1);
+      navigate(-1,{replace:true});
     }
   }, []);
 
@@ -53,7 +53,6 @@ const Register = () => {
     }else if(tel.phoneNumber && !tel.validData.phoneNumber){
       errors.tel = "Invalid phone number";
     }
-    
     if (!role.trim() || role.trim() === "Choose your role") {
       errors.role = "Role is required";
     }
