@@ -48,7 +48,7 @@ export const Telephone = ({ error, ...props }) => {
   return (
     <>
       <Form.Group className="mb-2">
-        <PhoneInput {...props}  />         
+        <PhoneInput {...props} />         
         {error && <div className="d-block invalid-feedback">{error}</div>}
       </Form.Group>
     </>

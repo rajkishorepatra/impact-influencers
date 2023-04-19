@@ -13,8 +13,7 @@ const Register = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [phone, setPhone] = useState("");
-  const [country, setCountry] = useState("");
+  const [tel,setTel] = useState({})
   const [role, setRole] = useState("");
   const [formstate, setformstate] = useState({
     submitting: false,
@@ -47,10 +46,13 @@ const Register = () => {
     } else if (password.length < 6) {
       errors.password = "Password must be at least 6 characters";
     }
-    console.log(phone);
-    if (!phone.trim()) {
-      errors.phone = "Phone number is required";
+    console.log(tel);
+    if(!tel.phoneNumber){
+      errors.tel = "Phone number is required";
+    }else if(tel.phoneNumber && !tel.validData.phoneNumber){
+      errors.tel = "Invalid phone number";
     }
+    
     if (!role.trim() || role.trim() === "Choose your role") {
       errors.role = "Role is required";
     }
@@ -63,7 +65,7 @@ const Register = () => {
     if (Object.keys(errors).length === 0) {
       setformstate({ ...formstate, submitting: true });
       try {
-        console.log("signing up",phone, name, email, password);
+        console.log("signing up", name, email, password);
         await signUp(email, password);
         // todo: code to add new user to database.
         setformstate({ ...formstate, submitting: false });
@@ -135,20 +137,12 @@ const Register = () => {
               name="phone"
               countryCode="none"
               onChange={(o) => {
-               if(o.validData && o.countryData){
-                setPhone(o.validData.phoneNumber);
-                setCountry(o.countryData.name);
-               }else{
-                setPhone('');
-                setCountry('');
-               }               
-                console.log(o);
-              }}
-              // isInvalid={formstate.errors.phone}
-              error={formstate.errors.phone}
+                setTel(o);
+              }}              
+              error={formstate.errors.tel}
             />
 
-            <InputField
+            <InputField 
               placeholder="Password"
               id="password"
               name="password"
