@@ -6,11 +6,15 @@ import JoinUs from "./JoinUs";
 import Campaign from "./Campaign";
 import Cs1 from "../assets/cs1.png";
 import Cs2 from "../assets/cs2.png";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay, Pagination, Navigation } from "swiper";
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
+
 import "../css/contents.css";
 import "react-multi-carousel/lib/styles.css";
 import "swiper/swiper-bundle.min.css";
-import "swiper/css";
-import "swiper/css/pagination";
 
 function Contents() {
   return (
@@ -57,148 +61,130 @@ function Contents() {
           </div>
         </div>
 
-        {/* Case Studies section */}
+        {/* Case Studies carousel section */}
         <div className="caseStudy mt-4">
           <h1 className="mb-4" id="caseStudy">
             Case Studies
           </h1>
-          {/* <Swiper
-                        className="mySwiper mb-5"
-                        autoplay={{
-                            delay: 4000,
-                            disableOnInteraction: false,
-                            pauseOnMouseEnter: true
-                        }}
-                        // loop={true}
-                        scrollbar={{
-                            hide: true,
-                        }}
-                        modules={[Scrollbar, Autoplay]}
-                    >
-                        <SwiperSlide>
-                            <Row>
-                                <Col>
-                                    <div>
-                                        <img src={logo} alt='org logo' className='mx-auto rounded-circle' style={{ width: '40%' }} />
-                                        <p>A volunteer-driven, non-profitable organization where the volunteers focus more on the groundwork that needs to be done in order to bring a change, however small it is.</p>
-                                    </div>
-                                </Col>
-                                <Col>
-                                    <div className='d-flex justify-content-center mt-xl-5 pt-xl-4 mt-lg-5 pt-lg-4 mt-md-5 pt-md-5 my-3'><SmallCarousel1 /></div>
-                                </Col>
-                                <Col>
-                                    <div>From buttons, to inputs, navbars, alerts or cards, you are covered.From buttons, to inputs, navbars, alerts or cards, you are covered. From buttons, to inputs, navbars, alerts or cards, you are covered.From buttons, to inputs, navbars, alerts or cards, you are covered</div>
-                                </Col>
-                            </Row>
-                        </SwiperSlide>
-                        <SwiperSlide>
-                            <Row>
-                                <Col>
-                                    <div>
-                                        <img src={logo} alt='org logo' className='mx-auto rounded-circle' style={{ width: '40%' }} />
-                                        <p>A volunteer-driven, non-profitable organization where the volunteers focus more on the groundwork that needs to be done in order to bring a change, however small it is.</p>
-                                    </div>
-                                </Col>
-                                <Col>
-                                    <div className='d-flex justify-content-center mt-xl-5 pt-xl-4 mt-lg-5 pt-lg-4 mt-md-5 pt-md-5 my-3'><SmallCarousel2 /></div>
-                                </Col>
-                                <Col>
-                                    <div>From buttons, to inputs, navbars, alerts or cards, you are covered.From buttons, to inputs, navbars, alerts or cards, you are covered. From buttons, to inputs, navbars, alerts or cards, you are covered.From buttons, to inputs, navbars, alerts or cards, you are covered</div>
-                                </Col>
-                            </Row>
-                        </SwiperSlide>
-                        <SwiperSlide>
-                            <Row>
-                                <Col>
-                                    <div>
-                                        <img src={logo} alt='org logo' className='mx-auto rounded-circle' style={{ width: '40%' }} />
-                                        <p>A volunteer-driven, non-profitable organization where the volunteers focus more on the groundwork that needs to be done in order to bring a change, however small it is.</p>
-                                    </div>
-                                </Col>
-                                <Col>
-                                    <div className='d-flex justify-content-center mt-xl-5 pt-xl-4 mt-lg-5 pt-lg-4 mt-md-5 pt-md-5 my-3'><SmallCarousel3 /></div>
-                                </Col>
-                                <Col>
-                                    <div>From buttons, to inputs, navbars, alerts or cards, you are covered.From buttons, to inputs, navbars, alerts or cards, you are covered.From buttons, to inputs, navbars, alerts or cards, you are covered.From buttons, to inputs, navbars, alerts or cards, you are covered</div>
-                                </Col>
-                            </Row>
-                        </SwiperSlide>
-          </Swiper>  */}
-          <div className="my-2">          
+          <Swiper
+            slidesPerView={1}
+            spaceBetween={30}
+            loop={true}
+            pagination={{
+              clickable: true,
+            }}
+            autoplay={{
+              delay: 4000,
+              disableOnInteraction: false,
+            }}
+            navigation={true}
+            modules={[Autoplay, Pagination, Navigation]}
+            className="cs-swiper my-2"
+          >
             {demoCaseStudies.map((item) => (
-              <CaseStudy key={item.id} {...item} />
+              <SwiperSlide key={item.id} className="swiper-slide">
+                <CaseStudy {...item} />
+              </SwiperSlide>
             ))}
-          </div>
+          </Swiper>
         </div>
 
-        {/* <div className='organization' id='organizations'>
-                    <div className='flipCard'>
-                        <div className="front">
-                            <p>Our Partners</p>
-                            <Button>View More</Button>
-                        </div>
-                    </div>
+        {/* <div className="organization" id="organizations">
+          <div className="flipCard">
+            <div className="front">
+              <p>Our Partners</p>
+              <Button>View More</Button>
+            </div>
+          </div>
 
-                    <div className='orgLists'>
-                        <div className='org'>
-                            <img src={logo} alt='org logo' />
-                            <b><h1>Youth For Sustainability</h1></b>
-                            <div className='users'>
-                                <p>From buttons, to inputs, navbars, alerts or cards, you are covered</p>
-                                <p>Influencers associated:
-                                    <img src={profile} alt='profile' />
-                                    <img src={profile} alt='profile' />
-                                    <img src={profile} alt='profile' />+</p>
-                            </div>
-                        </div>
-                        <div className='org'>
-                            <img src={logo} alt='org logo' />
-                            <h1>Youth For Sustainability</h1>
-                            <div className='users'>
-                                <p>From buttons, to inputs, navbars, alerts or cards, you are covered</p>
-                                <p>Influencers associated:
-                                    <img src={profile} alt='profile' />
-                                    <img src={profile} alt='profile' />
-                                    <img src={profile} alt='profile' />+</p>
-                            </div>
-                        </div>
-                        <div className='org'>
-                            <img src={logo} alt='org logo' />
-                            <h1>Youth For Sustainability</h1>
-                            <div className='users'>
-                                <p>From buttons, to inputs, navbars, alerts or cards, you are covered</p>
-                                <p>Influencers associated:
-                                    <img src={profile} alt='profile' />
-                                    <img src={profile} alt='profile' />
-                                    <img src={profile} alt='profile' />+</p>
-                            </div>
-                        </div>
-                        <div className='org'>
-                            <img src={logo} alt='org logo' />
-                            <h1>Youth For Sustainability</h1>
-                            <div className='users'>
-                                <p>From buttons, to inputs, navbars, alerts or cards, you are covered</p>
-                                <p>Influencers associated:
-                                    <img src={profile} alt='profile' />
-                                    <img src={profile} alt='profile' />
-                                    <img src={profile} alt='profile' />+</p>
-                            </div>
-                        </div>
-                        <div className='org'>
-                            <img src={logo} alt='org logo' />
-                            <h1>Youth For Sustainability</h1>
-                            <div className='users'>
-                                <p>From buttons, to inputs, navbars, alerts or cards, you are covered</p>
-                                <p>Influencers associated:
-                                    <img src={profile} alt='profile' />
-                                    <img src={profile} alt='profile' />
-                                    <img src={profile} alt='profile' />+</p>
-                            </div>
-                        </div>
-                    </div>
+          <div className="orgLists">
+            <div className="org">
+              <img src={logo} alt="org logo" />
+              <b>
+                <h1>Youth For Sustainability</h1>
+              </b>
+              <div className="users">
+                <p>
+                  From buttons, to inputs, navbars, alerts or cards, you are
+                  covered
+                </p>
+                <p>
+                  Influencers associated:
+                  <img src={profile} alt="profile" />
+                  <img src={profile} alt="profile" />
+                  <img src={profile} alt="profile" />+
+                </p>
+              </div>
+            </div>
+            <div className="org">
+              <img src={logo} alt="org logo" />
+              <h1>Youth For Sustainability</h1>
+              <div className="users">
+                <p>
+                  From buttons, to inputs, navbars, alerts or cards, you are
+                  covered
+                </p>
+                <p>
+                  Influencers associated:
+                  <img src={profile} alt="profile" />
+                  <img src={profile} alt="profile" />
+                  <img src={profile} alt="profile" />+
+                </p>
+              </div>
+            </div>
+            <div className="org">
+              <img src={logo} alt="org logo" />
+              <h1>Youth For Sustainability</h1>
+              <div className="users">
+                <p>
+                  From buttons, to inputs, navbars, alerts or cards, you are
+                  covered
+                </p>
+                <p>
+                  Influencers associated:
+                  <img src={profile} alt="profile" />
+                  <img src={profile} alt="profile" />
+                  <img src={profile} alt="profile" />+
+                </p>
+              </div>
+            </div>
+            <div className="org">
+              <img src={logo} alt="org logo" />
+              <h1>Youth For Sustainability</h1>
+              <div className="users">
+                <p>
+                  From buttons, to inputs, navbars, alerts or cards, you are
+                  covered
+                </p>
+                <p>
+                  Influencers associated:
+                  <img src={profile} alt="profile" />
+                  <img src={profile} alt="profile" />
+                  <img src={profile} alt="profile" />+
+                </p>
+              </div>
+            </div>
+            <div className="org">
+              <img src={logo} alt="org logo" />
+              <h1>Youth For Sustainability</h1>
+              <div className="users">
+                <p>
+                  From buttons, to inputs, navbars, alerts or cards, you are
+                  covered
+                </p>
+                <p>
+                  Influencers associated:
+                  <img src={profile} alt="profile" />
+                  <img src={profile} alt="profile" />
+                  <img src={profile} alt="profile" />+
+                </p>
+              </div>
+            </div>
+          </div>
+        </div> */}
 
-                </div> */}
         <hr />
+
         <JoinUs />
         <hr />
         <Testimonials />
@@ -211,7 +197,7 @@ export default Contents;
 
 function CaseStudy({ heading, data, img }) {
   return (
-    <div className="cs-container d-flex justify-content-center my-4">
+    <div className="cs-container d-flex justify-content-center ">
       <div className="circle">
         <div className="mx-2 py-4 ">
           <h2 className="">{heading}</h2>
