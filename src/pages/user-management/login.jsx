@@ -8,7 +8,8 @@ import { FiXCircle } from "react-icons/fi";
 
 
 const Register = () => {
-  const { logIn, currentUser, googleLogIn } = UserAuth();
+  // googleLogIn, removed google login
+  const { logIn, currentUser } = UserAuth();
   const navigate = useNavigate();
   const location = useLocation();
   const [formstate, setformstate] = useState({
@@ -72,17 +73,17 @@ const Register = () => {
   };
 
   // handle google login
-  const handleGoogleLogin = async () => {
-    setformstate({ ...formstate, submitting: true });
-    try {
-      await googleLogIn();
-      setformstate({ ...formstate, submitting: false });
-      navigate(nextRoute.current);
-    } catch (err) {
-      console.log(err);
-      setformstate({ ...formstate, submitting: false });
-    }
-  };
+  // const handleGoogleLogin = async () => {
+  //   setformstate({ ...formstate, submitting: true });
+  //   try {
+  //     await googleLogIn();
+  //     setformstate({ ...formstate, submitting: false });
+  //     navigate(nextRoute.current);
+  //   } catch (err) {
+  //     console.log(err);
+  //     setformstate({ ...formstate, submitting: false });
+  //   }
+  // };
 
   return (
     <div className="form-section">
@@ -131,14 +132,16 @@ const Register = () => {
             >
               Sign in
             </Button>
-            <span className="d-block m-1 text-center fw-bolder fs-6">OR</span>
+
+            {/* <span className="d-block m-1 text-center fw-bolder fs-6">OR</span>
             <Button
               className="form-btn fw-bolder  bg-light text-dark border border-dark"
               onClick={() => handleGoogleLogin()}
               disabled={formstate.submitting}
             >
               Continue with Google
-            </Button>
+            </Button> */}
+
           </Form>
           <div className="w-100 text-center mt-3 fs-6">
             Don't have an account?

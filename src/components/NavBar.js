@@ -64,9 +64,9 @@ function NavBar() {
                 </NavDropdown.Item>
               </NavDropdown>
               {!currentUser && (
-                <>                  
+                <>
                   <LinkContainer to={"/register"}>
-                    <Button className="mx-2">Sign In or Sign Up</Button>
+                    <Button className="mx-2">Sign In / Sign Up</Button>
                   </LinkContainer>
                 </>
               )}
