@@ -16,7 +16,7 @@ function Campaign() {
     };
     return (
         <div className='caseStudy p-3'>
-            <h1 className='my-4' id='campaigns'>Our Campaigns</h1>
+            <h1 className='my-4' id='campaigns'>Live Campaigns</h1>
             <Carousel responsive={responsive}>
                 <div className='px-2'>
                     <div className='camp_data m-auto p-3 rounded' >

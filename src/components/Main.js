@@ -1,53 +1,60 @@
 import React from 'react';
-import Carousel from 'react-bootstrap/Carousel';
+// import Carousel from 'react-bootstrap/Carousel';
 import bgimg from '../assets/bg.jpeg'
+import Slider from "react-slick";
+// import "slick-carousel/slick/slick.css";
+// import "slick-carousel/slick/slick-theme.css";
+import logo from '../assets/logo.jpg';
+
+
 import '../css/main.css'
 
 function Main() {
+    const settings = {
+        // dots: true,
+        infinite: true,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        vertical: true,
+        verticalSwiping: true
+    };
+
     return (
         <>
-            <Carousel fade style={{zIndex:"1"}} className="mainCarousel" controls={false} interval={2000} indicators={false}>
-                <Carousel.Item>
-                    <img
-                        className="d-block w-100 h-200"
-                        src={bgimg}
-                        alt="First slide"
-                        height={1000}
-                    />
-                    <Carousel.Caption>
-                        <h3>Debarchan Mishra</h3>
-                        <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-                    </Carousel.Caption>
-                </Carousel.Item>
-                <Carousel.Item>
-                    <img
-                        className="d-block w-100"
-                        src={bgimg}
-                        height={1000}
-                        alt="Second slide"
-                    />
-
-                    <Carousel.Caption>
-                        <h3>Avishek Jagdev</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                    </Carousel.Caption>
-                </Carousel.Item>
-                <Carousel.Item>
-                    <img
-                        className="d-block w-100"
-                        src={bgimg}
-                        height={1000}
-                        alt="Third slide"
-                    />
-
-                    <Carousel.Caption>
-                        <h3>Prakruti Mishra</h3>
-                        <p>
-                            Praesent commodo cursus magna, vel scelerisque nisl consectetur.
-                        </p>
-                    </Carousel.Caption>
-                </Carousel.Item>
-            </Carousel>
+            <Slider {...settings} className='w-50 h-100'>
+                <div>
+                    <div className='px-2'>
+                        <div className='camp_data m-auto p-3' >
+                            <img src={logo} alt='..' />
+                            <p className='mt-3'>From buttons, to inputs, navbars, alerts or cards, you are coveredFrom buttons, to inputs, navbars, alerts or cards, you are coveredFrom buttons, to inputs, navbars, alerts or cards, you are covered</p>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div className='px-2'>
+                        <div className='camp_data m-auto p-3 rounded' >
+                            <img src={logo} alt='..' />
+                            <p className='mt-3'>From buttons, to inputs, navbars, alerts or cards, you are coveredFrom buttons, to inputs, navbars, alerts or cards, you are coveredFrom buttons, to inputs, navbars, alerts or cards, you are covered</p>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div className='px-2'>
+                        <div className='camp_data m-auto p-3 rounded' >
+                            <img src={logo} alt='..' />
+                            <p className='mt-3'>From buttons, to inputs, navbars, alerts or cards, you are coveredFrom buttons, to inputs, navbars, alerts or cards, you are coveredFrom buttons, to inputs, navbars, alerts or cards, you are covered</p>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div className='px-2'>
+                        <div className='camp_data m-auto p-3 rounded' >
+                            <img src={logo} alt='..' />
+                            <p className='mt-3'>From buttons, to inputs, navbars, alerts or cards, you are coveredFrom buttons, to inputs, navbars, alerts or cards, you are coveredFrom buttons, to inputs, navbars, alerts or cards, you are covered</p>
+                        </div>
+                    </div>
+                </div>
+            </Slider >
         </>
     )
 }
