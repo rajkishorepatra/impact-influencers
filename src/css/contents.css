@@ -129,11 +129,11 @@
   .circle img {
     display: none;
   }
-  .circle p{
+  .circle p {
     margin-right: 0 !important;
     text-align: center !important;
   }
-  .circle h2{
+  .circle h2 {
     margin-right: 0 !important;
     text-align: center !important;
     font-size: 6vh !important;
@@ -153,8 +153,6 @@
   .camp_data p {
     order: 2;
   }
-
-  
 }
 
 @media only screen and (max-width: 767px) {
@@ -179,17 +177,17 @@
   .joinImg {
     flex-flow: row wrap;
   }
-  .circle{
+  .circle {
     border-radius: 0 !important;
     padding: 0% !important;
     aspect-ratio: unset !important;
   }
-  .circle p{
+  .circle p {
     padding: 1rem 2rem;
   }
 }
 
-@media only screen and (max-width: 446px) {
+@media only screen and (max-width: 480px) {
   .countSec {
     border: none;
   }
@@ -205,22 +203,37 @@
   .flipCard {
     height: 300px;
   }
+
+  .swiper-button-next,
+.swiper-button-prev {
+  display: none !important;
+}
 }
 
-.cs-swiper{
+.cs-swiper {
   width: 100%;
   height: 100%;
 }
-.swiper-slide{
+.swiper-slide {
   padding: 3rem 0;
 }
-.swiper-button-next, .swiper-button-prev{
+.swiper-button-next,
+.swiper-button-prev {
+  height: 1rem !important;
+  width: 1rem !important;
   color: #f403d1 !important;
-  opacity: .3;
+  padding: 2rem;
+  border-radius: 50%;
 }
-.swiper-button-next:hover, .swiper-button-prev:hover{
-  opacity: 1;
-  transition: opacity .3s ease-in-out;
+.swiper-button-next::after,
+.swiper-button-prev::after {
+  font-size: 2rem !important;
+}
+.swiper-button-next:hover,
+.swiper-button-prev:hover {
+  background: #64b5f6;
+  opacity: .3;
+  transition: background 0.3s ease-in-out;
 }
 
 .circle {

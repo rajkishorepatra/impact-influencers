@@ -1,6 +1,7 @@
 import React from "react";
 import { Container } from "react-bootstrap";
 import CountUp from "react-countup";
+import { Link } from "react-router-dom";
 import Testimonials from "./Testimonials";
 import JoinUs from "./JoinUs";
 import Campaign from "./Campaign";
@@ -87,6 +88,11 @@ function Contents() {
               </SwiperSlide>
             ))}
           </Swiper>
+          <div className="d-flex justify-content-center my-2">
+            <Link to="/case-studies" className="btn btn-primary">
+              View More
+            </Link>
+          </div>
         </div>
 
         {/* <div className="organization" id="organizations">
