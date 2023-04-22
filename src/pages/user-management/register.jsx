@@ -5,16 +5,17 @@ import { InputField, Select, Telephone } from "../../components/form-inputs";
 import { UserAuth } from "../../context/AuthContext";
 import influence from "../../assets/influncer.svg";
 import { FiXCircle } from "react-icons/fi";
-
+import { addUser } from "../../context/db-methods";
+import { updateProfile } from "firebase/auth";
 
 const Register = () => {
   // googleLogIn, removed google login
-  const { signUp, currentUser } = UserAuth(); 
+  const { signUp, currentUser, checkEmailExists } = UserAuth();
   const navigate = useNavigate();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [tel,setTel] = useState({})
+  const [tel, setTel] = useState({});
   const [role, setRole] = useState("");
   const [formstate, setformstate] = useState({
     submitting: false,
@@ -26,7 +27,7 @@ const Register = () => {
   nextRoute.current = "/";
   useEffect(() => {
     if (currentUser) {
-      navigate(-1,{replace:true});
+      navigate(-1, { replace: true });
     }
   }, []);
 
@@ -48,9 +49,9 @@ const Register = () => {
       errors.password = "Password must be at least 6 characters";
     }
     console.log(tel);
-    if(!tel.phoneNumber){
+    if (!tel.phoneNumber) {
       errors.tel = "Phone number is required";
-    }else if(tel.phoneNumber && !tel.validData.phoneNumber){
+    } else if (tel.phoneNumber && !tel.validData.phoneNumber) {
       errors.tel = "Invalid phone number";
     }
     if (!role.trim() || role.trim() === "Choose your role") {
@@ -65,9 +66,28 @@ const Register = () => {
     if (Object.keys(errors).length === 0) {
       setformstate({ ...formstate, submitting: true });
       try {
-        console.log("signing up", name, email, password);
-        await signUp(email, password);
-        // todo: code to add new user to database.
+        console.log("signing up", name, email);
+
+        // account creation using email and password
+        let userCredential = await signUp(email, password);
+
+        // set display name and phone number for the user
+        await updateProfile(userCredential.user, {
+          displayName: name,
+          phoneNumber: tel.validData.phoneNumber,
+        });
+
+        // save user data to firestore according to their role (influencer or volunteer or organization)
+        let userData = {
+          uid: userCredential.user.uid,
+          name: name,
+          email: email,
+          phone: tel.validData.phoneNumber,
+          role: role,
+          country: tel.countryData.name,
+        };
+        await addUser(userData);
+
         setformstate({ ...formstate, submitting: false });
         navigate(nextRoute.current);
       } catch (err) {
@@ -75,7 +95,7 @@ const Register = () => {
         setformstate({ ...formstate, submitting: false, errors: errors });
       }
     } else {
-      setformstate({ ...formstate, errors: errors });
+      setformstate({ submitting: false, errors: errors });
     }
   };
 
@@ -135,14 +155,14 @@ const Register = () => {
               placeholder="Phone"
               id="phone"
               name="phone"
-              countryCode="none"
+              countryCode="in"
               onChange={(o) => {
                 setTel(o);
-              }}              
+              }}
               error={formstate.errors.tel}
             />
 
-            <InputField 
+            <InputField
               placeholder="Password"
               id="password"
               name="password"
@@ -181,7 +201,6 @@ const Register = () => {
             >
               Continue with Google
             </Button> */}
-
           </Form>
           <div className="w-100 text-center mt-3 fs-6">
             Already have an account?

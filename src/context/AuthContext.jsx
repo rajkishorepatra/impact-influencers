@@ -6,6 +6,7 @@ import {
   signOut,
   onAuthStateChanged,
   signInWithPopup,
+  fetchSignInMethodsForEmail,
 } from "firebase/auth";
 
 const AuthContext = createContext();
@@ -26,6 +27,9 @@ export function AuthContextProvider({ children }) {
   function googleLogIn() {
     return signInWithPopup(auth, provider);
   }
+  function checkEmailExists(email) {
+    return fetchSignInMethodsForEmail(auth, email);
+  }
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -36,7 +40,7 @@ export function AuthContextProvider({ children }) {
   }, []);
   
   return (
-    <AuthContext.Provider value={{ googleLogIn, signUp, logIn, logOut, currentUser }}>
+    <AuthContext.Provider value={{ googleLogIn, signUp, logIn, logOut, currentUser ,checkEmailExists}}>
       {!loading && children}
     </AuthContext.Provider>
   );
