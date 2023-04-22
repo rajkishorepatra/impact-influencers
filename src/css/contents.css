@@ -137,6 +137,7 @@
     margin-right: 0 !important;
     text-align: center !important;
     font-size: 6vh !important;
+    transform: translateX(0) !important;
   }
 }
 
@@ -205,9 +206,9 @@
   }
 
   .swiper-button-next,
-.swiper-button-prev {
-  display: none !important;
-}
+  .swiper-button-prev {
+    display: none !important;
+  }
 }
 
 .cs-swiper {
@@ -232,7 +233,7 @@
 .swiper-button-next:hover,
 .swiper-button-prev:hover {
   background: #64b5f6;
-  opacity: .3;
+  opacity: 0.3;
   transition: background 0.3s ease-in-out;
 }
 
@@ -242,7 +243,7 @@
   aspect-ratio: 1/1;
   padding: 4rem;
   border-radius: 50%;
-  max-width: 56rem;
+  max-width: 48rem;
 }
 .circle p {
   letter-spacing: 0.05rem;
@@ -257,8 +258,8 @@
   -webkit-text-fill-color: transparent;
   font-size: 10vh;
   font-weight: bold;
-  margin-right: 12rem;
   text-align: right;
+  transform: translateX(-12rem);
 }
 .circle img {
   height: 20rem;
