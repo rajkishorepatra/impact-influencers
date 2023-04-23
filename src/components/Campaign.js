@@ -26,36 +26,41 @@ function Campaign() {
                 <div class='img__wrap'>
                     <img src={img} alt='dummy'/>
                     <div class='divp'>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate numquam sint sunt totam facilis? Consequatur.</p>
+                        <p>{'Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate numquam sint sunt totam facilis? Consequatur.\n'}
                         <a href='javascript:void(0)' onClick={() => setShowInfo(true)}>See More</a>
+                        </p>
                     </div> 
                 </div>
                 <div class='img__wrap'>
                     <img src={img} alt='dummy'/>
                     <div class='divp'>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate numquam sint sunt totam facilis? Consequatur.</p>
+                        <p>{'Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate numquam sint sunt totam facilis? Consequatur.\n'}
                         <a href='javascript:void(0)' onClick={() => setShowInfo(true)}>See More</a>
+                        </p>
                     </div>
                 </div>
                 <div class='img__wrap'>
                     <img src={img} alt='dummy'/>
                     <div class='divp'>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate numquam sint sunt totam facilis? Consequatur.</p>
+                        <p>{'Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate numquam sint sunt totam facilis? Consequatur.\n'}
                         <a href='javascript:void(0)' onClick={() => setShowInfo(true)}>See More</a>
+                        </p>
                     </div>
                 </div>
                 <div class='img__wrap'>
                     <img src={img} alt='dummy'/>
                     <div class='divp'>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate numquam sint sunt totam facilis? Consequatur.</p>
+                        <p>{'Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate numquam sint sunt totam facilis? Consequatur.\n'}
                         <a href='javascript:void(0)' onClick={() => setShowInfo(true)}>See More</a>
+                        </p>
                     </div>
                 </div>
                 <div class='img__wrap'>
                     <img src={img} alt='dummy'/>
                     <div class='divp'>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate numquam sint sunt totam facilis? Consequatur.</p>
+                        <p>{'Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate numquam sint sunt totam facilis? Consequatur.\n'}
                         <a href='javascript:void(0)' onClick={() => setShowInfo(true)}>See More</a>
+                        </p>
                     </div>
                 </div>
             </Carousel>

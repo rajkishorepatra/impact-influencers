@@ -166,15 +166,17 @@
 .divp p{
     padding: 5%;
     display: block;
+    width: inherit;
     position: inherit;
     color: white;
     text-align: center;
+    white-space: pre-line;
 }
-.divp a{
-    transform:translateY(180%);
+/* .divp a{
+    transform: translate();
     display: block;
     text-align: center;
-}
+} */
 
 
 .img__wrap:hover .divp{
