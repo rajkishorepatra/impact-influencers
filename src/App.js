@@ -10,6 +10,7 @@ import InfluencerProfile from "./pages/user-management/influencer";
 import { RequireAuth } from "./pages/user-management/protected";
 import Organization from "./pages/user-management/organization";
 import PageNotFound from "./pages/page-not-found";
+import CaseStudies from "./pages/case-studies-page";
 
 function App() {
   return (
@@ -35,6 +36,7 @@ function App() {
                   </RequireAuth>
                 }
               />
+              <Route path="case-studies" element={<CaseStudies />} />
             </Route>
             <Route path="login" element={<Login />} />
             <Route path="register" element={<Register />} />
