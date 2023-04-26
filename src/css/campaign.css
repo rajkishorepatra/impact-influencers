@@ -7,18 +7,6 @@
   padding: 0 !important;
   background: none !important;
 }
-.fade-in {
-  -webkit-animation: fade-in 0.5s ease-in-out;
-  animation: fade-in 0.5s ease-in-out;
-}
-@keyframes fade-in {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
 
 
 .camp-card {
