@@ -18,7 +18,7 @@ function JoinUs() {
         <>
             <Container className='joinUs'>
                 <h1 className='my-4'>Join us to create an Impact!</h1>
-                <Row className='m-auto mb-4'>
+                <Row className='mb-4'>
                     <Col>
                         <div className='p-2 d-flex justify-content-center'>
                             <img src={influ} alt="influencers" className='rounded-3' />
@@ -45,7 +45,7 @@ function JoinUs() {
                     </Col>
                 </Row>
             </Container>
-
+            
             <InfluencerModal show={showInflu} close={()=>setShowInflu(false)} />
             <OrgModal show={showOrg} close={()=>setShowOrg(false)} />
             <CampModal show={showCamp} close={()=>setShowCamp(false)} />
