@@ -1,0 +1,91 @@
+.carousel-button-group {
+  position: absolute;
+  top: 0.5rem;
+  right: 1.25rem;
+  height: 3rem;
+  width: 6rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.carousel-button-group button {
+  height: 36px;
+  width: 36px;
+  border-radius: 50%;
+  color: #000;
+  font-size: 2rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+}
+.carousel-button-group button:hover {
+  background-color: #000;
+  color: #fff;
+  transition: all ease-in-out 0.3s;
+}
+
+.btn-disable {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.carousel-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.react-multi-carousel-track li {
+  padding: 0 0.5rem;
+}
+
+.campaign-heading {
+  margin: 0 .5rem;
+  height: 3rem;
+  display: flex;
+  align-items: center;
+}
+
+.card-wrapper {
+  position: relative;
+  max-height: 18rem;
+  overflow: hidden;
+  border-radius: 1rem;
+}
+.card-details {
+  background: none;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  padding: 1rem;
+}
+
+.card-details .card-hidden {
+  opacity: 0;
+}
+.card-details .card-hidden p {
+  font-size: 0.9rem;
+  margin-bottom: .5rem !important;
+}
+
+.card-wrapper:hover .card-details {
+  backdrop-filter: blur(5px);
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  transition: all ease-in-out 0.3s;
+}
+.card-wrapper:hover .card-details .card-hidden,
+.card-wrapper:focus .card-details .card-hidden {
+  opacity: 1;
+  transition: all ease-in-out 0.3s;
+}
+
+.campaigns-section {
+  background: #e9f4fb;
+  padding: 0.5rem;
+  border-radius: .5rem;
+}

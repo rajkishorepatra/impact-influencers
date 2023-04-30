@@ -19,7 +19,7 @@ import "swiper/css/pagination";
 
 function Contents() {
     return (
-        <div className='content pb-3'>
+        <div className='content container pb-3'>
             <Campaign/>
             <Container>
                 <div className='count my-4 mb-5'>
