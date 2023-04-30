@@ -86,15 +86,13 @@ function Campaign() {
 export default Campaign;
 
 function CampaignCard({ title, summary, imageLink }) {
-  let cardRef = useRef();
+  let cardRef = useRef({});
   let [cardHeight, setCardHeight] = useState(0);
 
   useEffect(() => {
-    if (cardRef.current) {
-      window.addEventListener("resize", () => {       
-        setCardHeight(cardRef.current.clientHeight);
-      });
-    }
+    window.addEventListener("resize", () => {
+      setCardHeight(cardRef.current?.clientHeight);
+    });
     return () => {
       window.removeEventListener("resize", () => {});
     };
