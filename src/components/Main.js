@@ -3,7 +3,7 @@ import "../css/main.css";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import Profile from "../assets/profile.png";
-
+import StockVideo from "../assets/Tropical.mp4";
 function Main() {
   const responsive = {
     desktop: {
@@ -17,8 +17,10 @@ function Main() {
       <div className="header">
         <div className="header-wrapper">
           <div className="container ">
-            <div className="d-flex flex-column flex-md-row align-items-center position-relative">
+            <div className="d-flex flex-column flex-lg-row justify-content-lg-between align-items-center">
+
               <div className="header-carousel">
+                <h2 className="text-light text-center py-2">Influencers</h2>
                 <Carousel
                   swipeable={true}
                   responsive={responsive}
@@ -28,22 +30,24 @@ function Main() {
                   autoPlaySpeed={2000}
                   arrows={false}
                 >
-                    hello world
                   {Influencers.map((i, index) => (
                     <InfluencerCard key={index} name={i.name} bio={i.bio} />
                   ))}
                 </Carousel>
               </div>
 
-              <div className="vid-container shadow">
-                <video autoPlay loop muted className="ratio ratio-1x1">
+              <div className="vid-container">
+                <video autoPlay loop muted className="ratio ratio-4x3">
                   <source
-                    src="https://mdbcdn.b-cdn.net/img/video/Tropical.mp4"
+                    // src="https://mdbcdn.b-cdn.net/img/video/Tropical.mp4"
+                    src={StockVideo}
                     type="video/mp4"
                     className="header-video"
                   />
                 </video>
               </div>
+
+
             </div>
           </div>
         </div>

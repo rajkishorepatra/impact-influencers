@@ -55,7 +55,7 @@ function Campaign() {
   };
   return (
     <>
-      <div className="campaigns-section " id="campaigns">
+      <div className="campaigns-section shadow-lg" id="campaigns">
         <div className="carousel-container">
           <h2 className="campaign-heading h1 fw-bold mb-3">Live Campaigns</h2>
           <Carousel
