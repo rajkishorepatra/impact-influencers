@@ -7,22 +7,16 @@ import JoinUs from "./JoinUs";
 import Campaign from "./Campaign";
 import Cs1 from "../assets/cs1.png";
 import Cs2 from "../assets/cs2.png";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, Pagination, Navigation } from "swiper";
-import "swiper/css";
-import "swiper/css/pagination";
-import "swiper/css/navigation";
 
-import "../css/contents.css";
+import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
-import "swiper/swiper-bundle.min.css";
+import "../css/contents.css";
 
 function Contents() {
   return (
-    <div className="content pb-3">
+    <div className="content container pb-3">
       <Campaign />
-      <Container fluid>
-        {/* Numbers section */}
+      <Container>
         <div className="count my-4 mb-5">
           <div className="countSec p-3" style={{ borderLeft: "none" }}>
             <h1>
@@ -62,38 +56,7 @@ function Contents() {
           </div>
         </div>
 
-        {/* Case Studies carousel section */}
-        <div className="caseStudy mt-4">
-          <h1 className="mb-4" id="caseStudy">
-            Case Studies
-          </h1>
-          <Swiper
-            slidesPerView={1}
-            spaceBetween={30}
-            loop={true}
-            pagination={{
-              clickable: true,
-            }}
-            autoplay={{
-              delay: 5000,
-              disableOnInteraction: false,
-            }}
-            navigation={true}
-            modules={[Autoplay, Pagination, Navigation]}
-            className="cs-swiper my-2"
-          >
-            {demoCaseStudies.map((item) => (
-              <SwiperSlide key={item.id} className="swiper-slide">
-                <CaseStudy {...item} />
-              </SwiperSlide>
-            ))}
-          </Swiper>
-          <div className="d-flex justify-content-center my-2">
-            <Link to="/case-studies" className="btn btn-primary">
-              View More
-            </Link>
-          </div>
-        </div>
+        <CaseStudiesSection />
 
         {/* <div className="organization" id="organizations">
           <div className="flipCard">
@@ -246,3 +209,44 @@ const demoCaseStudies = [
     img: Cs2,
   },
 ];
+
+function CaseStudiesSection() {
+  const responsive = {
+    desktop: {
+      breakpoint: { max: 3000, min: 0 },
+      items: 1,
+      slidesToSlide: 1, // optional, default to 1.
+    },
+    mobile: {
+      breakpoint: { max: 600, min: 0 },
+      items: 1,
+      slidesToSlide: 1, // optional, default to 1.
+    },
+  };
+  return (
+    <div className="case-studies-section mt-4">
+      <h1 className="mb-4 display-5 fw-bold text-center" id="caseStudy">
+        Case Studies
+      </h1>
+
+      <Carousel
+        swipeable={true}
+        responsive={responsive}
+        removeArrowOnDeviceType={["mobile"]}
+        autoPlay
+        autoPlaySpeed={3000}
+        infinite
+        pauseOnHover
+      >
+        {demoCaseStudies.map((item) => (
+          <CaseStudy key={item.id} {...item} />
+        ))}
+      </Carousel>
+      <div className="d-flex justify-content-center">
+        <Link to="/case-studies">
+          <button className="btn btn-primary mt-4">View All</button>
+        </Link>
+      </div>
+    </div>
+  );
+}

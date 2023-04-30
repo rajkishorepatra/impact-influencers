@@ -1,18 +1,22 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Button, Form } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
-import { InputField } from "../../components/form-inputs";
+import { InputField, Select, Telephone } from "../../components/form-inputs";
 import { UserAuth } from "../../context/AuthContext";
 import influence from "../../assets/influncer.svg";
 import { FiXCircle } from "react-icons/fi";
-
+import { addUser } from "../../context/db-methods";
+import { updateProfile } from "firebase/auth";
 
 const Register = () => {
-  const { signUp, currentUser, googleLogIn } = UserAuth();
+  // googleLogIn, removed google login
+  const { signUp, currentUser, checkEmailExists } = UserAuth();
   const navigate = useNavigate();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [tel, setTel] = useState({});
+  const [role, setRole] = useState("");
   const [formstate, setformstate] = useState({
     submitting: false,
     errors: {},
@@ -23,12 +27,13 @@ const Register = () => {
   nextRoute.current = "/";
   useEffect(() => {
     if (currentUser) {
-      navigate(-1);
+      navigate(-1, { replace: true });
     }
   }, []);
 
   const validateInputs = () => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    // const phoneRegex = /^\d{10}$/;
     let errors = {};
     if (!name.trim()) {
       errors.name = "Name is required";
@@ -43,6 +48,15 @@ const Register = () => {
     } else if (password.length < 6) {
       errors.password = "Password must be at least 6 characters";
     }
+    console.log(tel);
+    if (!tel.phoneNumber) {
+      errors.tel = "Phone number is required";
+    } else if (tel.phoneNumber && !tel.validData.phoneNumber) {
+      errors.tel = "Invalid phone number";
+    }
+    if (!role.trim() || role.trim() === "Choose your role") {
+      errors.role = "Role is required";
+    }
     return errors;
   };
 
@@ -52,9 +66,28 @@ const Register = () => {
     if (Object.keys(errors).length === 0) {
       setformstate({ ...formstate, submitting: true });
       try {
-        console.log("signing up", name, email, password);
-        await signUp(email, password);
-        // todo: code to add new user to database.
+        console.log("signing up", name, email);
+
+        // account creation using email and password
+        let userCredential = await signUp(email, password);
+
+        // set display name and phone number for the user
+        await updateProfile(userCredential.user, {
+          displayName: name,
+          phoneNumber: tel.validData.phoneNumber,
+        });
+
+        // save user data to firestore according to their role (influencer or volunteer or organization)
+        let userData = {
+          uid: userCredential.user.uid,
+          name: name,
+          email: email,
+          phone: tel.validData.phoneNumber,
+          role: role,
+          country: tel.countryData.name,
+        };
+        await addUser(userData);
+
         setformstate({ ...formstate, submitting: false });
         navigate(nextRoute.current);
       } catch (err) {
@@ -62,21 +95,21 @@ const Register = () => {
         setformstate({ ...formstate, submitting: false, errors: errors });
       }
     } else {
-      setformstate({ ...formstate, errors: errors });
+      setformstate({ submitting: false, errors: errors });
     }
   };
 
-  const handleGoogleLogin = async () => {
-    setformstate({ ...formstate, submitting: true });
-    try {
-      await googleLogIn();
-      setformstate({ ...formstate, submitting: false });
-      navigate(nextRoute.current);
-    } catch (err) {
-      setformstate({ ...formstate, submitting: false });
-      console.log(err);
-    }
-  };
+  // const handleGoogleLogin = async () => {
+  //   setformstate({ ...formstate, submitting: true });
+  //   try {
+  //     await googleLogIn();
+  //     setformstate({ ...formstate, submitting: false });
+  //     navigate(nextRoute.current);
+  //   } catch (err) {
+  //     setformstate({ ...formstate, submitting: false });
+  //     console.log(err);
+  //   }
+  // };
 
   return (
     <div className="form-section">
@@ -104,7 +137,7 @@ const Register = () => {
               type="text"
               value={name}
               onChange={(e) => setName(e.target.value)}
-              isInvalid={formstate.errors.name}
+              // isInvalid={formstate.errors.name}
               error={formstate.errors.name}
             />
             <InputField
@@ -114,9 +147,21 @@ const Register = () => {
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              isInvalid={formstate.errors.email}
+              // isInvalid={formstate.errors.email}
               error={formstate.errors.email}
             />
+
+            <Telephone
+              placeholder="Phone"
+              id="phone"
+              name="phone"
+              countryCode="in"
+              onChange={(o) => {
+                setTel(o);
+              }}
+              error={formstate.errors.tel}
+            />
+
             <InputField
               placeholder="Password"
               id="password"
@@ -124,9 +169,21 @@ const Register = () => {
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              isInvalid={formstate.errors.password}
+              // isInvalid={formstate.errors.password}
               error={formstate.errors.password}
             />
+
+            <Select
+              value={role}
+              onChange={(e) => setRole(e.target.value)}
+              // isInvalid={formstate.errors.role}
+              error={formstate.errors.role}
+            >
+              <option>Choose your role</option>
+              <option value="influencer">Influencer</option>
+              <option value="organization">Organization</option>
+              <option value="volunteer">Volunteer</option>
+            </Select>
 
             <Button
               type="submit"
@@ -135,14 +192,15 @@ const Register = () => {
             >
               Sign up
             </Button>
-            <span className="d-block m-1 text-center fw-bolder fs-6 ">OR</span>
+
+            {/* <span className="d-block m-1 text-center fw-bolder fs-6 ">OR</span>
             <Button
               className="form-btn fw-bolder bg-light text-dark border border-dark hover:bg-secondary hover:text-light "
               onClick={() => handleGoogleLogin()}
               disabled={formstate.submitting}
             >
               Continue with Google
-            </Button>
+            </Button> */}
           </Form>
           <div className="w-100 text-center mt-3 fs-6">
             Already have an account?

@@ -30,7 +30,7 @@
   width: 100%;
   position: absolute;
   -webkit-transform: scale(1.5);
-          transform: scale(1.5);
+  transform: scale(1.5);
   top: 20rem;
   left: 0;
 }
@@ -51,7 +51,8 @@
   font-weight: 600;
   padding: 0 0.5rem;
 }
-.form-control {
+.form-control,
+.form-select {
   font-size: 14px !important;
   font-weight: 600 !important;
   box-shadow: none !important;
@@ -59,12 +60,27 @@
   border: 2px solid transparent !important;
   border-radius: 1.5rem !important;
 }
-.form-control:focus {
+.form-control:focus,
+.form-select:focus {
   box-shadow: none !important;
   border-radius: 1.5rem !important;
   border-color: #ff6b6b !important;
   transition: border-color 0.3s ease-in-out;
 }
+.form-select option:first-child {
+  color: #6c757d;
+}
+.react-tel-input .form-control {
+  padding: 0.5rem 0rem 0.5rem 3rem !important;
+  max-width: 18rem !important;
+  height: auto !important;
+}
+.react-tel-input .flag-dropdown, .react-tel-input .selected-flag {
+  border-top-left-radius: 1.5rem !important;
+  border-bottom-left-radius: 1.5rem !important;
+
+}
+
 .invalid-feedback {
   font-size: 12px !important;
   font-weight: 600;
@@ -98,16 +114,16 @@
 .forgot-password a:hover {
   text-decoration: underline !important;
 }
-.close-btn{
+.close-btn {
   position: absolute;
   font-size: 1.5rem;
-  background:none;
+  background: none;
   border: none;
-  padding: .25rem;
-  top: .5rem ;
+  padding: 0.25rem;
+  top: 0.5rem;
   left: 1rem;
 }
-.close-btn:hover{
+.close-btn:hover {
   transform: scale(1.2);
 }
 @media (max-width: 768px) {
