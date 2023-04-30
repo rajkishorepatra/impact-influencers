@@ -4,7 +4,7 @@ import "react-multi-carousel/lib/styles.css";
 import img from "../assets/image.png";
 import { useState } from "react";
 import "../css/campaign.css";
-
+import { Link } from "react-router-dom";
 import { BiChevronLeft, BiChevronRight } from "react-icons/bi";
 
 const ButtonGroup = ({ next, previous, goToSlide, ...rest }) => {
@@ -28,7 +28,6 @@ const ButtonGroup = ({ next, previous, goToSlide, ...rest }) => {
 };
 
 function Campaign() {
-  const [showInfo, setShowInfo] = useState(false);
   const responsive = {
     desktop: {
       breakpoint: { max: 3000, min: 1024 },
@@ -87,14 +86,16 @@ function Campaign() {
 export default Campaign;
 
 function CampaignCard({ title, summary, imageLink }) {
-  let cardRef = useRef(null);
+  let cardRef = useRef();
   let [cardHeight, setCardHeight] = useState(0);
 
   useEffect(() => {
-    window.addEventListener("resize", () => {
-      //   console.log(cardRef.current.clientHeight);
-      setCardHeight(cardRef.current.clientHeight);
-    });
+    if (cardRef.current) {
+      window.addEventListener("resize", () => {
+        //   console.log(cardRef.current.clientHeight);
+        setCardHeight(cardRef.current.clientHeight);
+      });
+    }
     return () => {
       window.removeEventListener("resize", () => {});
     };
@@ -104,15 +105,15 @@ function CampaignCard({ title, summary, imageLink }) {
     <>
       <div className="card-wrapper" ref={cardRef}>
         <img src={imageLink} alt="campaign card poster" className="card-img" />
-        <div class="card-details ">
+        <div className="card-details ">
           <h3 className="fw-bold h5 text-light">{title}</h3>
           <div className="card-hidden">
             <p className="text-light  p-0">
               {cardHeight > 250 ? summary : summary.slice(0, 60) + "..."}
             </p>
-            <a href="javascript:void(0)" className="btn btn-sm btn-primary">
+            <Link to="/case-studies" className="btn btn-sm btn-primary">
               Participate
-            </a>
+            </Link>
           </div>
         </div>
       </div>
