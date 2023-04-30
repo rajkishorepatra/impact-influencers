@@ -16,13 +16,13 @@ function NavBar() {
     const [showCamp, setShowCamp] = useState(false);
     return (
         <>
-            <Navbar collapseOnSelect fixed="top" expand="lg" variant='dark' style={{ width: '95%', borderRadius: '10px', top: '5px', zIndex: "100"}} className='m-auto navbar'>
+            <Navbar collapseOnSelect expand="lg" className=''>
                 <Container>
-                    <Navbar.Brand href="#home">Impact Influencers</Navbar.Brand>
+                    <Navbar.Brand href="#home" className='display-6 fw-bold'>Impact Influencers</Navbar.Brand>
                     <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                     <Navbar.Collapse id="responsive-navbar-nav" className="justify-content-end">
                         <Nav>
-                            {/* <Nav.Link href="#about-us">About Us</Nav.Link> */}
+                            <Nav.Link href="#about-us" className='mx-2'>About Us</Nav.Link>
                             <Nav.Link href="#campaigns" className='mx-2'>Campaigns</Nav.Link>
                             <Nav.Link href="#caseStudy" className='mx-2'>Case Study</Nav.Link>
                             <NavDropdown title="Join us" className='mx-2' id="collasible-nav-dropdown">

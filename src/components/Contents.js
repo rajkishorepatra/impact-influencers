@@ -181,9 +181,9 @@ function Contents() {
                     </div>
 
                 </div> */}
-                <hr />
+                {/* <hr />
                 <JoinUs />
-                <hr />
+                <hr /> */}
                 {/* <Testimonials /> */}
             </Container>
         </div>
