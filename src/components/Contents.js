@@ -18,49 +18,32 @@ import "react-multi-carousel/lib/styles.css";
 import "swiper/swiper-bundle.min.css";
 
 function Contents() {
-  return (
-    <div className="content pb-3">
-      <Campaign />
-      <Container fluid>
-        {/* Numbers section */}
-        <div className="count my-4 mb-5">
-          <div className="countSec p-3" style={{ borderLeft: "none" }}>
-            <h1>
-              <CountUp end={20} duration={3} />+
-            </h1>
-            <h5>Projects Completed</h5>
-            <p>
-              From buttons, to inputs, navbars, alerts or cards, you are covered
-            </p>
-          </div>
-          <div className="countSec p-3">
-            <h1>
-              $<CountUp end={20000} duration={3} />+
-            </h1>
-            <h5>Fund raised</h5>
-            <p>
-              From buttons, to inputs, navbars, alerts or cards, you are covered
-            </p>
-          </div>
-          <div className="countSec p-3">
-            <h1>
-              <CountUp end={30} duration={3} />+
-            </h1>
-            <h5>Influencers Engaged</h5>
-            <p>
-              From buttons, to inputs, navbars, alerts or cards, you are covered
-            </p>
-          </div>
-          <div className="countSec p-3">
-            <h1>
-              <CountUp end={50000} duration={3} />+
-            </h1>
-            <h5>Reach</h5>
-            <p>
-              From buttons, to inputs, navbars, alerts or cards, you are covered
-            </p>
-          </div>
-        </div>
+    return (
+        <div className='content container pb-3'>
+            <Campaign/>
+            <Container>
+                <div className='count my-4 mb-5'>
+                    <div className='countSec p-3' style={{ borderLeft: "none" }}>
+                        <h1><CountUp end={20} duration={3} />+</h1>
+                        <h5>Projects Completed</h5>
+                        <p>From buttons, to inputs, navbars, alerts or cards, you are covered</p>
+                    </div>
+                    <div className='countSec p-3'>
+                        <h1>$<CountUp end={20000} duration={3} />+</h1>
+                        <h5>Fund raised</h5>
+                        <p>From buttons, to inputs, navbars, alerts or cards, you are covered</p>
+                    </div>
+                    <div className='countSec p-3'>
+                        <h1><CountUp end={30} duration={3} />+</h1>
+                        <h5>Influencers Engaged</h5>
+                        <p>From buttons, to inputs, navbars, alerts or cards, you are covered</p>
+                    </div>
+                    <div className='countSec p-3'>
+                        <h1><CountUp end={50000} duration={3} />+</h1>
+                        <h5>Reach</h5>
+                        <p>From buttons, to inputs, navbars, alerts or cards, you are covered</p>
+                    </div>
+                </div>
 
         {/* Case Studies carousel section */}
         <div className="caseStudy mt-4">

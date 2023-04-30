@@ -1,45 +1,82 @@
-import { useEffect, useState } from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
-import "swiper/css/navigation";
-// import required modules
-import { Navigation, Pagination } from "swiper";
+import React, { useEffect, useRef } from "react";
+import Carousel from "react-multi-carousel";
+import "react-multi-carousel/lib/styles.css";
+import img from "../assets/image.png";
+import { useState } from "react";
 import "../css/campaign.css";
-import "swiper/css/navigation";
-import Img from "../assets/image.png";
+
+import { BiChevronLeft, BiChevronRight } from "react-icons/bi";
+
+const ButtonGroup = ({ next, previous, goToSlide, ...rest }) => {
+  const {
+    carouselState: { currentSlide },
+  } = rest;
+  return (
+    <div className="carousel-button-group">
+      <button
+        className={currentSlide === 0 ? "btn-disable" : ""}
+        onClick={() => previous()}
+        disabled={currentSlide === 0}
+      >
+        <BiChevronLeft />
+      </button>
+      <button onClick={() => next()}>
+        <BiChevronRight />
+      </button>
+    </div>
+  );
+};
 
 function Campaign() {
+  const [showInfo, setShowInfo] = useState(false);
+  const responsive = {
+    desktop: {
+      breakpoint: { max: 3000, min: 1024 },
+      items: 3,
+      slidesToSlide: 1, // optional, default to 1.
+    },
+    tablet: {
+      breakpoint: { max: 1024, min: 768 },
+      items: 2,
+      slidesToSlide: 1, // optional, default to 1.
+    },
+    small: {
+      breakpoint: { max: 768, min: 576 },
+      items: 1,
+      slidesToSlide: 1, // optional, default to 1.
+    },
+    mobile: {
+      breakpoint: { max: 576, min: 0 },
+      items: 1,
+      slidesToSlide: 1, // optional, default to 1
+    },
+  };
   return (
     <>
-      <div className="p-2">
-        <h1 className="my-4" id="campaigns">
-          Live Campaigns
-        </h1>
-        <Swiper
-          navigation={true}
-          modules={[Navigation, Pagination]}
-          pagination={{ clickable: true }}
-          className="mySwiper"
-          breakpoints={{
-            768: {
-              slidesPerView: 2,
-              spaceBetween: 20,
-            },
-            1200: {
-              slidesPerView: 3,
-              spaceBetween: 10,
-            },
-          }}
-        >
-          {campaigns.map((campaign) => (
-            <SwiperSlide key={campaign.id}>
-              <CampaignCard campaign={campaign} />
-            </SwiperSlide>
-          ))}
-        </Swiper>
-        <div className="my-3 d-flex justify-content-center">
-          <a href="#" className="btn btn-primary">
-            view more
+      <div className="campaigns-section " id="campaigns">
+        <div className="carousel-container">
+          <h2 className="campaign-heading h1 fw-bold mb-3">Live Campaigns</h2>
+          <Carousel
+            swipeable={true}
+            responsive={responsive}
+            removeArrowOnDeviceType={["mobile"]}
+            arrows={false}
+            renderButtonGroupOutside={true}
+            customButtonGroup={<ButtonGroup />}
+          >
+            {caseStudies.map((caseStudy) => (
+              <CampaignCard
+                key={caseStudy.id}
+                title={caseStudy.title}
+                summary={caseStudy.summary}
+                imageLink={caseStudy.imageLink}
+              />
+            ))}
+          </Carousel>
+        </div>
+        <div className="d-flex mx-2 my-2 justify-content-start">
+          <a href="#" className="btn btn-primary btn-sm">
+            view all campaigns
           </a>
         </div>
       </div>
@@ -49,72 +86,109 @@ function Campaign() {
 
 export default Campaign;
 
-function CampaignCard({ campaign }) {
+function CampaignCard({ title, summary, imageLink }) {
+  let cardRef = useRef(null);
+  let [cardHeight, setCardHeight] = useState(0);
+
+  useEffect(() => {
+    window.addEventListener("resize", () => {
+      //   console.log(cardRef.current.clientHeight);
+      setCardHeight(cardRef.current.clientHeight);
+    });
+    return () => {
+      window.removeEventListener("resize", () => {});
+    };
+  }, []);
+
   return (
-    <div className="camp-card">
-      <div className="camp-card-image">
-        <img src={Img} alt={campaign.title} />
-      </div>
-      <div className="camp-card-content">
-        <h3 className="h4">{campaign.title}</h3>
-        <div className="card-details">
-          <p className="h6 fw-1">{campaign.keyMessage}</p>
-          <a href={campaign.link} className="btn btn-secondary">
-            Learn More
-          </a>
+    <>
+      <div className="card-wrapper" ref={cardRef}>
+        <img src={imageLink} alt="campaign card poster" className="card-img" />
+        <div class="card-details ">
+          <h3 className="fw-bold h5 text-light">{title}</h3>
+          <div className="card-hidden">
+            <p className="text-light  p-0">
+              {cardHeight > 250 ? summary : summary.slice(0, 60) + "..."}
+            </p>
+            <a href="javascript:void(0)" className="btn btn-sm btn-primary">
+              Participate
+            </a>
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 
-const campaigns = [
+const caseStudies = [
   {
     id: 1,
-    title: "New Clothing Line",
-    image: "https://via.placeholder.com/300x200.png?text=Clothing+Line",
-    keyMessage:
-      "Be the first to rock our new collection! Shop now and get 20% off your first purchase.",
-    link: "#",
+    title: "E-commerce Platform Redesign",
+    summary:
+      "Revamping the user experience and design of an e-commerce platform to increase conversion rates and customer satisfaction.",
+    imageLink: img,
   },
   {
     id: 2,
-    title: "Software Company",
-    image: "https://via.placeholder.com/300x200.png?text=Software+Company",
-    keyMessage:
-      "Introducing our latest software designed to help small businesses increase productivity and streamline operations.",
-    link: "#",
+    title: "Mobile App Localization",
+    summary:
+      "Adapting a mobile application for multiple international markets by translating content, adjusting UI elements, and optimizing performance.",
+    imageLink: img,
   },
   {
     id: 3,
-    title: "Health and Wellness Brand",
-    image: "https://via.placeholder.com/300x200.png?text=Health+and+Wellness",
-    keyMessage:
-      "Take your fitness and wellness routine to the next level with our all-natural supplements.",
-    link: "#",
+    title: "Data Analytics Solution",
+    summary:
+      "Developing a robust data analytics platform to process and visualize large datasets, enabling data-driven decision making.",
+    imageLink: img,
   },
   {
     id: 4,
-    title: "Travel Company",
-    image: "https://via.placeholder.com/300x200.png?text=Travel+Company",
-    keyMessage:
-      "Ready for your next adventure? Explore the world with us and get $100 off your first booking.",
-    link: "#",
+    title: "Cybersecurity Enhancement",
+    summary:
+      "Strengthening the security infrastructure of a company by implementing advanced encryption algorithms and proactive threat monitoring.",
+    imageLink: img,
   },
   {
     id: 5,
-    title: "Online Course",
-    image: "https://via.placeholder.com/300x200.png?text=Online+Course",
-    keyMessage:
-      "Unlock your potential and learn new skills with our online courses. Sign up today!",
-    link: "#",
+    title: "AI-Powered Chatbot",
+    summary:
+      "Building an AI-driven chatbot solution that automates customer support inquiries, resulting in improved response times and reduced workload.",
+    imageLink: img,
   },
   {
     id: 6,
-    title: "Food Delivery Service",
-    image: "https://via.placeholder.com/300x200.png?text=Food+Delivery",
-    keyMessage:
-      "Get delicious meals delivered straight to your door. Order now and enjoy 20% off your first order!",
-    link: "#",
+    title: "Social Media Campaign",
+    summary:
+      "Creating a successful social media campaign to increase brand awareness, engagement, and drive traffic to the company's website.",
+    imageLink: img,
+  },
+  {
+    id: 7,
+    title: "Cloud Migration Strategy",
+    summary:
+      "Developing a comprehensive plan to migrate an organization's infrastructure and applications to the cloud for improved scalability and cost efficiency.",
+    imageLink: img,
+  },
+  {
+    id: 8,
+    title: "UI/UX Optimization",
+    summary:
+      "Optimizing the user interface and user experience of a web application to enhance usability, navigation, and overall customer satisfaction.",
+    imageLink: img,
+  },
+  {
+    id: 9,
+    title: "Mobile Payment Integration",
+    summary:
+      "Integrating a secure mobile payment solution into an existing app, enabling users to make seamless and convenient transactions.",
+    imageLink: img,
+  },
+  {
+    id: 10,
+    title: "Supply Chain Optimization",
+    summary:
+      "Implementing advanced logistics and supply chain management techniques to streamline operations, reduce costs, and improve delivery times.",
+    imageLink: img,
   },
 ];
