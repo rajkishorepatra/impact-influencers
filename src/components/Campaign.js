@@ -91,8 +91,7 @@ function CampaignCard({ title, summary, imageLink }) {
 
   useEffect(() => {
     if (cardRef.current) {
-      window.addEventListener("resize", () => {
-        //   console.log(cardRef.current.clientHeight);
+      window.addEventListener("resize", () => {       
         setCardHeight(cardRef.current.clientHeight);
       });
     }
@@ -109,7 +108,7 @@ function CampaignCard({ title, summary, imageLink }) {
           <h3 className="fw-bold h5 text-light">{title}</h3>
           <div className="card-hidden">
             <p className="text-light  p-0">
-              {cardHeight > 250 ? summary : summary.slice(0, 60) + "..."}
+              {cardHeight > 220 ? summary : summary.slice(0, 60) + "..."}
             </p>
             <Link to="/case-studies" className="btn btn-sm btn-primary">
               Participate

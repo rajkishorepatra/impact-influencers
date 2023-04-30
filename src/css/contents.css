@@ -111,8 +111,10 @@
     display: none;
   }
   .circle p {
-    margin-right: 0 !important;
+    padding: unset !important;
     text-align: center !important;
+    transform: translateX(0) !important;
+
   }
   .circle h2 {
     margin-right: 0 !important;
@@ -186,10 +188,6 @@
     height: 300px;
   }
 
-  .swiper-button-next,
-  .swiper-button-prev {
-    display: none !important;
-  }
 }
 
 .cs-swiper {
@@ -227,11 +225,12 @@
   max-width: 48rem;
 }
 .circle p {
-  letter-spacing: 0.05rem;
+  /* letter-spacing: 0.05rem; */
   font-weight: light;
-  margin-right: 12rem;
+  padding-left: 10rem;
   text-align: right;
   font-size: 1.25rem;
+  transform: translateX(-12rem);
 }
 .circle h2 {
   background: -webkit-linear-gradient(180deg, #f403d1, #64b5f6);
