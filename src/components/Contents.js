@@ -184,7 +184,7 @@ function Contents() {
                 <hr />
                 <JoinUs />
                 <hr />
-                <Testimonials />
+                {/* <Testimonials /> */}
             </Container>
         </div>
     )
