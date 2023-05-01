@@ -1,6 +1,20 @@
 .footer{
   background-color: #213253;
   color: whitesmoke;
+  isolation: isolate;
+  position: relative;
+  
+}
+.footer::after{
+  content: "";
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  z-index: -1;
+  transform: skewY(-3deg) translateY(-10%);
+  top: 0;
+
+  background: #213253;
 }
 
 .footer_box{
