@@ -33,7 +33,7 @@
 .influencer-card {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: end;
   padding: 0.5rem;
   max-width: 25rem;
 }
@@ -49,6 +49,8 @@
 
 .vid-container {
   max-width: 52rem;
+  display: flex;
+  align-items: center;
 }
 
 @media screen and (max-width: 991px) {
