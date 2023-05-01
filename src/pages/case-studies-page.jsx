@@ -1,5 +1,6 @@
-import "../css/main.css";
 import { useState } from "react";
+import "../css/cspage.css";
+
 const caseStudies = [
   {
     title: "Conservation Farming Practices for Soil Health",
@@ -79,25 +80,39 @@ export default function CaseStudies() {
   return (
     <div className=" case-study-page container my-4 d-flex place-content-center  d-sm-block">
       <div className="case-study-wrapper">
-        <h1 className="text-center display-5 fw-normal">Case Studies</h1>
-        <div className="d-flex flex-column flex-lg-row justify-content-center ">
-          {study.visible && <CaseStudyView study={study.study} />}
-          <div className=" gap-3 d-flex flex-wrap case-studies justify-content-center">
-            {caseStudies.map((study, index) => (
-              <CaseStudy key={index} study={study} setStudy={setStudy} />
-            ))}
+        <h1 className="text-center display-4 fw-bolder">Case Studies</h1>
+        <div className="row my-2 py-2 gap-4">
+
+          {study.visible && (
+            <div className="col-12 col-lg-9">
+              <CaseStudyView study={study.study} />
+            </div>
+          )}
+
+          <div className="col">
+            {study.visible && (
+              <>
+                <h5 className="text-center fs-6 text-secondary">More such Case studies </h5>
+                <hr className="mb-4 mt-0" />
+              </>
+            )}
+
+            <div className=" gap-3 d-flex flex-wrap case-studies justify-content-center">
+              {caseStudies.map((study, index) => (
+                <CaseStudy key={index} study={study} setStudy={setStudy} />
+              ))}
+            </div>
           </div>
+
         </div>
       </div>
-      <hr />
-      <div id="case-study-view"></div>
     </div>
   );
 }
 
 function CaseStudy({ study, setStudy }) {
   return (
-    <div className="case-study-card ">
+    <div className="case-study-card shadow rounded">
       <button
         className="case-study-card-link"
         onClick={() => {
@@ -110,12 +125,14 @@ function CaseStudy({ study, setStudy }) {
           alt={study.heading}
           className="case-study-card-image"
         />
-        <h2 className="case-study-card-heading ">
+        <h2 className="case-study-card-heading h6 text-start">
           {study.title.length > 50
             ? study.title.substr(0, 50) + "..."
             : study.title}
         </h2>
-        <p className="case-study-card-date text-secondary ">{study.date}</p>
+        <p className="case-study-card-date text-secondary m-0 text-start">
+          {study.date}
+        </p>
       </button>
     </div>
   );
@@ -130,9 +147,9 @@ function CaseStudyView({ study, ...props }) {
     <>
       <div className="case-study-view d-flex place-content-center align-items-baseline ">
         <div className="case-study-wrapper w-100 mb-4">
-          <div className="d-flex justify-content-between align-items-baseline">
+          <div className="mx-2 d-flex flex-column flex-sm-row justify-content-sm-between align-items-start align-items-sm-end">
             <h3 className="h5 fw-bold mb-0">{title}</h3>
-            <span className="fw-light mb-0 case-study-card-date">{date}</span>
+            <p className=" mb-0 h6 text-secondary">{date}</p>
           </div>
           <hr className="my-0 mb-3"></hr>
           <div className="mx-2">

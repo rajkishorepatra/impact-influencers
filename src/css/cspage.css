@@ -1,0 +1,33 @@
+
+
+
+/* case study card */
+.case-study-card{
+    max-width: 14rem;
+    padding: .15rem;
+    background: #fff;
+}
+.case-study-card-link{
+    border: none;
+    background: none;
+}
+.case-study-card-link > img{
+    width: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+.case-study-card-date{
+    font-size: .8rem;
+}
+.case-study-card:hover .case-study-card-heading{
+    color: darkslateblue;
+}
+
+/* case study view */
+.card-view-img img{
+    width: 100%;
+}
+
+@media  screen and (max-width: 576px) {
+    
+}
