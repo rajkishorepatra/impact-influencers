@@ -1,81 +1,85 @@
+/* header section */
 
-@media screen and (max-width: 768px) {
-  .case-study-page{
-    max-width: 100% !important;
-  }
+.header {
+  min-height: 80vh;
 }
-@media screen and (max-width: 576px) {
-  .case-study-page{
-    flex-direction: column;
-    align-items: center;
-    gap: 2rem;
-  }
-}
-
-
-.case-study-page {
-  min-height: 40rem;
-}
-
-.case-study-card {
-  max-width: 14rem;
+.header-wrapper {
+  min-height: 50vh;
   width: 100%;
-  border-radius: 0.5rem;
-  overflow: hidden;
-  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s;
+  background: #243c56;
+  position: relative;
+  isolation: isolate;
+  padding: 1rem;
 }
-
-.case-study-card:hover,
-.case-study-card:focus {
-  transform: scale(1.01);
-}
-
-.case-study-card-link {
-  background: none;
-  border: none;
-  padding: none !important;
-}
-.case-study-card-link:hover .case-study-card-heading{
-  color: rgb(61, 87, 194);
-}
-
-.case-study-card-image {
-  padding: 0.25rem;
+.header-wrapper::after {
+  content: "";
+  display: block;
+  height: 100%;
   width: 100%;
-  background-size: cover;
-  background-position: center;
-  border-radius: .5rem;
+  background-color: #243c56;
+  transform: skewY(-5deg) translateY(15%);
+  position: absolute;
+  bottom: 0;
+  inset: 0;
+  z-index: -1;
 }
 
-.case-study-card-heading {
-  padding: 0 0.25rem;
-  text-align: left;
-  font-size: 14px;
-  font-weight: 500;
-}
-
-.case-study-card-date {
-  padding: 0.25rem 0.25rem;
-  margin: 0;
-  font-weight: 500;
-  font-size: 14px;
-  font-family: monospace;
-  text-align: left;
-}
-
-.case-study-view{
-  flex: 1 1 60%;
-}
-.card-view-img{
-  max-width: 32rem;
+.header-carousel {
   margin-bottom: 1rem;
+  max-width: 20rem;
+  min-width: 18rem;
 }
-.card-view-img img{
+
+.influencer-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  padding: 0.5rem;
+  max-width: 25rem;
+}
+
+.influencer-img img {
   width: 100%;
-  object-fit: cover;
-  object-position: center;
 }
-.case-studies{
-  flex: 1 1 30%;
+
+.influencer-details {
+  padding: 0.75rem;
+  background-color: aliceblue;
+}
+
+.vid-container {
+  max-width: 52rem;
+  display: flex;
+  align-items: center;
+}
+
+@media screen and (max-width: 991px) {
+  .header-wrapper {
+    padding: unset;
+  }
+  .header-carousel {
+    max-width: unset;
+  }
+  .influencer-card {
+    flex-direction: row;
+    max-width: unset !important;
+  }
+  .influencer-img {
+    min-width: 50%;
+    max-width: 60%;
+  }
+  .vid-container {
+    position: absolute;
+    max-width: 100%;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .influencer-card {
+    flex-direction: column;
+    max-width: unset !important;
+  }
+  .influencer-img{
+    width: 100%;
+  }
 }

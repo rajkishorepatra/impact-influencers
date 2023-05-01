@@ -1,10 +1,145 @@
 .footer{
-    background-color: #212121;
-    color: #949494;
-    height: auto;
-    margin-bottom: -2em;
+  background-color: #213253;
+  color: whitesmoke;
+  isolation: isolate;
+  position: relative;
+  
+}
+.footer::after{
+  content: "";
+  height: 90%;
+  width: 100%;
+  position: absolute;
+  z-index: -1;
+  transform: skewY(-3deg) translateY(-12%);
+  top: 0;
+
+  background: #213253;
 }
 
-.footer span{
-    color: #ffffff;
+.footer_box{
+  padding: 1rem 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 3rem;
+}
+
+.footer_box img{
+  border-radius: 100%;
+  padding: 1%;
+  margin-bottom: 1%;
+}
+
+.footer_social{
+  display: flex;
+  gap: 1.3rem;
+  font-size: 2rem;
+  align-items: center;
+}
+
+.footer_social a{
+  padding: .2rem;
+  border-radius: 100%;
+  background-clip: text;
+  transition: all .3s ease-in;
+  display: grid;
+}
+
+.ut{
+  color: #FF0000;
+}
+
+.fb{
+  color: #4267B2;
+}
+
+.tw{
+  color: #1DA1F2;
+}
+
+.ig{
+  color: white;
+  border-radius: 9px;
+  background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+}
+
+.footer_social a:hover{
+  background: white;
+  box-shadow: 0 0 25px  white;
+  transition: all 0.5s ease;
+}
+
+
+.subscribe_box{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: .5rem 1rem;
+  border-radius: 5rem;
+  background-color: white;
+  color: black;
+}
+
+.subscribe_box input{
+  background: transparent;
+  border: none;
+  outline: none;
+  width: 100%;
+  color: var(--shadow-dark-color);
+}
+
+
+.subscribe_box_send{
+  cursor: pointer;
+  font-size: 2rem;
+}
+
+.copyright{
+  width: 100%;
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  margin: 0 auto;
+  justify-content: center;
+  align-items: center;
+  gap: 0rem;
+  color: whitesmoke;
+  background: #101c33;
+}
+
+.footer-menu{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.footer-menu a{
+  color: white;
+  padding: 6px;
+  text-decoration: none;
+  margin: 0 1rem;
+}
+
+.footer-menu a:hover{
+  color: #27bcda;
+}
+
+.copyright p{
+  text-align: center;
+  padding:5px;
+
+}
+
+span{
+  color: white;
+  font-weight: bold;
+}
+
+@media screen and (max-width: 45em){
+  .footer_box{
+    width: 90%;
+    grid-template-columns: 1fr;
+  }
 }

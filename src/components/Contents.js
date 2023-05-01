@@ -152,11 +152,11 @@ function Contents() {
           </div>
         </div> */}
 
-        <hr />
+        {/* <hr />
 
         <JoinUs />
         <hr />
-        <Testimonials />
+        <Testimonials /> */}
       </Container>
     </div>
   );

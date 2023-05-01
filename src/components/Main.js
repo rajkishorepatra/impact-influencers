@@ -1,55 +1,95 @@
-import React from 'react';
-import Carousel from 'react-bootstrap/Carousel';
-import bgimg from '../assets/bg.jpeg'
-import '../css/main.css'
-
+import React from "react";
+import "../css/main.css";
+import Carousel from "react-multi-carousel";
+import "react-multi-carousel/lib/styles.css";
+import Profile from "../assets/profile.png";
+import StockVideo from "../assets/Tropical.mp4";
 function Main() {
-    return (
-        <>
-            <Carousel fade style={{zIndex:"1"}} className="mainCarousel" controls={false} interval={2000} indicators={false}>
-                <Carousel.Item>
-                    <img
-                        className="d-block w-100 h-200"
-                        src={bgimg}
-                        alt="First slide"
-                        height={1000}
-                    />
-                    <Carousel.Caption>
-                        <h3>Debarchan Mishra</h3>
-                        <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-                    </Carousel.Caption>
-                </Carousel.Item>
-                <Carousel.Item>
-                    <img
-                        className="d-block w-100"
-                        src={bgimg}
-                        height={1000}
-                        alt="Second slide"
-                    />
+  const responsive = {
+    desktop: {
+      breakpoint: { max: 3000, min: 0 },
+      items: 1,
+      slidesToSlide: 1,
+    },
+  };
+  return (
+    <>
+      <div className="header">
+        <div className="header-wrapper">
+          <div className="container ">
+            <div className="d-lg-flex position-relative justify-content-center">
+              <div className="header-carousel">
+                <Carousel
+                  swipeable={true}
+                  responsive={responsive}
+                  removeArrowOnDeviceType={["mobile"]}
+                  autoPlay
+                  infinite
+                  customTransition="none"
+                  autoPlaySpeed={3000}
+                  arrows={false}
+                >
+                  {Influencers.map((i, index) => (
+                    <InfluencerCard key={index} name={i.name} bio={i.bio} />
+                  ))}
+                </Carousel>
+              </div>
 
-                    <Carousel.Caption>
-                        <h3>Avishek Jagdev</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                    </Carousel.Caption>
-                </Carousel.Item>
-                <Carousel.Item>
-                    <img
-                        className="d-block w-100"
-                        src={bgimg}
-                        height={1000}
-                        alt="Third slide"
-                    />
-
-                    <Carousel.Caption>
-                        <h3>Prakruti Mishra</h3>
-                        <p>
-                            Praesent commodo cursus magna, vel scelerisque nisl consectetur.
-                        </p>
-                    </Carousel.Caption>
-                </Carousel.Item>
-            </Carousel>
-        </>
-    )
+              <div className="vid-container">
+                <video autoPlay loop muted className="ratio ratio-1x1">
+                  <source
+                    // src="https://mdbcdn.b-cdn.net/img/video/Tropical.mp4"
+                    src={StockVideo}
+                    type="video/mp4"
+                    className="header-video"
+                  />
+                </video>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
+  );
 }
 
-export default Main
+export default Main;
+
+function InfluencerCard({ name, bio, Pimg }) {
+  return (
+    <>
+      <div className="influencer-card">
+        <div className=" influencer-img d-flex  ">
+          <img src={Profile} alt="influencer profile" />
+        </div>
+        <div class="influencer-details">
+          <h3 className=" display-6 mb-3 ">{name}</h3>
+          <p className=" text-muted p-0">{bio}</p>
+        </div>
+      </div>
+    </>
+  );
+}
+
+const Influencers = [
+  {
+    name: "Prakruti Mishra",
+    bio: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem similique provident hic amet quasi sit nisi pariatur quis commodi reandae?t consectetur adipisicing elit. V",
+  },
+  {
+    name: "Debarchan Mishra",
+    bio: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem similique provident hic amet quasi sit nisi pariatur quis commodi recusandaemmodi recusandae?",
+  },
+  {
+    name: "Avishek Jagdev",
+    bio: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem similique provident hic amet quasi sit nisi pariatur quis commodi recusandae?t ",
+  },
+  {
+    name: "Debarchan Mishra",
+    bio: "Praesent commodo cursus magna, vel scelerisque nisl consectetur.",
+  },
+  {
+    name: "Prakruti Mishra",
+    bio: "Praesent commodo cursus magna, vel scelerisque nisl consectetur.",
+  },
+];
