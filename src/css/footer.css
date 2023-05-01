@@ -1,21 +1,12 @@
 .footer{
-  width: 95%;
-  padding-block: 1.5rem;
-  position: relative;
-  margin: auto;
-  background-color: black;
-  background-image: linear-gradient(60deg, rgb(20, 19, 19), rgb(147, 146, 146),rgb(28, 24, 24));
+  background-color: #213253;
   color: whitesmoke;
 }
 
 .footer_box{
-  width: 100%;
-  margin: 0 auto;
+  padding: 1rem 0;
   display: grid;
-  padding: 1em;
-  padding-left: 2em;
-  padding-right: 2em;
-  grid-template-columns: 5fr 5fr;
+  grid-template-columns: 1fr 1fr;
   align-items: flex-start;
   justify-content: space-between;
   gap: 3rem;
@@ -64,20 +55,16 @@
   background: white;
   box-shadow: 0 0 25px  white;
   transition: all 0.5s ease;
-  /* box-shadow: var(--box-shadow); */
 }
 
-.subscribe h4{
-  transform: translateY(50%);
-}
+
 .subscribe_box{
   width: 100%;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  padding: 1rem 1rem;
+  padding: .5rem 1rem;
   border-radius: 5rem;
-  margin-top: 3rem;
   background-color: white;
   color: black;
 }
@@ -86,13 +73,10 @@
   background: transparent;
   border: none;
   outline: none;
-  width: 90%;
+  width: 100%;
   color: var(--shadow-dark-color);
 }
 
-.subscribe_box input::placeholder{
-  color: black;
-}
 
 .subscribe_box_send{
   cursor: pointer;
@@ -104,13 +88,11 @@
   display: grid;
   grid-template-rows: 1fr 1fr;
   margin: 0 auto;
-  background-color: rgb(63, 59, 59);
-  border-top: 1px solid whitesmoke;
-  border-bottom: 1px solid whitesmoke;
   justify-content: center;
   align-items: center;
   gap: 0rem;
   color: whitesmoke;
+  background: #101c33;
 }
 
 .footer-menu{
@@ -123,6 +105,7 @@
   color: white;
   padding: 6px;
   text-decoration: none;
+  margin: 0 1rem;
 }
 
 .footer-menu a:hover{
