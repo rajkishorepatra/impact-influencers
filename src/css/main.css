@@ -11,7 +11,7 @@
   isolation: isolate;
   padding: 1rem;
 }
-/* .header-wrapper::after {
+.header-wrapper::after {
   content: "";
   display: block;
   height: 100%;
@@ -22,7 +22,7 @@
   bottom: 0;
   inset: 0;
   z-index: -1;
-} */
+}
 
 .header-carousel {
   margin-bottom: 1rem;

@@ -14,7 +14,7 @@ function Footer() {
           <div className="footer_box">
             <div className="footer_box_social">
               <img src={logo} alt="footer logo" height={100} width={100} />
-              <p>
+              <p className="text-secondary">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum
                 quas assumenda veritatis commodi adipisci officia voluptas
                 nostrum at quod dicta?
