@@ -3,7 +3,7 @@
   color: whitesmoke;
   isolation: isolate;
   position: relative;
-  
+  margin-top: 6rem;
 }
 .footer::after{
   content: "";
@@ -116,14 +116,14 @@
 }
 
 .footer-menu a{
-  color: white;
+  color: #27bcda;
   padding: 6px;
   text-decoration: none;
   margin: 0 1rem;
 }
 
 .footer-menu a:hover{
-  color: #27bcda;
+  color: #fff;
 }
 
 .copyright p{
