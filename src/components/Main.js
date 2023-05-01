@@ -17,17 +17,16 @@ function Main() {
       <div className="header">
         <div className="header-wrapper">
           <div className="container ">
-            <div className="d-flex flex-column flex-lg-row justify-content-lg-between align-items-center">
-
+            <div className="d-lg-flex position-relative justify-content-center">
               <div className="header-carousel">
-                <h2 className="text-light text-center py-2">Influencers</h2>
                 <Carousel
                   swipeable={true}
                   responsive={responsive}
                   removeArrowOnDeviceType={["mobile"]}
                   autoPlay
                   infinite
-                  autoPlaySpeed={2000}
+                  customTransition="none"
+                  autoPlaySpeed={3000}
                   arrows={false}
                 >
                   {Influencers.map((i, index) => (
@@ -37,7 +36,7 @@ function Main() {
               </div>
 
               <div className="vid-container">
-                <video autoPlay loop muted className="ratio ratio-4x3">
+                <video autoPlay loop muted className="ratio ratio-1x1">
                   <source
                     // src="https://mdbcdn.b-cdn.net/img/video/Tropical.mp4"
                     src={StockVideo}
@@ -46,8 +45,6 @@ function Main() {
                   />
                 </video>
               </div>
-
-
             </div>
           </div>
         </div>
@@ -62,12 +59,12 @@ function InfluencerCard({ name, bio, Pimg }) {
   return (
     <>
       <div className="influencer-card">
-        <div className="my-2">
+        <div className=" influencer-img d-flex  ">
           <img src={Profile} alt="influencer profile" />
         </div>
-        <div class="influencer-details ">
-          <h3 className="fw-bold h5 text-light text-center">{name}</h3>
-          <p className="text-light text-center p-0">{bio}</p>
+        <div class="influencer-details">
+          <h3 className=" display-6 mb-3 ">{name}</h3>
+          <p className=" text-muted p-0">{bio}</p>
         </div>
       </div>
     </>
@@ -77,15 +74,15 @@ function InfluencerCard({ name, bio, Pimg }) {
 const Influencers = [
   {
     name: "Prakruti Mishra",
-    bio: "Praesent commodo cursus magna, vel scelerisque nisl consectetur.",
+    bio: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem similique provident hic amet quasi sit nisi pariatur quis commodi reandae?t consectetur adipisicing elit. V",
   },
   {
     name: "Debarchan Mishra",
-    bio: "Praesent commodo cursus magna, vel scelerisque nisl consectetur.",
+    bio: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem similique provident hic amet quasi sit nisi pariatur quis commodi recusandaemmodi recusandae?",
   },
   {
     name: "Avishek Jagdev",
-    bio: "Praesent commodo cursus magna, vel scelerisque nisl consectetur.",
+    bio: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem similique provident hic amet quasi sit nisi pariatur quis commodi recusandae?t ",
   },
   {
     name: "Debarchan Mishra",

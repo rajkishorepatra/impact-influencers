@@ -1,51 +1,83 @@
 /* header section */
 
-.header{
-    min-height: 100vh;
-    /* overflow: hidden; */
+.header {
+  min-height: 80vh;
 }
 .header-wrapper {
   min-height: 50vh;
   width: 100%;
-  background: #243C56  ;
+  background: #243c56;
   position: relative;
   isolation: isolate;
   padding: 1rem;
 }
-.header-wrapper::after{
-    content: "";
-    display: block;
-    height: 100%;
-    width: 100%;
-    background-color: #243C56  ;
-    transform: skewY(-5deg) translateY(15%);
+.header-wrapper::after {
+  content: "";
+  display: block;
+  height: 100%;
+  width: 100%;
+  background-color: #243c56;
+  transform: skewY(-5deg) translateY(15%);
+  position: absolute;
+  bottom: 0;
+  inset: 0;
+  z-index: -1;
+}
+
+.header-carousel {
+  margin-bottom: 1rem;
+  max-width: 20rem;
+  min-width: 18rem;
+}
+
+.influencer-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0.5rem;
+  max-width: 25rem;
+}
+
+.influencer-img img {
+  width: 100%;
+}
+
+.influencer-details {
+  padding: 0.75rem;
+  background-color: aliceblue;
+}
+
+.vid-container {
+  max-width: 52rem;
+}
+
+@media screen and (max-width: 991px) {
+  .header-wrapper {
+    padding: unset;
+  }
+  .header-carousel {
+    max-width: unset;
+  }
+  .influencer-card {
+    flex-direction: row;
+    max-width: unset !important;
+  }
+  .influencer-img {
+    min-width: 50%;
+    max-width: 60%;
+  }
+  .vid-container {
     position: absolute;
-    bottom: 0;
-    inset: 0;
-    z-index: -1;
+    max-width: 100%;
+  }
 }
 
-.header-carousel{
-    max-width: 18rem;
-}
-.influencer-card{
-    max-width: 18rem;
-    display: flex;
+@media screen and (max-width: 600px) {
+  .influencer-card {
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    border: 1px dashed white;
-    padding: .5rem;
-}
-.influencer-card img{
-    width: 12rem;
-    /* aspect-ratio: 1/1; */
-}
-.influenver-details h3{
-    text-align: center;
-} 
-
-
-.vid-container{
-    max-width: 50rem;
+    max-width: unset !important;
+  }
+  .influencer-img{
+    width: 100%;
+  }
 }
