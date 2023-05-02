@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 export default function Campaigns() {
   return (
     <div className="container-md">
-      <section className="campaigns ">
+      <section className="campaigns " id="campaigns">
         <div className="row">
           <div className="col-12">
             <h1 className="section-title display-5 fw-bold text-warning text-center">
@@ -69,7 +69,7 @@ function CampaignCard({ campaign }) {
       setInfo(true);
       setTimeout(() => {
         navigate("/login");
-      }, 3000);
+      }, 2000);
     }
   };
   return (

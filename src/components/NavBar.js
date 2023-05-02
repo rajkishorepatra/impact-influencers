@@ -29,11 +29,7 @@ function NavBar() {
             className="justify-content-end"
           >
             <Nav>
-              <LinkContainer
-                to="/"
-              >
-                <Nav.Link className="mx-2">About Us</Nav.Link>
-              </LinkContainer>
+            <Nav.Link className="mx-2" href="#about-us">About Us</Nav.Link>
               <LinkContainer to="/campaigns">
                 <Nav.Link className="mx-2">Campaigns</Nav.Link>
               </LinkContainer>
