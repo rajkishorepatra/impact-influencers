@@ -11,6 +11,8 @@ import { RequireAuth } from "./pages/user-management/protected";
 import Organization from "./pages/user-management/organization";
 import PageNotFound from "./pages/page-not-found";
 import CaseStudies from "./pages/case-studies-page";
+import Campaigns from "./pages/campaigns-page";
+
 
 function App() {
   return (
@@ -37,6 +39,7 @@ function App() {
                 }
               />
               <Route path="case-studies" element={<CaseStudies />} />
+              <Route path="campaigns" element={<Campaigns />} />
             </Route>
             <Route path="login" element={<Login />} />
             <Route path="register" element={<Register />} />

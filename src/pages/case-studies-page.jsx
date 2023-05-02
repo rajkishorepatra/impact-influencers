@@ -81,10 +81,10 @@ export default function CaseStudies() {
     <div className=" case-study-page container my-4 d-flex place-content-center  d-sm-block">
       <div className="case-study-wrapper">
         <h1 className="text-center display-4 fw-bolder">Case Studies</h1>
-        <div className="row my-2 py-2 gap-4">
+        <div className="row my-2 py-2 gap-4 ">
 
           {study.visible && (
-            <div className="col-12 col-lg-9">
+            <div className="col-12 col-lg-9 bg-light p-1 rounded">
               <CaseStudyView study={study.study} />
             </div>
           )}
