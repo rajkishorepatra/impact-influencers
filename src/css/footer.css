@@ -98,39 +98,11 @@
 }
 
 .copyright{
-  width: 100%;
-  display: grid;
-  grid-template-rows: 1fr 1fr;
-  margin: 0 auto;
-  justify-content: center;
-  align-items: center;
-  gap: 0rem;
   color: whitesmoke;
   background: #101c33;
+  padding: 1rem 0;
 }
 
-.footer-menu{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.footer-menu a{
-  color: #27bcda;
-  padding: 6px;
-  text-decoration: none;
-  margin: 0 1rem;
-}
-
-.footer-menu a:hover{
-  color: #fff;
-}
-
-.copyright p{
-  text-align: center;
-  padding:5px;
-
-}
 
 @media screen and (max-width: 45em){
   .footer_box{

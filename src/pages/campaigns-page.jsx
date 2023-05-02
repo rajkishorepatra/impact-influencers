@@ -75,7 +75,10 @@ function CampaignCard({ campaign }) {
   return (
     <>
       <div className="campaign-card-wrapper">
-        <div className="card position-relative">
+        <div className="card position-relative flex-md-row">
+          <div className="card-img-container">
+            <img src={Img} className="card-img-top" alt="..." />
+          </div>
           <div className="card-body">
             <h5 className="card-title fw-bold ">{campaign.name}</h5>
             <h6 className="card-subtitle mb-2 text-muted">
@@ -102,7 +105,7 @@ function CampaignCard({ campaign }) {
                   <span className="fw-bold text-muted fs-6">Positions: </span>
                   <div className="d-flex">
                     {campaign.team.map((member, index) => (
-                      <span class="badge text-bg-success mx-1 p-2" key={index}>
+                      <span className="badge text-bg-success mx-1 p-2" key={index}>
                         {member}
                       </span>
                     ))}

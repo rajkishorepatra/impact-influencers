@@ -5,8 +5,6 @@
 
 .campaign-card-wrapper{
     margin: 1rem 0;
-    max-width: 42rem;
-    
 }
 .page-link:focus{
     box-shadow: none !important;
@@ -20,4 +18,19 @@
     color: #6c757d;
     font-weight: 600;
     margin-right: .5rem;
+}
+
+.card-img-container{
+    position: relative;
+    overflow: hidden;
+    min-width: 40%;
+    border-bottom-left-radius: .375rem;
+  }
+.card-img,.card-img-top{
+    border-top-right-radius: 0 !important;
+}
+@media screen and (max-width: 768) {
+    .card-body{
+        flex-direction: column !important;
+    }
 }

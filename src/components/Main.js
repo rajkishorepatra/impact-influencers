@@ -62,7 +62,7 @@ function InfluencerCard({ name, bio, Pimg }) {
         <div className=" influencer-img d-flex  ">
           <img src={Profile} alt="influencer profile" />
         </div>
-        <div class="influencer-details">
+        <div className="influencer-details">
           <h3 className=" display-6 mb-3 ">{name}</h3>
           <p className=" text-muted p-0">{bio}</p>
         </div>

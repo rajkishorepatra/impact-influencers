@@ -13,10 +13,13 @@ function Footer() {
       <div className="footer ">
         <div className="container">
           <div className="footer_box">
+
+            
+
             <div className="footer_box_social">
               <div id="about-us">
                 <img src={logo} alt="footer logo" height={100} width={100} />
-                <p className="text-secondary">
+                <p className="text-secondary w-75">
                   Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum
                   quas assumenda veritatis commodi adipisci officia voluptas
                   nostrum at quod dicta?
@@ -42,6 +45,7 @@ function Footer() {
               </div>
             </div>
 
+
             <div className="subscribe" id="subscribe">
               <h4 className="mx-3">Subscribe to Our NewsLetter</h4>
               <div className="subscribe_box">
@@ -49,26 +53,13 @@ function Footer() {
                 <RiSendPlaneFill className="subscribe_box_send" />
               </div>
             </div>
+
+
           </div>
         </div>
         <div className="copyright">
-          <div className="footer-menu">
-            <Link to="/">Home</Link>
-            <Link to={{ pathname: "/campaigns", hash: "#campaigns" }}>
-              Campaigns
-            </Link>
-            <Link to="/case-studies">Case Studies</Link>
-            <Link
-              to={{
-                pathname: "/",
-                hash: "#socials",
-              }}
-            >
-              Social
-            </Link>
-          </div>
-          <p>
-            Project by <span>Leaflets</span> (a unit of IAMPIX TECHNOLOGY PVT
+          <p className="m-0 text-center">
+            Project by <span className="fw-bold">Leaflets</span> (a unit of IAMPIX TECHNOLOGY PVT
             LTD).
           </p>
         </div>

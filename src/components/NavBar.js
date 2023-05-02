@@ -8,7 +8,7 @@ import NavDropdown from "react-bootstrap/NavDropdown";
 import InfluencerModal from "./Modals/InfluencerModal";
 import OrgModal from "./Modals/OrgModal";
 import CampModal from "./Modals/CampModal";
-import Button from "react-bootstrap/Button";
+
 import { UserAuth } from "../context/AuthContext";
 
 function NavBar() {
@@ -20,16 +20,20 @@ function NavBar() {
     <>
       <Navbar collapseOnSelect expand="lg">
         <Container>
-          <Navbar.Brand href="#home" className="display-6 fw-bold">
-            Impact Influencers
-          </Navbar.Brand>
+          <LinkContainer to="/">
+            <Navbar.Brand className="display-6 fw-bold">
+              Impact Influencers
+            </Navbar.Brand>
+          </LinkContainer>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse
             id="responsive-navbar-nav"
             className="justify-content-end"
           >
             <Nav>
-            <Nav.Link className="mx-2" href="#about-us">About Us</Nav.Link>
+              <Nav.Link className="mx-2" href="#about-us">
+                About Us
+              </Nav.Link>
               <LinkContainer to="/campaigns">
                 <Nav.Link className="mx-2">Campaigns</Nav.Link>
               </LinkContainer>

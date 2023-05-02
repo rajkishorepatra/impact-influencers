@@ -78,7 +78,7 @@ export default function CaseStudies() {
     study: null,
   });
   return (
-    <div className=" case-study-page container my-4 d-flex place-content-center  d-sm-block">
+    <div className=" case-study-page container-md my-4 d-flex place-content-center  d-sm-block">
       <div className="case-study-wrapper">
         <h1 className="text-center display-4 fw-bolder">Case Studies</h1>
         <div className="row my-2 py-2 gap-4 ">
