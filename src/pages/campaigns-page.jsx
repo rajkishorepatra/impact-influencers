@@ -1,14 +1,55 @@
 import { useState } from "react";
+import "../css/campaigns-page.css";
+import Img from "../assets/image.png";
+import { BiChevronsRight, BiChevronDown } from "react-icons/bi";
+import { UserAuth } from "../context/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 export default function Campaigns() {
   return (
     <div className="container-md">
-      <section className="campaigns-secion">
+      <section className="campaigns ">
         <div className="row">
-          <div className="col">
-            <h1 className="section-title display-5 fw-bold text-warning">
+          <div className="col-12">
+            <h1 className="section-title display-5 fw-bold text-warning text-center">
               Live Campaigns
             </h1>
+          </div>
+          <div className=" col-auto bg-light py-2 px-4 rounded mx-auto my-3">
+            {demoCampaigns.map((campaign, index) => (
+              <CampaignCard key={index} campaign={campaign} />
+            ))}
+          </div>
+          <div className="col-12 my-4">
+            <nav aria-label="Campaigns navigation">
+              <ul className="pagination d-flex justify-content-center">
+                <li className="page-item">
+                  <a className="page-link" href="#" aria-label="Previous">
+                    <span aria-hidden="true">prev</span>
+                  </a>
+                </li>
+                <li className="page-item">
+                  <a className="page-link" href="#">
+                    1
+                  </a>
+                </li>
+                <li className="page-item">
+                  <a className="page-link" href="#">
+                    2
+                  </a>
+                </li>
+                <li className="page-item">
+                  <a className="page-link" href="#">
+                    3
+                  </a>
+                </li>
+                <li className="page-item">
+                  <a className="page-link" href="#" aria-label="Next">
+                    <span aria-hidden="true">next</span>
+                  </a>
+                </li>
+              </ul>
+            </nav>
           </div>
         </div>
       </section>
@@ -16,17 +57,92 @@ export default function Campaigns() {
   );
 }
 
-const cardSelectedStyle = {
-  boxShadow: "0 0 0 0.25rem rgba(255, 193, 7, 0.25)",
-  width: "100%",
-};
+function CampaignCard({ campaign }) {
+  const { currentUser } = UserAuth();
+  const navigate = useNavigate();
+  const [info, setInfo] = useState(false);
+  const [more, setMore] = useState(true);
 
+  const handleParticipate = (e) => {
+    console.log("participate");
+    if (!currentUser) {
+      setInfo(true);
+      setTimeout(() => {
+        navigate("/login");
+      }, 3000);
+    }
+  };
+  return (
+    <>
+      <div className="campaign-card-wrapper">
+        <div className="card position-relative">
+          <div className="card-body">
+            <h5 className="card-title fw-bold ">{campaign.name}</h5>
+            <h6 className="card-subtitle mb-2 text-muted">
+              {campaign.objective}
+            </h6>
 
-function CampaignCard() {
-  return <div className="campaign-card">
-    
-  </div>;
+            {!more && (
+              <>
+                <p className="card-text m-0">{campaign.message}</p>
+                <p className="card-text m-0">
+                  <span className="mr-2 fw-bold text-muted fs-6">Budget: </span>
+                  {campaign.budget}
+                </p>
+                <p className="card-text m-0">
+                  <span className="timeline-date">
+                    {campaign.timeline.start}
+                  </span>
+                  -
+                  <span className="timeline-date mx-2">
+                    {campaign.timeline.end}
+                  </span>
+                </p>
+                <div className="mb-2">
+                  <span className="fw-bold text-muted fs-6">Positions: </span>
+                  <div className="d-flex">
+                    {campaign.team.map((member, index) => (
+                      <span class="badge text-bg-success mx-1 p-2" key={index}>
+                        {member}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+                <hr className="my-2" />
+              </>
+            )}
+
+            <div className="d-flex">
+              <button className="card-link btn btn-sm btn-warning"
+              onClick={(e)=> handleParticipate(e)}>
+                Participate
+              </button>
+              <button
+                className="card-link btn btn-sm btn-secondary "
+                onClick={() => setMore(!more)}
+              >
+                {more ? "more" : "less"}
+              </button>
+            </div>
+
+            {info && (
+              <div
+                className="alert alert-warning alert-sm my-2 fade show"
+                role="alert"
+              >
+                <strong>Warning!</strong> You need to login to participate.
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+    </>
+  );
 }
+
+const participateForm = () => {
+  return <></>;
+};
 
 const demoCampaigns = [
   {

@@ -132,11 +132,6 @@
 
 }
 
-span{
-  color: white;
-  font-weight: bold;
-}
-
 @media screen and (max-width: 45em){
   .footer_box{
     width: 90%;

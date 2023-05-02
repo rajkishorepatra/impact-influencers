@@ -1,0 +1,23 @@
+.campaigns{
+    min-height: 36rem;
+    margin: 1rem 0;
+}
+
+.campaign-card-wrapper{
+    margin: 1rem 0;
+    max-width: 42rem;
+    
+}
+.page-link:focus{
+    box-shadow: none !important;
+}
+.card-subtitle{
+    font-size: 0.9rem;
+    color: #6c757d;
+}
+.timeline-date{
+    font-size: 0.825rem;
+    color: #6c757d;
+    font-weight: 600;
+    margin-right: .5rem;
+}
