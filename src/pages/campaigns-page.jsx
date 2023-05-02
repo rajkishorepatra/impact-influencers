@@ -127,7 +127,7 @@ function CampaignCard({ campaign }) {
 
             {info && (
               <div
-                className="alert alert-warning alert-sm my-2 fade show"
+                className="alert alert-info alert-sm my-2 fade show px-2 py-1"
                 role="alert"
               >
                 <strong>Warning!</strong> You need to login to participate.
