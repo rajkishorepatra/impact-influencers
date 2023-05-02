@@ -1,3 +1,7 @@
+.case-study-page{
+    min-height: 36rem;
+    margin: 1rem 0;
+}
 /* case study card */
 .case-study-card{
     max-width: 14rem;
