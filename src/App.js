@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
+import { BrowserRouter, Route, Routes, useLocation, Navigate } from "react-router-dom";
 import "./App.css";
 import Home from "./pages/Home";
 import Root from "./pages/root";
@@ -21,6 +21,7 @@ function App() {
           <BrowserRouter>
             <ScrollToTopWrapper>
               <Routes>
+                <Route path="/impact-influencers" element={<Navigate to="/" replace={true} />} />
                 <Route path="/" element={<Root />} errorElement={<ErrorPage />}>
                   <Route index element={<Home />} />
                   <Route path="case-studies" element={<CaseStudies />} />
