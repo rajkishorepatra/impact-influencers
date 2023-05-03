@@ -82,17 +82,18 @@ export default function CaseStudies() {
       <div className="case-study-wrapper">
         <h1 className="text-center display-4 fw-bolder">Case Studies</h1>
         <div className="row my-2 py-2 gap-4 ">
-
           {study.visible && (
             <div className="col-12 col-lg-9 bg-light p-1 rounded">
-              <CaseStudyView study={study.study} />
+              <CaseStudyView study={study.study} setStudy={setStudy} />
             </div>
           )}
 
           <div className="col">
             {study.visible && (
               <>
-                <h5 className="text-center fs-6 text-secondary">More such Case studies </h5>
+                <h5 className="text-center fs-6 text-secondary">
+                  More such Case studies{" "}
+                </h5>
                 <hr className="mb-4 mt-0" />
               </>
             )}
@@ -103,7 +104,6 @@ export default function CaseStudies() {
               ))}
             </div>
           </div>
-
         </div>
       </div>
     </div>
@@ -149,7 +149,15 @@ function CaseStudyView({ study, ...props }) {
         <div className="case-study-wrapper w-100 mb-4">
           <div className="mx-2 d-flex flex-column flex-sm-row justify-content-sm-between align-items-start align-items-sm-end">
             <h3 className="h5 fw-bold mb-0">{title}</h3>
-            <p className=" mb-0 h6 text-secondary">{date}</p>
+            <div className="d-flex flex-column gap-2">
+              <button
+                onClick={()=> props.setStudy({visible: false, study: null})}
+                type="button"
+                className="btn-close align-self-end shadow-none"
+                aria-label="Close"
+              ></button>
+              <p className=" mb-0 h6 text-secondary">{date}</p>
+            </div>
           </div>
           <hr className="my-0 mb-3"></hr>
           <div className="mx-2">
