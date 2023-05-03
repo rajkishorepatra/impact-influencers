@@ -1,7 +1,7 @@
 /* header section */
 
 .header {
-  min-height: 80vh;
+  min-height: 100vh;
 }
 .header-wrapper {
   min-height: 50vh;
@@ -48,7 +48,6 @@
 }
 
 .vid-container {
-  max-width: 52rem;
   display: flex;
   align-items: center;
 }
@@ -69,7 +68,6 @@
     max-width: 60%;
   }
   .vid-container {
-    position: absolute;
     max-width: 100%;
   }
 }
