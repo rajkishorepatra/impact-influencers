@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "../css/campaigns-page.css";
 import Img from "../assets/image.png";
-import { BiChevronsRight, BiChevronDown } from "react-icons/bi";
+import { BiCalendar, BiTask } from "react-icons/bi";
 import { UserAuth } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 
@@ -76,76 +76,92 @@ function CampaignCard({ campaign }) {
     <>
       <div className="campaign-card-wrapper">
         <div className="card position-relative flex-md-row">
-          <div className="card-img-container">
-            <img src={Img} className="card-img-top" alt="..." />
-          </div>
-          <div className="card-body">
-            <h5 className="card-title fw-bold ">{campaign.name}</h5>
-            <h6 className="card-subtitle mb-2 text-muted">
-              {campaign.objective}
-            </h6>
-
+          <div className="row">
             {!more && (
-              <>
-                <p className="card-text m-0">{campaign.message}</p>
-                <p className="card-text m-0">
-                  <span className="mr-2 fw-bold text-muted fs-6">Budget: </span>
-                  {campaign.budget}
-                </p>
-                <p className="card-text m-0">
-                  <span className="timeline-date">
-                    {campaign.timeline.start}
-                  </span>
-                  -
-                  <span className="timeline-date mx-2">
-                    {campaign.timeline.end}
-                  </span>
-                </p>
-                <div className="mb-2">
-                  <span className="fw-bold text-muted fs-6">Positions: </span>
-                  <div className="d-flex">
-                    {campaign.team.map((member, index) => (
-                      <span className="badge text-bg-success mx-1 p-2" key={index}>
-                        {member}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-                <hr className="my-2" />
-              </>
-            )}
-
-            <div className="d-flex">
-              <button className="card-link btn btn-sm btn-warning"
-              onClick={(e)=> handleParticipate(e)}>
-                Participate
-              </button>
-              <button
-                className="card-link btn btn-sm btn-secondary "
-                onClick={() => setMore(!more)}
-              >
-                {more ? "more" : "less"}
-              </button>
-            </div>
-
-            {info && (
-              <div
-                className="alert alert-info alert-sm my-2 fade show px-2 py-1"
-                role="alert"
-              >
-                <strong>Warning!</strong> You need to login to participate.
+              <div className="col-12 col-md-6 d-flex">
+                <img
+                  src={Img}
+                  className="card-img-top img-fluid rounded rounded-md-start"
+                  alt="..."
+                />
               </div>
             )}
+            <div className={more===false? "col-12 col-md-6": "col-12"}>
+              <div className="card-body">
+                <h5 className="card-title fw-bold ">{campaign.name}</h5>
+                <h6 className="card-subtitle mb-2 text-muted">
+                  {campaign.message}
+                </h6>
+
+                {!more && (
+                  <>
+                    <div className="more-card">
+                      <div className="d-flex align-items-start">
+                        <span className="me-1">
+                          <BiTask className="fs-4" />
+                        </span>
+                        <p className="card-text m-0">{campaign.objective}</p>
+                      </div>
+                      <div className="d-flex align-items-end py-1 m-0">
+                        <span className="me-1">
+                          <BiCalendar className="fs-4" />
+                        </span>
+                        <span className="timeline-date">
+                          {campaign.timeline.start}
+                        </span>
+                        -
+                        <span className="timeline-date mx-2">
+                          {campaign.timeline.end}
+                        </span>
+                      </div>
+                      <div className="mb-2">
+                        <span className="fw-bold text-muted fs-6 m-0">
+                          Positions:{" "}
+                        </span>
+                        <div className="d-flex flex-wrap">
+                          {campaign.team.map((member, index) => (
+                            <span
+                              className="badge bg-info rounded-pill me-1 mb-1 p-2 "
+                              key={index}
+                            >
+                              {member}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                    <hr className="my-2" />
+                  </>
+                )}
+
+                <div className="d-flex">
+                  <button
+                    className="card-link btn btn-sm btn-warning"
+                    onClick={(e) => handleParticipate(e)}
+                  >
+                    Participate
+                  </button>
+                  <button
+                    className="card-link btn btn-sm btn-secondary "
+                    onClick={() => setMore(!more)}
+                  >
+                    {more ? "more" : "less"}
+                  </button>
+                </div>
+
+                {info && (
+                  <span className="badge rounded-1 border text-warning w-100 m-1 p-2 ">
+                    You need to register to Participate
+                  </span>
+                )}
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </>
   );
 }
-
-const participateForm = () => {
-  return <></>;
-};
 
 const demoCampaigns = [
   {

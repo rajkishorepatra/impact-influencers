@@ -20,12 +20,6 @@
     margin-right: .5rem;
 }
 
-.card-img-container{
-    position: relative;
-    overflow: hidden;
-    min-width: 40%;
-    border-bottom-left-radius: .375rem;
-  }
 .card-img,.card-img-top{
     border-top-right-radius: 0 !important;
 }
