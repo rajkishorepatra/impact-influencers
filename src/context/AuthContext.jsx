@@ -27,9 +27,9 @@ export function AuthContextProvider({ children }) {
   function googleLogIn() {
     return signInWithPopup(auth, provider);
   }
-  function checkEmailExists(email) {
-    return fetchSignInMethodsForEmail(auth, email);
-  }
+  // function checkEmailExists(email) {
+  //   return fetchSignInMethodsForEmail(auth, email);
+  // }
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -40,7 +40,7 @@ export function AuthContextProvider({ children }) {
   }, []);
   
   return (
-    <AuthContext.Provider value={{ googleLogIn, signUp, logIn, logOut, currentUser ,checkEmailExists}}>
+    <AuthContext.Provider value={{ googleLogIn, signUp, logIn, logOut, currentUser}}>
       {!loading && children}
     </AuthContext.Provider>
   );

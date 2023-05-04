@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { LinkContainer } from "react-router-bootstrap";
-
+import Dropdown from "react-bootstrap/Dropdown";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
@@ -15,7 +15,7 @@ function NavBar() {
   const [showInflu, setShowInflu] = useState(false);
   const [showOrg, setShowOrg] = useState(false);
   const [showCamp, setShowCamp] = useState(false);
-  const { currentUser } = UserAuth();
+  const { currentUser, logOut } = UserAuth();
   return (
     <>
       <Navbar collapseOnSelect expand="lg">
@@ -56,7 +56,18 @@ function NavBar() {
                 </NavDropdown.Item>
               </NavDropdown>
               {/* <Nav.Link href="#subscribe" className='mx-2'>Subscribe</Nav.Link> */}
-              {currentUser ? null : (
+              {currentUser ? (               
+                <Dropdown>
+                  <Dropdown.Toggle variant="success" id="dropdown-basic">
+                    {currentUser.displayName || "profile"}
+                  </Dropdown.Toggle>
+                  <Dropdown.Menu>
+                    <Dropdown.Item href={null} onClick={() => logOut()}>
+                      Sign Out
+                    </Dropdown.Item>
+                  </Dropdown.Menu>
+                </Dropdown>
+              ) : (
                 <LinkContainer to="/register">
                   <button className="mx-2 btn btn-warning">
                     Login / Register
