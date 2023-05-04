@@ -146,16 +146,18 @@ function CaseStudyView({ study, ...props }) {
   return (
     <>
       <div className="case-study-view d-flex place-content-center align-items-baseline ">
-        <div className="case-study-wrapper w-100 mb-4">
+        <div className="case-study-wrapper w-100 mb-4 p-1">
           <div className="mx-2 d-flex flex-column flex-sm-row justify-content-sm-between align-items-start align-items-sm-end">
             <h3 className="h5 fw-bold mb-0">{title}</h3>
             <div className="d-flex flex-column gap-2">
               <button
-                onClick={()=> props.setStudy({visible: false, study: null})}
+                onClick={() => props.setStudy({ visible: false, study: null })}
                 type="button"
-                className="btn-close align-self-end shadow-none"
+                className="btn btn-sm border align-self-end shadow-none"
                 aria-label="Close"
-              ></button>
+              >
+                close
+              </button>
               <p className=" mb-0 h6 text-secondary">{date}</p>
             </div>
           </div>
@@ -164,9 +166,11 @@ function CaseStudyView({ study, ...props }) {
             <div className="overflow-hidden card-view-img mx-auto">
               <img src={image} alt="case study placeholder" />
             </div>
-            {data.map((item, index) => (
-              <p key={index}>{item}</p>
-            ))}
+            <div className=" my-3">
+              {data.map((item, index) => (
+                <p key={index}>{item}</p>
+              ))}
+            </div>
           </div>
         </div>
       </div>
