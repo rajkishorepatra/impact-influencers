@@ -26,16 +26,11 @@
 
 .header-carousel {
   margin-bottom: 1rem;
-  max-width: 20rem;
-  min-width: 18rem;
 }
 
 .influencer-card {
   display: flex;
-  flex-direction: column;
-  justify-content: end;
   padding: 0.5rem;
-  max-width: 25rem;
 }
 
 .influencer-img img {
@@ -59,16 +54,15 @@
   .header-carousel {
     max-width: unset;
   }
-  .influencer-card {
-    flex-direction: row;
-    max-width: unset !important;
-  }
   .influencer-img {
     min-width: 50%;
     max-width: 60%;
   }
   .vid-container {
     max-width: 100%;
+  }
+  .header{
+    min-height: 120vh;
   }
 }
 

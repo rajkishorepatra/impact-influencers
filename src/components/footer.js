@@ -7,15 +7,9 @@ import { Link } from "react-router-dom";
 function Footer() {
   return (
     <>
-      {/* <div className='footer text-center mt-3'>
-        <p className='mx-3 p-3'>Project by <span>Leaflets</span> (a unit of IAMPIX TECHNOLOGY PVT LTD).</p>
-    </div> */}
       <div className="footer ">
-        <div className="container">
+        <div className="container-lg">
           <div className="footer_box">
-
-            
-
             <div className="footer_box_social">
               <div id="about-us">
                 <img src={logo} alt="footer logo" height={100} width={100} />
@@ -45,7 +39,6 @@ function Footer() {
               </div>
             </div>
 
-
             <div className="subscribe" id="subscribe">
               <h4 className="mx-3">Subscribe to Our NewsLetter</h4>
               <div className="subscribe_box">
@@ -53,14 +46,12 @@ function Footer() {
                 <RiSendPlaneFill className="subscribe_box_send" />
               </div>
             </div>
-
-
           </div>
         </div>
         <div className="copyright">
           <p className="m-0 text-center">
-            Project by <span className="fw-bold">Leaflets</span> (a unit of IAMPIX TECHNOLOGY PVT
-            LTD).
+            Project by <span className="fw-bold">Leaflets</span> (a unit of
+            IAMPIX TECHNOLOGY PVT LTD).
           </p>
         </div>
       </div>

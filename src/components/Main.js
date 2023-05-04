@@ -17,7 +17,7 @@ function Main() {
       <div className="header">
         <div className="header-wrapper">
           <div className=" row">
-            <div className="col ">
+            <div className="col-12 col-lg-5 ">
               <div className="header-carousel">
                 <Carousel
                   swipeable={true}
@@ -35,11 +35,10 @@ function Main() {
                 </Carousel>
               </div>
             </div>
-            <div className="col">
+            <div className="col-12 col-lg-7">
               <div className="vid-container">
                 <video autoPlay loop muted className="ratio ratio-4x3">
-                  <source
-                    // src="https://mdbcdn.b-cdn.net/img/video/Tropical.mp4"
+                  <source                   
                     src={StockVideo}
                     type="video/mp4"
                     className="header-video"

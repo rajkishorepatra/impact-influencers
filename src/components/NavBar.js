@@ -19,7 +19,7 @@ function NavBar() {
   return (
     <>
       <Navbar collapseOnSelect expand="lg">
-        <Container>
+        <Container fluid={'lg'}>
           <LinkContainer to="/">
             <Navbar.Brand className="display-6 fw-bold">
               Impact Influencers

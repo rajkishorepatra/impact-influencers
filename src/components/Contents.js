@@ -14,9 +14,9 @@ import "../css/contents.css";
 
 function Contents() {
   return (
-    <div className="content container pb-3">
+    <div className="content container-lg pb-3">
       <Campaign />
-      <Container>
+      <Container fluid="lg">
 
         <div className="count my-4 mb-5">
           <div className="countSec p-3" style={{ borderLeft: "none" }}>
