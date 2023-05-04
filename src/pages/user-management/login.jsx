@@ -23,7 +23,7 @@ const Register = () => {
   useEffect(() => {
     if (!currentUser) {
       nextRoute.current =
-        location.state && location.state.from
+        location.state && location.state?.from
           ? location.state.from.pathname
           : "/";
     } else {
@@ -55,7 +55,6 @@ const Register = () => {
     if (Object.keys(errors).length === 0) {
       setformstate({ ...formstate, submitting: true });
       try {
-        console.log("signing in", email, password);
         await logIn(email, password);
         // todo: add new user to database.
         setformstate({ ...formstate, submitting: false });
@@ -80,7 +79,6 @@ const Register = () => {
   //     setformstate({ ...formstate, submitting: false });
   //     navigate(nextRoute.current);
   //   } catch (err) {
-  //     console.log(err);
   //     setformstate({ ...formstate, submitting: false });
   //   }
   // };
@@ -147,6 +145,8 @@ const Register = () => {
             Don't have an account?
             <Link
               to={"/register"}
+              replace={true}
+              state={{from: location.state?.Objectfrom}}
               className="text-decoration-none px-1 text-warning fw-bolder"
             >
               create an account

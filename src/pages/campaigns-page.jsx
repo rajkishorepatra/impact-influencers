@@ -60,33 +60,38 @@ export default function Campaigns() {
 function CampaignCard({ campaign }) {
   const { currentUser } = UserAuth();
   const navigate = useNavigate();
-  const [info, setInfo] = useState(false);
+  const [info, setInfo] = useState({
+    show: false,
+    message: null,
+  });
   const [more, setMore] = useState(true);
 
   const handleParticipate = (e) => {
     console.log("participate");
-    if (!currentUser) {
-      setInfo(true);
+    if (currentUser) {
+      setInfo({ ...info,show:true, message: "You have been registered" });
+    } else {
+      setInfo({ ...info,show: true, message: "You need to register to Participate" });
       setTimeout(() => {
-        navigate("/login");
-      }, 2000);
+        navigate("/register", { state: { from: { pathname: "/campaigns" } } });
+      }, 1800);
     }
   };
   return (
     <>
       <div className="campaign-card-wrapper">
-        <div className="card position-relative flex-md-row">
+        <div className="card position-relative ">
           <div className="row">
             {!more && (
-              <div className="col-12 col-md-6 d-flex">
+              <div className="col-12 col-md-6">
                 <img
                   src={Img}
-                  className="card-img-top img-fluid rounded rounded-md-start"
+                  className="card-img-top img-fluid rounded rounded-md-start h-100"
                   alt="..."
                 />
               </div>
             )}
-            <div className={more===false? "col-12 col-md-6": "col-12"}>
+            <div className={more === false ? "col-12 col-md-6" : "col-12"}>
               <div className="card-body">
                 <h5 className="card-title fw-bold ">{campaign.name}</h5>
                 <h6 className="card-subtitle mb-2 text-muted">
@@ -149,9 +154,9 @@ function CampaignCard({ campaign }) {
                   </button>
                 </div>
 
-                {info && (
+                {info.show && (
                   <span className="badge rounded-1 border text-warning w-100 m-1 p-2 ">
-                    You need to register to Participate
+                    {info.message}
                   </span>
                 )}
               </div>

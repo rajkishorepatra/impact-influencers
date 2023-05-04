@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Button, Form } from "react-bootstrap";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { InputField, Select, Telephone } from "../../components/form-inputs";
 import { UserAuth } from "../../context/AuthContext";
 import influence from "../../assets/influncer.svg";
@@ -10,8 +10,9 @@ import { updateProfile } from "firebase/auth";
 
 const Register = () => {
   // googleLogIn, removed google login
-  const { signUp, currentUser, checkEmailExists } = UserAuth();
+  const { signUp, currentUser } = UserAuth();
   const navigate = useNavigate();
+  const location = useLocation();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -24,10 +25,15 @@ const Register = () => {
 
   // manage redirects
   let nextRoute = useRef("");
-  nextRoute.current = "/";
+  // nextRoute.current = "/";
   useEffect(() => {
     if (currentUser) {
       navigate(-1, { replace: true });
+    } else {
+      nextRoute.current =
+        location.state && location.state.from
+          ? location.state.from.pathname
+          : "/";
     }
   }, []);
 
@@ -48,7 +54,6 @@ const Register = () => {
     } else if (password.length < 6) {
       errors.password = "Password must be at least 6 characters";
     }
-    console.log(tel);
     if (!tel.phoneNumber) {
       errors.tel = "Phone number is required";
     } else if (tel.phoneNumber && !tel.validData.phoneNumber) {
@@ -66,8 +71,6 @@ const Register = () => {
     if (Object.keys(errors).length === 0) {
       setformstate({ ...formstate, submitting: true });
       try {
-        console.log("signing up", name, email);
-
         // account creation using email and password
         let userCredential = await signUp(email, password);
 
@@ -107,7 +110,6 @@ const Register = () => {
   //     navigate(nextRoute.current);
   //   } catch (err) {
   //     setformstate({ ...formstate, submitting: false });
-  //     console.log(err);
   //   }
   // };
 
@@ -206,6 +208,7 @@ const Register = () => {
             Already have an account?
             <Link
               to={"/login"}
+              state={{ from: location.state?.from }}
               className="text-decoration-none px-1 text-warning fw-bolder"
             >
               Sign In
