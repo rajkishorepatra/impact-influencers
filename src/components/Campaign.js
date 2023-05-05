@@ -86,29 +86,15 @@ function Campaign() {
 export default Campaign;
 
 function CampaignCard({ title, summary, imageLink }) {
-  let cardRef = useRef({});
-  let [cardHeight, setCardHeight] = useState(0);
-
-  useEffect(() => {
-    window.addEventListener("resize", () => {
-      setCardHeight(cardRef.current?.clientHeight);
-    });
-    return () => {
-      window.removeEventListener("resize", () => {});
-    };
-  }, []);
-
   return (
     <>
-      <div className="card-wrapper" ref={cardRef}>
+      <div className="card-wrapper">
         <img src={imageLink} alt="campaign card poster" className="card-img" />
         <div className="card-details ">
           <h3 className="fw-bold h5 text-light">{title}</h3>
           <div className="card-hidden">
-            <p className="text-light  p-0">
-              {cardHeight > 220 ? summary : summary.slice(0, 60) + "..."}
-            </p>
-            <Link to="/case-studies" className="btn btn-sm btn-primary">
+            <p className="text-light  p-0">{summary}</p>
+            <Link to="/campaigns" className="btn btn-sm btn-primary">
               Participate
             </Link>
           </div>
