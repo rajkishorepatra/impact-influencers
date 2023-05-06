@@ -41,7 +41,7 @@ function Campaign() {
     },
     small: {
       breakpoint: { max: 768, min: 576 },
-      items: 1,
+      items: 2,
       slidesToSlide: 1, // optional, default to 1.
     },
     mobile: {

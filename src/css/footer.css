@@ -1,11 +1,11 @@
-.footer{
+.footer {
   background-color: #213253;
   color: whitesmoke;
   isolation: isolate;
   position: relative;
   margin-top: 6rem;
 }
-.footer::after{
+.footer::after {
   content: "";
   height: 90%;
   width: 100%;
@@ -17,96 +17,58 @@
   background: #213253;
 }
 
-.footer_box{
-  padding: 1rem 0;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 3rem;
+.max-form-width{
+  max-width: 22rem;
+  margin: 0 auto;
 }
 
-.footer_box img{
-  border-radius: 100%;
-  padding: 1%;
-  margin-bottom: 1%;
-}
-
-.footer_social{
+.footer_social {
   display: flex;
   gap: 1.3rem;
   font-size: 2rem;
   align-items: center;
 }
 
-.footer_social a{
-  padding: .2rem;
+.footer_social a {
+  padding: 0.2rem;
   border-radius: 100%;
   background-clip: text;
-  transition: all .3s ease-in;
+  transition: all 0.3s ease-in;
   display: grid;
 }
-
-.ut{
-  color: #FF0000;
-}
-
-.fb{
-  color: #4267B2;
-}
-
-.tw{
-  color: #1DA1F2;
-}
-
-.ig{
-  color: white;
-  border-radius: 9px;
-  background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
-}
-
-.footer_social a:hover{
+.footer_social a:hover {
   background: white;
-  box-shadow: 0 0 25px  white;
+  box-shadow: 0 0 25px white;
   transition: all 0.5s ease;
 }
 
-
-.subscribe_box{
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: .5rem 1rem;
-  border-radius: 5rem;
-  background-color: white;
-  color: black;
+.ut {
+  color: #ff0000;
 }
 
-.subscribe_box input{
-  background: transparent;
-  border: none;
-  outline: none;
-  width: 100%;
-  color: var(--shadow-dark-color);
+.fb {
+  color: #4267b2;
 }
 
-
-.subscribe_box_send{
-  cursor: pointer;
-  font-size: 2rem;
+.tw {
+  color: #1da1f2;
 }
 
-.copyright{
+.ig {
+  color: white;
+  border-radius: 9px;
+  background: radial-gradient(
+    circle at 30% 107%,
+    #fdf497 0%,
+    #fdf497 5%,
+    #fd5949 45%,
+    #d6249f 60%,
+    #285aeb 90%
+  );
+}
+
+.copyright {
   color: whitesmoke;
   background: #101c33;
   padding: 1rem 0;
-}
-
-
-@media screen and (max-width: 45em){
-  .footer_box{
-    width: 90%;
-    grid-template-columns: 1fr;
-  }
 }

@@ -9,19 +9,37 @@ function Footer() {
     <>
       <div className="footer ">
         <div className="container-lg">
-          <div className="footer_box">
-            <div className="footer_box_social">
-              <div id="about-us">
-                <img src={logo} alt="footer logo" height={100} width={100} />
-                <p className="text-secondary w-75">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum
-                  quas assumenda veritatis commodi adipisci officia voluptas
-                  nostrum at quod dicta?
-                </p>
+          <div className="row p-4">
+            <div className="col-12 col-md-6 d-flex flex-column justify-content-between ">
+              <div className="order-2 my-4" id="subscribe">
+                <h4 className="h5 text-center">Subscribe to Our NewsLetter</h4>
+                <div className="max-form-width">
+                  <form className="d-flex flex-column gap-1">
+                    <fieldset className="form-group">
+                      <input
+                        type="email"
+                        className="form-control"
+                        id="message"
+                        placeholder="Enter your email address"
+                      />
+                    </fieldset>
+                    <fieldset className="form-group text-xs-right">
+                      <button
+                        type="button"
+                        className="btn btn-warning w-100 rounded-5 p-2"
+                      >
+                        Subscribe
+                      </button>
+                    </fieldset>
+                  </form>
+                </div>
               </div>
 
-              <div className="follow-section" id="socials">
-                <h3>Follow Us</h3>
+              <div
+                className="follow-section d-flex flex-column align-items-center my-3"
+                id="socials"
+              >
+                <h3 className="h5 ">Follow Us</h3>
                 <div className="footer_social">
                   <a href="hhttps://www.youtube.com">
                     <FaYoutube className="ut" />
@@ -39,11 +57,42 @@ function Footer() {
               </div>
             </div>
 
-            <div className="subscribe" id="subscribe">
-              <h4 className="mx-3">Subscribe to Our NewsLetter</h4>
-              <div className="subscribe_box">
-                <input type="email" placeholder="Email Address..." />
-                <RiSendPlaneFill className="subscribe_box_send" />
+            <div className="col-12 col-md-6">
+              <h3 className="h5 text-center ">Contact Us</h3>
+              <div className="max-form-width">
+                <form className="d-flex flex-column gap-1">
+                  <fieldset className="form-group">
+                    <input
+                      type="text"
+                      className="form-control"
+                      id="inputName"
+                      placeholder="Name"
+                    />
+                  </fieldset>
+                  <fieldset className="form-group">
+                    <input
+                      type="email"
+                      className="form-control"
+                      id="inputEmail"
+                      placeholder="Email"
+                    />
+                  </fieldset>
+                  <fieldset className="form-group">
+                    <textarea
+                      className="form-control"
+                      id="message"
+                      placeholder="Message"
+                    ></textarea>
+                  </fieldset>
+                  <fieldset className="form-group ">
+                    <button
+                      type="button"
+                      className="btn btn-warning w-100 rounded-5 p-2"
+                    >
+                      Send
+                    </button>
+                  </fieldset>
+                </form>
               </div>
             </div>
           </div>

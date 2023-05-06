@@ -206,15 +206,7 @@ button.navbar-toggler {
     flex-direction: column;
     height: auto;
   }
-  .navbar-nav .nav-link {
-    color: #fff;
-    border-radius: 0;
-    border: 1px solid white;
-    padding: 5px;
-  }
-  .navbar-nav .nav-link:hover {
-    transition: 0.1ms 0.1ms ease-in;
-  }
+
 }
 
 
