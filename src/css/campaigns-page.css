@@ -28,3 +28,14 @@
         flex-direction: column !important;
     }
 }
+
+.thumb-img{
+    max-width: 6rem;
+    padding: .5rem;
+}
+.thumb-img img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}

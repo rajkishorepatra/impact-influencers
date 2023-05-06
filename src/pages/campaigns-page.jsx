@@ -69,9 +69,13 @@ function CampaignCard({ campaign }) {
   const handleParticipate = (e) => {
     console.log("participate");
     if (currentUser) {
-      setInfo({ ...info,show:true, message: "You have been registered" });
+      setInfo({ ...info, show: true, message: "You have been registered" });
     } else {
-      setInfo({ ...info,show: true, message: "You need to register to Participate" });
+      setInfo({
+        ...info,
+        show: true,
+        message: "You need to register to Participate",
+      });
       setTimeout(() => {
         navigate("/register", { state: { from: { pathname: "/campaigns" } } });
       }, 1800);
@@ -91,74 +95,82 @@ function CampaignCard({ campaign }) {
                 />
               </div>
             )}
-            <div className={more === false ? "col-12 col-md-6" : "col-12"}>
-              <div className="card-body">
-                <h5 className="card-title fw-bold ">{campaign.name}</h5>
-                <h6 className="card-subtitle mb-2 text-muted">
-                  {campaign.message}
-                </h6>
 
-                {!more && (
-                  <>
-                    <div className="more-card">
-                      <div className="d-flex align-items-start">
-                        <span className="me-1">
-                          <BiTask className="fs-4" />
-                        </span>
-                        <p className="card-text m-0">{campaign.objective}</p>
-                      </div>
-                      <div className="d-flex align-items-end py-1 m-0">
-                        <span className="me-1">
-                          <BiCalendar className="fs-4" />
-                        </span>
-                        <span className="timeline-date">
-                          {campaign.timeline.start}
-                        </span>
-                        -
-                        <span className="timeline-date mx-2">
-                          {campaign.timeline.end}
-                        </span>
-                      </div>
-                      <div className="mb-2">
-                        <span className="fw-bold text-muted fs-6 m-0">
-                          Positions:{" "}
-                        </span>
-                        <div className="d-flex flex-wrap">
-                          {campaign.team.map((member, index) => (
-                            <span
-                              className="badge bg-info rounded-pill me-1 mb-1 p-2 "
-                              key={index}
-                            >
-                              {member}
-                            </span>
-                          ))}
+            <div className={more === false ? "col-12 col-md-6" : "col-12"}>
+              <div className="d-flex">
+                {more && (
+                  <div className="thumb-img">
+                    <img src={Img} className="thumbnail-img" alt="..." />
+                  </div>
+                )}
+                <div className="card-body ">
+                  <h5 className="card-title fw-bold ">{campaign.name}</h5>
+                  <h6 className="card-subtitle mb-2 text-muted">
+                    {campaign.message}
+                  </h6>
+
+                  {!more && (
+                    <>
+                      <div className="more-card">
+                        <div className="d-flex align-items-start">
+                          <span className="me-1">
+                            <BiTask className="fs-4" />
+                          </span>
+                          <p className="card-text m-0">{campaign.objective}</p>
+                        </div>
+                        <div className="d-flex align-items-end py-1 m-0">
+                          <span className="me-1">
+                            <BiCalendar className="fs-4" />
+                          </span>
+                          <span className="timeline-date">
+                            {campaign.timeline.start}
+                          </span>
+                          -
+                          <span className="timeline-date mx-2">
+                            {campaign.timeline.end}
+                          </span>
+                        </div>
+                        <div className="mb-2">
+                          <span className="fw-bold text-muted fs-6 m-0">
+                            Positions:{" "}
+                          </span>
+                          <div className="d-flex flex-wrap">
+                            {campaign.team.map((member, index) => (
+                              <span
+                                className="badge bg-info rounded-pill me-1 mb-1 p-2 "
+                                key={index}
+                              >
+                                {member}
+                              </span>
+                            ))}
+                          </div>
                         </div>
                       </div>
-                    </div>
-                    <hr className="my-2" />
-                  </>
-                )}
+                      <hr className="my-2" />
+                    </>
+                  )}
 
-                <div className="d-flex">
-                  <button
-                    className="card-link btn btn-sm btn-warning"
-                    onClick={(e) => handleParticipate(e)}
-                  >
-                    Participate
-                  </button>
-                  <button
-                    className="card-link btn btn-sm btn-secondary "
-                    onClick={() => setMore(!more)}
-                  >
-                    {more ? "more" : "less"}
-                  </button>
+                  <div className="d-flex">
+                    <button
+                      className="card-link btn btn-sm btn-warning"
+                      onClick={(e) => handleParticipate(e)}
+                    >
+                      Participate
+                    </button>
+                    <button
+                      className="card-link btn btn-sm btn-secondary "
+                      onClick={() => setMore(!more)}
+                    >
+                      {more ? "more" : "less"}
+                    </button>
+                  </div>
+
+                  {info.show && (
+                    <span className="badge rounded-1 border text-warning w-100 m-1 p-2 ">
+                      {info.message}
+                    </span>
+                  )}
                 </div>
-
-                {info.show && (
-                  <span className="badge rounded-1 border text-warning w-100 m-1 p-2 ">
-                    {info.message}
-                  </span>
-                )}
               </div>
             </div>
           </div>
