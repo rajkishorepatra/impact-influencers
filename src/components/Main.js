@@ -16,20 +16,18 @@ function Main() {
     <>
       <div className="header">
         <div className="header-wrapper">
-          <div className=" row overflow-hidden">
+          <div className=" row bg-info ">
             <div className="col-12 col-lg-4 order-2 px-0 mx-0">
               <div className="header-carousel">
                 <Carousel
                   swipeable={true}
                   responsive={responsive}
-                  // removeArrowOnDeviceType={["mobile"]}                  
                   autoPlay
-                  infinite
-                  containerClass="header-carousel"
-                  itemClass="influencer-card"
+                  infinite                 
                   customTransition="translateY(100%) .5"
                   autoPlaySpeed={3000}
-                  arrows = {false}             >
+                  arrows={false}
+                >
                   {Influencers.map((i, index) => (
                     <InfluencerCard key={index} name={i.name} bio={i.bio} />
                   ))}
@@ -59,15 +57,20 @@ export default Main;
 function InfluencerCard({ name, bio, Pimg }) {
   return (
     <>
-      <div className="influencer-card">
-        <div className=" d-flex flex-column flex-md-row flex-lg-column ">
-          <div className=" influencer-img bg-warning d-flex justify-content-end">
-            <img src={"https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg"} alt="influencer profile" />
-          </div>
-          <div className="influencer-details bg-info text-end p-3">
-            <h3 className=" h3 fw-semibold ">{name}</h3>
-            <p className=" text-muted p-0 text-wrap">{bio.lenght< 50? bio: bio.substr(0,50)+'...'}</p>
-          </div>
+      <div className="influencer-card d-flex">
+        <div className=" influencer-img bg-warning d-flex justify-content-end">
+          <img
+            src={
+              "https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg"
+            }
+            alt="influencer profile"
+          />
+        </div>
+        <div className="influencer-details bg-info text-start p-3">
+          <h3 className=" h3 fw-semibold ">{name}</h3>
+          <p className=" text-muted p-0 text-wrap">
+            {bio.lenght < 50 ? bio : bio.substr(0, 50) + "..."}
+          </p>
         </div>
       </div>
     </>
@@ -78,7 +81,6 @@ const Influencers = [
   {
     name: "Prakruti Mishra",
     bio: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem similique provident hic amet quasi sit nisi pariatur quis commodi reandae?t consectetur adipisicing elit. V",
-    img: "",
   },
   {
     name: "Debarchan Mishra",
@@ -98,9 +100,14 @@ const Influencers = [
   },
 ];
 
-
 // vertical transition
-const verticalTransition = (startIndex, endIndex, current, target, progress) => {
+const verticalTransition = (
+  startIndex,
+  endIndex,
+  current,
+  target,
+  progress
+) => {
   console.log(startIndex, endIndex, current, target, progress);
   // const height = target - current;
   // const translateY = height * progress;
