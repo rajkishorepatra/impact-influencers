@@ -14,18 +14,19 @@ import "swiper/css/navigation";
 import { Autoplay, Pagination, Navigation } from "swiper";
 
 function Main() {
-  const videoRef = useRef(null);
-  const [carouselHeight, setCarouselHeight] = useState(540);
-  useEffect(() => {
-    console.log("videoheight:",videoRef.current.clientHeight);
-    setCarouselHeight(videoRef.current.clientHeight);
-    console.log("ch",carouselHeight)
-  }, []);
+  
+  const responsive = {
+    desktop: {
+      breakpoint: { max: 3000, min: 4 },
+      items: 1,
+      slidesToSlide: 1, // optional, default to 1.
+    },
+  }
   return (
     <>
       <div className="header">
         <div className="header-wrapper">
-          <div className=" row  ">
+          <div className=" row bg-info ">
             <div className="col-12 col-lg-4 order-2 px-0 mx-0">
               <div className="header-carousel">
                 <Carousel
@@ -75,7 +76,7 @@ function InfluencerCard({ name, bio, Pimg }) {
             alt="influencer profile"
           />
         </div>
-        <div className="influencer-details text-light text-start p-3">
+        <div className="influencer-details bg-info text-start p-3">
           <h3 className=" h3 fw-semibold ">{name}</h3>
           <p className=" text-muted p-0 text-wrap">
             {bio.lenght < 50 ? bio : bio.substr(0, 50) + "..."}
