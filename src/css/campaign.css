@@ -53,8 +53,9 @@
 }
 
 .card-wrapper {
+  display: flex;
   position: relative;
-  min-height: 28rem;
+  height: 30rem;
   overflow: hidden;
   border-radius: 1rem;
   background:rgba(0, 0, 0, 0.1);
@@ -95,8 +96,7 @@
 }
 
 .card-img{
-  height: 18rem;
-  width: 100%;
-  object-fit: cover;
+  /* height: 100%; */
+  object-fit: fill;
   border-radius: 1rem;
 }

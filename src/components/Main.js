@@ -1,17 +1,26 @@
-import React from "react";
+import {useEffect, useRef,useState} from "react";
 import "../css/main.css";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
-import Profile from "../assets/profile.png";
+// import Profile from "../assets/profile.png";
 import StockVideo from "../assets/Tropical.mp4";
+
+// swiper carousel
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
+// import required modules
+import { Autoplay, Pagination, Navigation } from "swiper";
+
 function Main() {
-  const responsive = {
-    desktop: {
-      breakpoint: { max: 3000, min: 0 },
-      items: 1,
-      slidesToSlide: 1,
-    },
-  };
+  const videoRef = useRef(null);
+  const [carouselHeight, setCarouselHeight] = useState(540);
+  useEffect(() => {
+    console.log("videoheight:",videoRef.current.clientHeight);
+    setCarouselHeight(videoRef.current.clientHeight);
+    console.log("ch",carouselHeight)
+  }, []);
   return (
     <>
       <div className="header">
@@ -99,20 +108,3 @@ const Influencers = [
     bio: "Praesent commodo cursus magna, vel scelerisque nisl consectetur.",
   },
 ];
-
-// vertical transition
-const verticalTransition = (
-  startIndex,
-  endIndex,
-  current,
-  target,
-  progress
-) => {
-  console.log(startIndex, endIndex, current, target, progress);
-  // const height = target - current;
-  // const translateY = height * progress;
-
-  // return {
-  //   transform: `translateY(${translateY}px)`,
-  // };
-};

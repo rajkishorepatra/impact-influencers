@@ -2,7 +2,6 @@ import React, { useEffect, useRef } from "react";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import img from "../assets/image.png";
-import { useState } from "react";
 import "../css/campaign.css";
 import { Link } from "react-router-dom";
 import { BiChevronLeft, BiChevronRight } from "react-icons/bi";
@@ -73,7 +72,7 @@ function Campaign() {
             ))}
           </Carousel>
         </div>
-        <div className="d-flex mx-2 my-2 justify-content-start">
+        <div className="d-flex mx-2 my-2 justify-content-center">
           <Link to="/campaigns" className="btn btn-primary btn-sm">
             View all <span className="fw-bold">Campaigns</span>
           </Link>
@@ -110,7 +109,7 @@ const caseStudies = [
     title: "E-commerce Platform Redesign",
     summary:
       "Revamping the user experience and design of an e-commerce platform to increase conversion rates and customer satisfaction.",
-    imageLink: img,
+    imageLink: "https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg",
   },
   {
     id: 2,
