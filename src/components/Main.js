@@ -1,4 +1,4 @@
-import {useEffect, useRef,useState} from "react";
+import { useEffect, useRef, useState } from "react";
 import "../css/main.css";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
@@ -14,47 +14,56 @@ import "swiper/css/navigation";
 import { Autoplay, Pagination, Navigation } from "swiper";
 
 function Main() {
+  const videoRef = useRef(null);
+  const carouselRef = useRef(null);
+
+  useEffect(() => {
+    console.log(videoRef.current);
+    console.log(videoRef.current.offsetHeight);
+    setTimeout(() => {
+      carouselRef.current.swiper.update();
+      }, 1000);
+    
+  }, []);
   
-  const responsive = {
-    desktop: {
-      breakpoint: { max: 3000, min: 4 },
-      items: 1,
-      slidesToSlide: 1, // optional, default to 1.
-    },
-  }
+
   return (
     <>
       <div className="header">
         <div className="header-wrapper">
-          <div className=" row bg-info ">
-            <div className="col-12 col-lg-4 order-2 px-0 mx-0">
-              <div className="header-carousel">
-                <Carousel
-                  swipeable={true}
-                  responsive={responsive}
-                  autoPlay
-                  infinite                 
-                  customTransition="translateY(100%) .5"
-                  autoPlaySpeed={3000}
-                  arrows={false}
-                >
-                  {Influencers.map((i, index) => (
-                    <InfluencerCard key={index} name={i.name} bio={i.bio} />
-                  ))}
-                </Carousel>
-              </div>
+          <div className=" header-contents d-flex flex-column flex-lg-row">
+            <div className="vid-container">
+              <video autoPlay loop muted className="ratio" ref={videoRef}>
+                <source
+                  src={StockVideo}
+                  type="video/mp4"
+                  className="header-video"
+                />
+              </video>
             </div>
-            <div className="col-12 col-lg-8 order-1 px-0 mx-0">
-              <div className="vid-container">
-                <video autoPlay loop muted className="ratio ratio-4x3">
-                  <source
-                    src={StockVideo}
-                    type="video/mp4"
-                    className="header-video"
-                  />
-                </video>
-              </div>
-            </div>
+
+            <Swiper
+              ref={carouselRef}
+              slidesPerView={1}
+              centeredSlides={true}
+              autoplay={{
+                delay: 2500,
+                disableOnInteraction: false,
+              }}
+              pagination={{
+                clickable: true,
+              }}
+              direction="vertical"
+              navigation={false}
+              loop={true}
+              modules={[Autoplay, Pagination, Navigation]}
+            >
+              {Influencers.map((i, index) => (
+                <SwiperSlide key={index}>
+                  <InfluencerCard name={i.name} bio={i.bio} />
+                </SwiperSlide>
+              ))}
+            </Swiper>
           </div>
         </div>
       </div>

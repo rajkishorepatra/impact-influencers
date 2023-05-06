@@ -44,12 +44,7 @@
   bottom: 0;
 }
 
-.swiper {
-  background-color: #cedae8;
-  max-width: 28rem;
-  object-fit: cover;
-  max-height: 500px;
-}
+
 
 .swiper-slide {
   display: flex;
