@@ -14,18 +14,7 @@ import "swiper/css/navigation";
 import { Autoplay, Pagination, Navigation } from "swiper";
 
 function Main() {
-  const videoRef = useRef(null);
-  const carouselRef = useRef(null);
-
-  useEffect(() => {
-    console.log(videoRef.current);
-    console.log(videoRef.current.offsetHeight);
-    setTimeout(() => {
-      carouselRef.current.swiper.update();
-      }, 1000);
-    
-  }, []);
-  
+ 
 
   return (
     <>
@@ -33,7 +22,7 @@ function Main() {
         <div className="header-wrapper">
           <div className=" header-contents d-flex flex-column flex-lg-row">
             <div className="vid-container">
-              <video autoPlay loop muted className="ratio" ref={videoRef}>
+              <video autoPlay loop muted className="ratio" >
                 <source
                   src={StockVideo}
                   type="video/mp4"
@@ -43,7 +32,7 @@ function Main() {
             </div>
 
             <Swiper
-              ref={carouselRef}
+              
               slidesPerView={1}
               centeredSlides={true}
               autoplay={{
