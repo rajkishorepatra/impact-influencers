@@ -11,7 +11,7 @@ function Footer() {
         <div className="container-lg">
           <div className="row p-4">
             <div className="col-12 col-md-6 d-flex flex-column justify-content-between ">
-              <div className=" my-4" id="subscribe">
+              <div className="" id="subscribe">
                 <h4 className="h5 text-center">Subscribe to Our NewsLetter</h4>
                 <div className="max-form-width">
                   <form className="d-flex flex-column gap-1">
