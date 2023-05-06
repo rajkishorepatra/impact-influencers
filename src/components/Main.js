@@ -1,50 +1,68 @@
-import React from "react";
+import {useEffect, useRef,useState} from "react";
 import "../css/main.css";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
-import Profile from "../assets/profile.png";
+// import Profile from "../assets/profile.png";
 import StockVideo from "../assets/Tropical.mp4";
+
+// swiper carousel
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
+// import required modules
+import { Autoplay, Pagination, Navigation } from "swiper";
+
 function Main() {
-  const responsive = {
-    desktop: {
-      breakpoint: { max: 3000, min: 0 },
-      items: 1,
-      slidesToSlide: 1,
-    },
-  };
+  const videoRef = useRef(null);
+  const [carouselHeight, setCarouselHeight] = useState(540);
+  useEffect(() => {
+    console.log("videoheight:",videoRef.current.clientHeight);
+    setCarouselHeight(videoRef.current.clientHeight);
+    console.log("ch",carouselHeight)
+  }, []);
   return (
     <>
       <div className="header">
         <div className="header-wrapper">
-          <div className=" row bg-info ">
-            <div className="col-12 col-lg-4 order-2 px-0 mx-0">
-              <div className="header-carousel">
-                <Carousel
-                  swipeable={true}
-                  responsive={responsive}
-                  autoPlay
-                  infinite                 
-                  customTransition="translateY(100%) .5"
-                  autoPlaySpeed={3000}
-                  arrows={false}
-                >
-                  {Influencers.map((i, index) => (
-                    <InfluencerCard key={index} name={i.name} bio={i.bio} />
-                  ))}
-                </Carousel>
-              </div>
+          <div className=" header-contents d-flex flex-column flex-md-row">
+
+            <div className="vid-container"  >
+              <video autoPlay loop muted className="ratio ratio-4x3" ref={videoRef}>
+                <source
+                  src={StockVideo}
+                  type="video/mp4"
+                  className="header-video"
+                />
+              </video>
             </div>
-            <div className="col-12 col-lg-8 order-1 px-0 mx-0">
-              <div className="vid-container">
-                <video autoPlay loop muted className="ratio ratio-4x3">
-                  <source
-                    src={StockVideo}
-                    type="video/mp4"
-                    className="header-video"
-                  />
-                </video>
-              </div>
-            </div>
+
+            
+            <Swiper
+                height={carouselHeight}
+                slidesPerView={1}
+                centeredSlides={true}
+                autoplay={{
+                  delay: 2500,
+                  disableOnInteraction: false,
+                }}
+                pagination={{
+                  clickable: true,
+                }}
+                direction="vertical"
+                navigation={false}
+                loop={true}
+                modules={[Autoplay, Pagination, Navigation]}
+                // style={{maxHeight:carouselHeight}}
+              >
+                {Influencers.map((i, index) => (
+                  <SwiperSlide key={index}>
+                    <InfluencerCard  name={i.name} bio={i.bio} />
+                  </SwiperSlide>
+                ))}
+              </Swiper>
+
+
           </div>
         </div>
       </div>
@@ -66,7 +84,7 @@ function InfluencerCard({ name, bio, Pimg }) {
             alt="influencer profile"
           />
         </div>
-        <div className="influencer-details bg-info text-start p-3">
+        <div className="influencer-details bg-info text-start p-3 d-none">
           <h3 className=" h3 fw-semibold ">{name}</h3>
           <p className=" text-muted p-0 text-wrap">
             {bio.lenght < 50 ? bio : bio.substr(0, 50) + "..."}
@@ -99,20 +117,3 @@ const Influencers = [
     bio: "Praesent commodo cursus magna, vel scelerisque nisl consectetur.",
   },
 ];
-
-// vertical transition
-const verticalTransition = (
-  startIndex,
-  endIndex,
-  current,
-  target,
-  progress
-) => {
-  console.log(startIndex, endIndex, current, target, progress);
-  // const height = target - current;
-  // const translateY = height * progress;
-
-  // return {
-  //   transform: `translateY(${translateY}px)`,
-  // };
-};
