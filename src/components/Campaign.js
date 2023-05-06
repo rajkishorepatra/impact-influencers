@@ -72,7 +72,7 @@ function Campaign() {
             ))}
           </Carousel>
         </div>
-        <div className="d-flex mx-2 my-2 justify-content-start">
+        <div className="d-flex mx-2 my-2 justify-content-center">
           <Link to="/campaigns" className="btn btn-primary btn-sm">
             View all <span className="fw-bold">Campaigns</span>
           </Link>
