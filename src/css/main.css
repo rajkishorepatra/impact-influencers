@@ -1,5 +1,4 @@
 /* header section */
-
 .header {
   min-height: 80vh;
 }
@@ -16,15 +15,11 @@
   height: 100%;
   width: 100%;
   background-color: #243c56;
-  transform: skewY(-5deg) translateY(15%);
+  transform: skewY(-5deg) translateY(11.5%);
   position: absolute;
   bottom: 0;
   inset: 0;
   z-index: -1;
-}
-.header-wrapper .row {
-  max-height: 540px;
-  overflow: hidden;
 }
 
 .influencer-card {
@@ -48,9 +43,10 @@
 }
 
 .swiper {
-  --container-height: 540px;
+  --container-height: 600px;
   width: 100%;
   max-height: var(--container-height);
+  overflow: hidden;
 }
 
 
@@ -74,5 +70,8 @@
   }
   .influencer-card {
     flex-direction: column;
+  }
+  .header{
+    min-height: 100vh;
   }
 }

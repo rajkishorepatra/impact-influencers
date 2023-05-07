@@ -16,19 +16,13 @@ import { Autoplay, Pagination, Navigation } from "swiper";
 export default function Main() {
   const videoRef = useRef(null);
   const carouselRef = useRef(null);
-  const swiperslide = useRef(null);
   useEffect(() => {
     carouselRef.current.swiper.on("slideChange", () => {
-      console.log(window.innerWidth)
-      if (window.innerWidth > 576) {
-        // carouselRef.current.style.setProperty(
-        //   "--container-height",
-        //   `${videoRef.current.offsetHeight}px`
-        // );
-        // swiperslide.current.style.height = videoRef.current.offsetHeight+'px';
-        document.querySelectorAll('.influencer-card').forEach((card,i)=>{
-          card.style.height = videoRef.current.offsetHeight+'px';
-        })
+      if (window.innerWidth > 576  && videoRef.current && carouselRef.current) {
+        document.querySelectorAll(".influencer-card").forEach((card, i) => {
+          card.style.height = videoRef.current.offsetHeight + "px";
+        });
+        carouselRef.current.style.height = videoRef.current.offsetHeight + "px";
       }
     });
   }, []);
@@ -56,7 +50,7 @@ export default function Main() {
                 ref={carouselRef}
                 height={500}
                 slidesPerView={1}
-                spaceBetween={30}
+                spaceBetween={50}
                 centeredSlides={true}
                 autoplay={{
                   delay: 2500,
@@ -71,11 +65,7 @@ export default function Main() {
               >
                 {Influencers.map((i, index) => (
                   <SwiperSlide key={index}>
-                    <InfluencerCard
-                      name={i.name}
-                      bio={i.bio}
-                      ref={swiperslide}
-                    />
+                    <InfluencerCard name={i.name} bio={i.bio} />
                   </SwiperSlide>
                 ))}
               </Swiper>
@@ -87,10 +77,10 @@ export default function Main() {
   );
 }
 
-const InfluencerCard = forwardRef(({ name, bio, Pimg ,ref}) => {
+const InfluencerCard = ({ name, bio, Pimg }) => {
   return (
     <>
-      <div className="influencer-card " ref={ref}>
+      <div className="influencer-card ">
         <img
           src={
             "https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg"
@@ -106,7 +96,7 @@ const InfluencerCard = forwardRef(({ name, bio, Pimg ,ref}) => {
       </div>
     </>
   );
-});
+};
 
 const Influencers = [
   {
