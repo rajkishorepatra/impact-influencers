@@ -1,5 +1,4 @@
 /* header section */
-
 .header {
   min-height: 80vh;
 }
@@ -16,7 +15,7 @@
   height: 100%;
   width: 100%;
   background-color: #243c56;
-  transform: skewY(-5deg) translateY(15%);
+  transform: skewY(-5deg) translateY(11.5%);
   position: absolute;
   bottom: 0;
   inset: 0;
@@ -24,16 +23,15 @@
 }
 
 .influencer-card {
+  overflow: hidden;
+  isolation: isolate;
+  height: auto;
   position: relative;
 }
-.influencer-img {
-  padding: 0;
-  margin: 0;
-}
-.influencer-img img {
+
+.influencer-card img {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
+  object-fit: fill;
   object-position: center;
 }
 
@@ -45,26 +43,36 @@
   bottom: 0;
 }
 
-
-.swiper{
-  max-height: 36rem;
-  max-width: 28rem;
+.swiper {
+  --container-height: 600px;
+  width: 100%;
+  max-height: var(--container-height);
+  overflow: hidden;
 }
+
 
 @media screen and (max-width: 991px) {
-  .swiper{
-    max-width: 100%;
+  .header-wrapper .row {
+    max-height: unset;
   }
-  .influencer-card{
-    flex-direction: row;
-    width: 100%;
+  .influencer-card {
+    display: flex;
   }
   .influencer-details{
-    position: static;
+    position: relative;
   }
 }
-@media screen and (max-width: 575px) {
-  .influencer-details{
-    position: absolute;
+@media screen and (max-width: 576px) {
+  .header-wrapper::after {
+    transform: skewY(-5deg) translateY(0);
+  }
+  .header-wrapper .row {
+    max-height: unset;
+  }
+  .influencer-card {
+    flex-direction: column;
+  }
+  .header{
+    min-height: 100vh;
   }
 }
