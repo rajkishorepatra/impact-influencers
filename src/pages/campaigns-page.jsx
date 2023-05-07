@@ -67,7 +67,6 @@ function CampaignCard({ campaign }) {
   const [more, setMore] = useState(true);
 
   const handleParticipate = (e) => {
-    console.log("participate");
     if (currentUser) {
       setInfo({ ...info, show: true, message: "You have been registered" });
     } else {
@@ -99,7 +98,7 @@ function CampaignCard({ campaign }) {
             <div className={more === false ? "col-12 col-md-6" : "col-12"}>
               <div className="d-flex">
                 {more && (
-                  <div className="thumb-img">
+                  <div className="thumb-img p-2">
                     <img src={Img} className="thumbnail-img" alt="..." />
                   </div>
                 )}
@@ -166,7 +165,7 @@ function CampaignCard({ campaign }) {
                   </div>
 
                   {info.show && (
-                    <span className="badge rounded-1 border text-warning w-100 m-1 p-2 ">
+                    <span className="badge rounded-1 border text-warning w-100 my-1 p-2 ">
                       {info.message}
                     </span>
                   )}
