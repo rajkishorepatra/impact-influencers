@@ -1,8 +1,5 @@
 import { useEffect, useRef, useState, forwardRef } from "react";
 import "../css/main.css";
-import Carousel from "react-multi-carousel";
-import "react-multi-carousel/lib/styles.css";
-// import Profile from "../assets/profile.png";
 import StockVideo from "../assets/Tropical.mp4";
 
 // swiper carousel
@@ -12,6 +9,8 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 // import required modules
 import { Autoplay, Pagination, Navigation } from "swiper";
+
+
 
 export default function Main() {
   const videoRef = useRef(null);
