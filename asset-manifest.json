@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/impact-influencers/static/css/main.a592e13d.css",
-    "main.js": "/impact-influencers/static/js/main.de770810.js",
+    "main.js": "/impact-influencers/static/js/main.f053c3ec.js",
     "static/media/Tropical.mp4": "/impact-influencers/static/media/Tropical.e67bc09d6d846fb8d5e9.mp4",
     "static/media/cs2.png": "/impact-influencers/static/media/cs2.ad4d674fe7eaffbdc927.png",
     "static/media/cs1.png": "/impact-influencers/static/media/cs1.8d88ccd55d3e398ddb49.png",
@@ -14,10 +14,10 @@
     "static/media/revicons.woff": "/impact-influencers/static/media/revicons.e8746a624ed098489406.woff",
     "index.html": "/impact-influencers/index.html",
     "main.a592e13d.css.map": "/impact-influencers/static/css/main.a592e13d.css.map",
-    "main.de770810.js.map": "/impact-influencers/static/js/main.de770810.js.map"
+    "main.f053c3ec.js.map": "/impact-influencers/static/js/main.f053c3ec.js.map"
   },
   "entrypoints": [
     "static/css/main.a592e13d.css",
-    "static/js/main.de770810.js"
+    "static/js/main.f053c3ec.js"
   ]
 }
